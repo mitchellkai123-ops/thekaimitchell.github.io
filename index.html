@@ -10,6 +10,8 @@
       margin: 0;
       padding: 0;
       background-color: black;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     /* Each section fills the screen */
@@ -20,6 +22,7 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      position: relative;
     }
 
     /* Images fit their sections */
@@ -30,53 +33,65 @@
       display: block;
     }
 
-    /* Optional smooth scroll */
-    html {
-      scroll-behavior: smooth;
-    }
     /* --- STAR WARS CRAWL SECTION --- */
-.crawl-container {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 300vh; /* extra height for scroll movement */
-  perspective: 400px;
-  overflow: visible;
-}
+    .crawl-container {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 300vh; /* extra height for scroll movement */
+      perspective: 400px;
+      overflow: visible;
+    }
 
-.crawl {
-  position: sticky;
-  top: 50%;
-  width: 80%;
-  margin: 0 auto;
-  transform-origin: 50% 100%;
-  transform: rotateX(25deg);
-  text-align: justify;
-  line-height: 1.6;
-  font-size: 200%;
-  color: #ffe81f;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-}
+    .crawl {
+      position: sticky;
+      top: 50%;
+      width: 80%;
+      margin: 0 auto;
+      transform-origin: 50% 100%;
+      transform: rotateX(25deg);
+      text-align: justify;
+      line-height: 1.6;
+      font-size: 200%;
+      color: #ffe81f;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
 
-.crawl h1 {
-  text-align: center;
-  font-size: 250%;
-  margin-bottom: 1em;
-}
-
-.second {
-  height: 100vh;
-}
-
+    .crawl h1 {
+      text-align: center;
+      font-size: 250%;
+      margin-bottom: 1em;
+    }
   </style>
 </head>
 <body>
+
+  <!-- FIRST SECTION with Star Wars Crawl -->
   <section>
     <img src="images/starry-space.jpg" alt="Starry space background">
+
+    <div class="crawl-container">
+      <div class="crawl">
+        <h1>KAI MITCHELL</h1>
+        <p>
+          It is a period of creative expansion.  
+          Across the web, brilliant minds unite to forge digital realms of art and motion.  
+          In the depths of space, one such creator sets forth on a mission —  
+          to craft worlds of code and cosmos, blending pixels and imagination into a single vision.  
+        </p>
+        <p>
+          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
+          The stars themselves stand witness to a journey of creation and discovery.  
+          This... is only the beginning.
+        </p>
+      </div>
+    </div>
   </section>
 
+  <!-- SECOND SECTION -->
   <section>
     <img src="images/spacegif-ezgif.com-speed.gif" alt="Animated space GIF">
   </section>
+
 </body>
 </html>
