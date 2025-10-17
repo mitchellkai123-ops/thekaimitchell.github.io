@@ -1,135 +1,25 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Star Wars Style Scroll</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { height: 100%; font-family: 'Arial Black', Arial, sans-serif; overflow-x: hidden; background: black; }
-
-    .hero {
-      position: relative;
-      height: 100vh;
-      background: url('images/starry-space.jpg') no-repeat center center/cover;
-      perspective: 1000px;
-      overflow: hidden;
-    }
-
-    .title {
-      position: absolute;
-      top: 10%;
-      width: 100%;
-      text-align: center;
-      color: yellow;
-      font-size: 5vw;
-      font-weight: bold;
-      z-index: 10;
-      transition: transform 0.2s ease, font-size 0.2s ease;
-    }
-
-    .crawl-container {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      perspective: 1000px;
-    }
-
-    .crawl {
-      color: yellow;
-      text-align: center;
-      max-width: 80%;
-      transform-origin: bottom center;
-      transform: rotateX(25deg) translateY(75%) scale(1);
-      font-size: 2.5vw;
-      transition: transform 0.1s ease;
-    }
-
-    .crawl p {
-      margin: 1em 0;
-      line-height: 1.6;
-    }
-
-    .content {
-      min-height: 200vh;
-      background: url('images/spacegif-ezgif.com-speed.gif') no-repeat center center/cover;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      padding: 50px;
-    }
-
-    .content h2 { font-size: 2.5em; margin-bottom: 20px; }
-    .content p { font-size: 1.5em; max-width: 800px; margin: 20px auto; }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <title>Star Wars Text</title>
 </head>
 <body>
-  <div class="hero">
-    <div class="title" id="heroTitle">Welcome to My Website</div>
-    <div class="crawl-container">
-      <div class="crawl" id="crawl">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan risus.</p>
-        <p>Phasellus vehicula libero a nulla hendrerit, a semper magna dictum.</p>
-        <p>Vivamus in fermentum urna. Integer a fermentum erat.</p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-        <p>Donec imperdiet, turpis at convallis ullamcorper, purus nisi cursus turpis, ut luctus justo purus a felis.</p>
-        <p>Suspendisse potenti. Sed vel elit eu erat tempus lacinia.</p>
-        <p>Even more text for scrolling effect demonstration.</p>
-      </div>
+  
+  <div class="wrapper">
+    <div class="scroll-text">
+      <h1>STAR WARS</h1>
+      <h2>Scrolling Text Effect</h2>
+      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
+      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
+      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
+      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
+      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
+      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
+      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
+      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
     </div>
   </div>
-
-  <div class="content">
-    <h2>New Scene</h2>
-    <p>This is where the page scrolls normally after the text overlay is fully scrolled.</p>
-  </div>
-
-  <script>
-    const crawl = document.getElementById('crawl');
-    const title = document.getElementById('heroTitle');
-
-    let scrollPos = 0;
-    const crawlStartY = 75; // start at 75% viewport height
-    const crawlEndY = 25;   // end at 25% viewport height
-    const startScale = 1;
-    const endScale = 0.25;
-
-    let maxScroll = 200; // adjust for total scroll distance of intro
-
-    window.addEventListener('wheel', (e) => {
-      scrollPos += e.deltaY * 0.5;
-      scrollPos = Math.max(0, scrollPos);
-      scrollPos = Math.min(scrollPos, maxScroll);
-
-      let progress = scrollPos / maxScroll;
-
-      // Calculate vertical movement and scale
-      let translateY = crawlStartY - (crawlStartY - crawlEndY) * progress;
-      let scale = startScale - (startScale - endScale) * progress;
-
-      crawl.style.transform = `rotateX(25deg) translateY(${translateY}%) scale(${scale})`;
-
-      // Title shrink slightly as scroll begins
-      const titleScale = Math.max(0.7, 1 - progress * 0.3);
-      title.style.transform = `scale(${titleScale})`;
-
-      // Unlock scrolling into next section after crawl finishes
-      if (scrollPos >= maxScroll) {
-        document.body.style.overflowY = 'auto';
-      } else {
-        document.body.style.overflowY = 'hidden';
-      }
-    });
-
-    document.body.style.overflowY = 'hidden';
-  </script>
-</body>
+</body> 
 </html>
