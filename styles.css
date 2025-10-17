@@ -2,24 +2,24 @@
 
 body {
   background: rgb(20,20,20);
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  height: 100vh;
-  overflow-y: auto;
+  overflow: hidden;
+  font-family: 'Roboto';
 }
 
 .wrapper {
+  display: flex;
+  height: 100%;
   width: 60%;
   margin: 0 auto;
-  padding-top: 100vh;\
 }
 
 .scroll-text {
-  color: #ffc909;
+  color: #ffc909 !important;
   font-size: 3vw;
   line-height: 1.5em;
   font-weight: bold;
   text-align: justify;
+  postion: relative;
 }
 
 h1, h2 {
