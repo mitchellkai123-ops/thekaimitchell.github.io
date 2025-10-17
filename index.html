@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kai Mitchell</title>
+  <title>1Kai Mitchell</title>
   <style>
     html, body {
       margin: 0;
@@ -15,6 +15,7 @@
       overflow-x: hidden;
     }
 
+    /* --- SECTIONS --- */
     section {
       position: relative;
       width: 100%;
@@ -22,87 +23,101 @@
       overflow: hidden;
     }
 
-    img {
+    section img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    /* Star Wars scroll container */
+    /* --- STAR WARS TEXT --- */
     .crawl-wrapper {
       position: sticky;
       top: 0;
       height: 100vh;
-      perspective: 600px;
+      perspective: 800px;
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      overflow: hidden;
+      overflow: visible;
+      z-index: 2;
     }
 
     .crawl {
-      width: 60%;
+      width: 70%;
       text-align: justify;
       transform-origin: 50% 100%;
+      transform: rotateX(25deg);
       will-change: transform, opacity;
+      position: relative;
+      z-index: 3;
+      text-shadow: 0 0 15px #ffe81f;
     }
 
     .crawl h1 {
       text-align: center;
-      font-size: 2.5em;
+      font-size: 2.8em;
       margin-bottom: 1em;
     }
 
     .crawl p {
       font-size: 1.4em;
       line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Fallback if JS fails */
+    .no-js .crawl {
+      transform: none;
+      opacity: 1;
     }
   </style>
 </head>
-<body>
-
-  <!-- SECTION 1: Scroll-controlled Star Wars intro -->
+<body class="no-js">
+  <!-- SECTION 1: Star Wars intro -->
   <section id="intro">
     <img src="images/starry-space.jpg" alt="Starry space background" />
-
     <div class="crawl-wrapper">
       <div class="crawl" id="crawl">
         <h1>KAI MITCHELL</h1>
         <p>
-          It is a period of creative expansion.<br>
-          Across the web, brilliant minds unite to forge digital realms of art and motion.<br>
-          In the depths of space, one such creator sets forth on a mission —
+          It is a period of creative expansion. Across the web, brilliant minds unite to forge digital realms of art and motion.  
+          In the depths of space, one such creator sets forth on a mission —  
           to craft worlds of code and cosmos, blending pixels and imagination into a single vision.
         </p>
         <p>
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.<br>
-          The stars themselves stand witness to a journey of creation and discovery.<br>
+          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
+          The stars themselves stand witness to a journey of creation and discovery.  
           This... is only the beginning.
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.<br>
-          The stars themselves stand witness to a journey of creation and discovery.<br>
+          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
+          The stars themselves stand witness to a journey of creation and discovery.  
           This... is only the beginning.
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.<br>
-          The stars themselves stand witness to a journey of creation and discovery.<br>
+          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
+          The stars themselves stand witness to a journey of creation and discovery.  
           This... is only the beginning.
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.<br>
-          The stars themselves stand witness to a journey of creation and discovery.<br>
+          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
+          The stars themselves stand witness to a journey of creation and discovery.  
           This... is only the beginning.
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.<br>
-          The stars themselves stand witness to a journey of creation and discovery.<br>
+          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
+          The stars themselves stand witness to a journey of creation and discovery.  
           This... is only the beginning.
+
+
+          
         </p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 2: Second image -->
+  <!-- SECTION 2: Second background -->
   <section>
     <img src="images/spacegif-ezgif.com-speed.gif" alt="Animated space GIF" />
   </section>
 
   <script>
-    // Smooth scroll-controlled Star Wars effect
+    // Remove fallback class
+    document.body.classList.remove('no-js');
+
     const crawl = document.getElementById('crawl');
     const introSection = document.getElementById('intro');
 
@@ -110,23 +125,24 @@
       const rect = introSection.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // progress from 0 (top of section) to 1 (bottom)
-      const progress = Math.min(Math.max((windowHeight - rect.top) / (windowHeight * 2), 0), 1);
+      // scroll progress (0 = top, 1 = bottom)
+      const progress = Math.min(Math.max((windowHeight - rect.top) / (windowHeight * 1.5), 0), 1);
 
-      // Move upward & shrink
-      const translateZ = progress * -600; // moves back into space
-      const rotateX = 25 + progress * 20; // tilts a bit more
-      const opacity = 1 - progress * 1.2; // fades out at end
+      // transformations based on scroll
+      const moveY = -progress * 300;       // text moves up
+      const scale = 1 - progress * 0.4;    // shrinks
+      const opacity = 1 - progress * 1.1;  // fades near end
+      const rotateX = 25 + progress * 20;  // tilt back slightly
+      const translateZ = progress * -500;  // push away
 
       crawl.style.transform = `
         rotateX(${rotateX}deg)
-        translateY(${-progress * 300}px)
+        translateY(${moveY}px)
         translateZ(${translateZ}px)
-        scale(${1 - progress * 0.4})
+        scale(${scale})
       `;
       crawl.style.opacity = opacity;
     });
   </script>
-
 </body>
 </html>
