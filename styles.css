@@ -20,8 +20,14 @@ body {
   font-weight: bold;
   text-align: justify;
   postion: relative;
+  animation: scroll 30s linear forwards;
 }
 
 h1, h2 {
   text-align: center;
+}
+
+@kayframes scroll {
+  from { top: 0; }
+  to { top: -7500px } 
 }
