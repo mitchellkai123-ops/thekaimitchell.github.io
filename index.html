@@ -9,32 +9,45 @@
         body {
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+            color: yellow;
+        }
+
+        /* First section */
+        .section1 {
+            position: relative;
             height: 100vh;
             width: 100vw;
             background-image: url('images/starry-space.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-            color: yellow;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            position: relative;
         }
 
-        /* Left GIF behind text, slightly more left and smaller */
+        /* Second section */
+        .section2 {
+            height: 100vh;
+            width: 100vw;
+            background-image: url('images/Screenshot 2025-10-15 at 9.52.02 PM.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* GIFs for first section */
         .left-gif {
             position: absolute;
-            left: -5%; /* shifted a bit more left */
+            left: -5%;
             top: 50%;
             transform: translateY(-50%);
-            width: 48%; /* slightly smaller */
+            width: 48%;
             z-index: 1;
         }
 
-        /* Right GIF bigger and slightly off-screen */
         .right-gif {
             position: absolute;
             right: -25%;
@@ -44,7 +57,7 @@
             z-index: 1;
         }
 
-        /* Text on top of GIFs */
+        /* Text container on top of GIFs */
         .text-container {
             position: relative;
             z-index: 2;
@@ -63,12 +76,17 @@
     </style>
 </head>
 <body>
-    <img src="images/7G3VU4WW2YY4OC4XVDBFQJO7D5G7B662.gif" alt="Left GIF" class="left-gif">
-    <img src="images/3DM6UG57EW5Z56LMMXJLCB2KHNLFUSJL.gif" alt="Right GIF" class="right-gif">
-
-    <div class="text-container">
-        <h1>Kai Mitchell</h1>
-        <p>Welcome to my site</p>
+    <!-- First Section -->
+    <div class="section1">
+        <img src="images/7G3VU4WW2YY4OC4XVDBFQJO7D5G7B662.gif" alt="Left GIF" class="left-gif">
+        <img src="images/3DM6UG57EW5Z56LMMXJLCB2KHNLFUSJL.gif" alt="Right GIF" class="right-gif">
+        <div class="text-container">
+            <h1>Kai Mitchell</h1>
+            <p>Welcome to my site</p>
+        </div>
     </div>
+
+    <!-- Second Section -->
+    <div class="section2"></div>
 </body>
 </html>
