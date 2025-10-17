@@ -24,6 +24,7 @@ body {
   text-align: justify;
   postion: relative;
   animation: scroll 30s linear forwards;
+  transform: translateZ(-2500px);
 }
 
 h1, h2 {
