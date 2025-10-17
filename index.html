@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             height: 100vh;
+            width: 100vw;
             background-image: url('images/starry-space.jpg');
             background-size: cover;
             background-position: center;
@@ -17,15 +18,57 @@
             font-family: Arial, sans-serif;
             color: yellow;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Left GIF behind text */
+        .left-gif {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            z-index: 1;
+        }
+
+        /* Right GIF bigger and slightly off-screen */
+        .right-gif {
+            position: absolute;
+            right: -25%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 75%;
+            z-index: 1;
+        }
+
+        /* Text on top of GIFs */
+        .text-container {
+            position: relative;
+            z-index: 2;
             text-align: center;
+        }
+
+        .text-container h1 {
+            font-size: 4em; /* Bigger title */
+            margin: 0;
+        }
+
+        .text-container p {
+            font-size: 2em; /* Bigger subtitle */
+            margin: 0;
         }
     </style>
 </head>
 <body>
-    <h1>Kai Mitchell</h1>
-    <p>Welcome to my site</p>
+    <img src="images/7G3VU4WW2YY4OC4XVDBFQJO7D5G7B662.gif" alt="Left GIF" class="left-gif">
+    <img src="images/3DM6UG57EW5Z56LMMXJLCB2KHNLFUSJL.gif" alt="Right GIF" class="right-gif">
+
+    <div class="text-container">
+        <h1>Kai Mitchell</h1>
+        <p>Welcome to my site</p>
+    </div>
 </body>
 </html>
