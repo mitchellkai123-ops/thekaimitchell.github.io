@@ -2,10 +2,11 @@
 
 body {
   background: rgb(20,20,20);
-  overflow: hidden; /* keeps the text scroll effect controlled by animation */
+  overflow-y: auto; /* allow vertical scrolling */
   font-family: 'Roboto', sans-serif;
-  margin: 0; /* changed from 50% to 0 for proper alignment */
+  margin: 0;
   position: relative;
+  height: 100vh;
 }
 
 body::after {
@@ -14,15 +15,18 @@ body::after {
   top: 0;
   width: 100%;
   height: 50%;
+  pointer-events: none; /* so it doesn't block scrolling */
   background: linear-gradient(180deg, rgba(20,20,20,1) 40%, rgba(20,20,20,0) 100%);
 }
 
 .wrapper {
   display: flex;
-  height: 100%;
+  justify-content: center;
   width: 60%;
   margin: 0 auto;
   perspective: 450px;
+  transform-style: preserve-3d;
+  padding-top: 50px; /* small top padding */
 }
 
 .scroll-text {
@@ -31,15 +35,9 @@ body::after {
   line-height: 1.5em;
   font-weight: bold;
   text-align: justify;
-  position: relative; /* fixed typo */
-  animation: scroll 30s linear forwards;
+  transform: rotateX(20deg); /* gives the Star Wars-style tilt */
 }
 
 h1, h2 {
   text-align: center;
-}
-
-@keyframes scroll {
-  from { top: 0; transform: translateZ(0) rotateX(20deg); }
-  to { top: -7500px; transform: translateZ(-2500px) rotateX(21deg); }
 }
