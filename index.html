@@ -1,2 +1,46 @@
-<h1>Hello!</h1>
-<p>This is my new site 🎉</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kai’s Space</title>
+  <style>
+    /* Remove default margins and make page fill the whole window */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* no scrolling */
+    }
+
+    /* Fullscreen responsive background */
+    body {
+      background: url("spacegif-ezgif.com-speed.gif") no-repeat center center fixed;
+      background-size: cover;  /* scales image to fill screen on phone + desktop */
+    }
+
+    /* Optional: text or buttons stay centered */
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 2em;
+      text-align: center;
+      font-family: monospace;
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        font-size: 1.2em; /* smaller text on phones */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>🚀 Welcome to Kai’s Universe 🚀</h1>
+  </div>
+</body>
+</html>
