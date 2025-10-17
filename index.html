@@ -5,27 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kai Mitchell</title>
   <style>
+    /* Reset and base settings */
     html, body {
-      height: 100%;
       margin: 0;
       padding: 0;
+      height: 100%;
       overflow: hidden;
     }
 
     body {
-      background: url('images/spacegif-ezgif.com-speed.gif') no-repeat center center fixed;
-      background-size: cover;
-      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
     }
 
-    img {
+    /* Background container */
+    .background {
+      position: relative;
       width: 100%;
-      display: block;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Each layer (image) */
+    .layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Static stars layer */
+    .back {
+      z-index: 1;
+      opacity: 1;
+    }
+
+    /* Animated galaxy GIF layer */
+    .front {
+      z-index: 2;
+      opacity: 0.7; /* You can adjust transparency here */
+    }
+
+    /* Makes sure mobile and PC scale identically */
+    @media (max-width: 768px) {
+      body {
+        height: 100vh;
+      }
     }
   </style>
 </head>
 <body>
-  <img src="images/starry-space.jpg" alt="Starry space background">
-  <img src="images/stars.jpg" alt="Previous image">
+  <div class="background">
+    <img src="images/starry-space.jpg" class="layer back" alt="Starry background">
+    <img src="images/spacegif-ezgif.com-speed.gif" class="layer front" alt="Animated galaxy">
+  </div>
 </body>
 </html>
