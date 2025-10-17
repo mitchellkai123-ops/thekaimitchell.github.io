@@ -5,27 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kai Mitchell</title>
   <style>
-    /* Reset margins and padding */
     html, body {
       margin: 0;
       padding: 0;
       background-color: black;
+      color: #ffe81f;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
       scroll-behavior: smooth;
       overflow-x: hidden;
     }
 
-    /* Each section fills the screen */
     section {
-      width: 100%;
-      height: 100vh; /* full viewport height */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
       position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    /* Images fit their sections */
     img {
       width: 100%;
       height: 100%;
@@ -33,86 +29,104 @@
       display: block;
     }
 
-    /* --- STAR WARS CRAWL SECTION --- */
-    .crawl-container {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 300vh; /* extra height for scroll movement */
-      perspective: 400px;
-      overflow: visible;
+    /* Star Wars scroll container */
+    .crawl-wrapper {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      perspective: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
     }
 
     .crawl {
-      position: sticky;
-      top: 50%;
-      width: 80%;
-      margin: 0 auto;
-      transform-origin: 50% 100%;
-      transform: rotateX(25deg);
+      width: 60%;
       text-align: justify;
-      line-height: 1.6;
-      font-size: 200%;
-      color: #ffe81f;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
+      transform-origin: 50% 100%;
+      will-change: transform, opacity;
     }
 
     .crawl h1 {
       text-align: center;
-      font-size: 250%;
+      font-size: 2.5em;
       margin-bottom: 1em;
+    }
+
+    .crawl p {
+      font-size: 1.4em;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
 
-  <!-- FIRST SECTION with Star Wars Crawl -->
-  <section>
-    <img src="images/starry-space.jpg" alt="Starry space background">
+  <!-- SECTION 1: Scroll-controlled Star Wars intro -->
+  <section id="intro">
+    <img src="images/starry-space.jpg" alt="Starry space background" />
 
-    <div class="crawl-container">
-      <div class="crawl">
+    <div class="crawl-wrapper">
+      <div class="crawl" id="crawl">
         <h1>KAI MITCHELL</h1>
         <p>
-          It is a period of creative expansion.  
-          Across the web, brilliant minds unite to forge digital realms of art and motion.  
-          In the depths of space, one such creator sets forth on a mission —  
-          to craft worlds of code and cosmos, blending pixels and imagination into a single vision.  
+          It is a period of creative expansion.<br>
+          Across the web, brilliant minds unite to forge digital realms of art and motion.<br>
+          In the depths of space, one such creator sets forth on a mission —
+          to craft worlds of code and cosmos, blending pixels and imagination into a single vision.
         </p>
         <p>
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
-          The stars themselves stand witness to a journey of creation and discovery.  
+          As the galaxies align, a new site emerges — sleek, surreal, and boundless.<br>
+          The stars themselves stand witness to a journey of creation and discovery.<br>
           This... is only the beginning.
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
-          The stars themselves stand witness to a journey of creation and discovery.  
+          As the galaxies align, a new site emerges — sleek, surreal, and boundless.<br>
+          The stars themselves stand witness to a journey of creation and discovery.<br>
           This... is only the beginning.
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
-          The stars themselves stand witness to a journey of creation and discovery.  
+          As the galaxies align, a new site emerges — sleek, surreal, and boundless.<br>
+          The stars themselves stand witness to a journey of creation and discovery.<br>
           This... is only the beginning.
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
-          The stars themselves stand witness to a journey of creation and discovery.  
+          As the galaxies align, a new site emerges — sleek, surreal, and boundless.<br>
+          The stars themselves stand witness to a journey of creation and discovery.<br>
           This... is only the beginning.
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
-          The stars themselves stand witness to a journey of creation and discovery.  
-          This... is only the beginning.
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
-          The stars themselves stand witness to a journey of creation and discovery.  
-          This... is only the beginning.
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
-          The stars themselves stand witness to a journey of creation and discovery.  
-          This... is only the beginning.
-          As the galaxies align, a new site emerges — sleek, surreal, and boundless.  
-          The stars themselves stand witness to a journey of creation and discovery.  
+          As the galaxies align, a new site emerges — sleek, surreal, and boundless.<br>
+          The stars themselves stand witness to a journey of creation and discovery.<br>
           This... is only the beginning.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- SECOND SECTION -->
+  <!-- SECTION 2: Second image -->
   <section>
-    <img src="images/spacegif-ezgif.com-speed.gif" alt="Animated space GIF">
+    <img src="images/spacegif-ezgif.com-speed.gif" alt="Animated space GIF" />
   </section>
+
+  <script>
+    // Smooth scroll-controlled Star Wars effect
+    const crawl = document.getElementById('crawl');
+    const introSection = document.getElementById('intro');
+
+    window.addEventListener('scroll', () => {
+      const rect = introSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // progress from 0 (top of section) to 1 (bottom)
+      const progress = Math.min(Math.max((windowHeight - rect.top) / (windowHeight * 2), 0), 1);
+
+      // Move upward & shrink
+      const translateZ = progress * -600; // moves back into space
+      const rotateX = 25 + progress * 20; // tilts a bit more
+      const opacity = 1 - progress * 1.2; // fades out at end
+
+      crawl.style.transform = `
+        rotateX(${rotateX}deg)
+        translateY(${-progress * 300}px)
+        translateZ(${translateZ}px)
+        scale(${1 - progress * 0.4})
+      `;
+      crawl.style.opacity = opacity;
+    });
+  </script>
 
 </body>
 </html>
