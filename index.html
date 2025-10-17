@@ -3,66 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kai Mitchell</title>
+  <title>Cat Chen + Kai Mitchell</title>
   <style>
-    /* Reset and base settings */
+    /* Reset margins and padding */
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       background-color: black;
     }
 
-    /* Background container */
-    .background {
-      position: relative;
+    /* Each section fills the screen */
+    section {
       width: 100%;
-      height: 100%;
+      height: 100vh; /* full viewport height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
     }
 
-    /* Each layer (image) */
-    .layer {
-      position: absolute;
-      top: 0;
-      left: 0;
+    /* Images fit their sections */
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    /* Static stars layer */
-    .back {
-      z-index: 1;
-      opacity: 1;
-    }
-
-    /* Animated galaxy GIF layer */
-    .front {
-      z-index: 2;
-      opacity: 0.7; /* You can adjust transparency here */
-    }
-
-    /* Makes sure mobile and PC scale identically */
-    @media (max-width: 768px) {
-      body {
-        height: 100vh;
-      }
+    /* Optional smooth scroll */
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
 <body>
-  <div class="background">
-    <img src="images/starry-space.jpg" class="layer back" alt="Starry background">
-    <img src="images/spacegif-ezgif.com-speed.gif" class="layer front" alt="Animated galaxy">
-  </div>
+  <section>
+    <img src="images/starry-space.jpg" alt="Starry space background">
+  </section>
+
+  <section>
+    <img src="images/spacegif-ezgif.com-speed.gif" alt="Animated space GIF">
+  </section>
 </body>
 </html>
