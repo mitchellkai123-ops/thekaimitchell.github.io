@@ -2,7 +2,7 @@
 
 body {
   background: rgb(20,20,20);
-  overflow-y: auto;
+  overflow-y: auto; /* allow scrolling */
   font-family: 'Roboto', sans-serif;
   margin: 0;
   position: relative;
@@ -35,11 +35,10 @@ body::after {
   line-height: 1.5em;
   font-weight: bold;
   text-align: justify;
-  transform: rotateX(20deg);
   transform-origin: top center;
-  transition: transform 0.1s linear, opacity 0.1s linear;
 }
 
 h1, h2 {
   text-align: center;
+  margin-bottom: 1em;
 }
