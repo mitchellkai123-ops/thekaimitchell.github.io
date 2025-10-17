@@ -31,7 +31,7 @@ body::after {
   line-height: 1.5em;
   font-weight: bold;
   text-align: justify;
-  postion: relative;
+  position: relative;
   animation: scroll 30s linear forwards;
   
 }
@@ -40,7 +40,7 @@ h1, h2 {
   text-align: center;
 }
 
-@kayframes scroll {
+@keyframes scroll {
   from { top: 0; transform: translateZ(0) rotateX(20deg) }
   to { top: -7500px; transform: translateZ(-2500px) rotateX(21deg) } 
 }
