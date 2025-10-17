@@ -1,27 +1,45 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Kai Mitchell</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starry Background</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('images/starry-space.jpg');
+            background-size: cover;      /* Makes sure it covers the whole screen */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        /* Optional: add a semi-transparent overlay to make text more readable */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 0;
+        }
+    </style>
 </head>
 <body>
-  
-  <div class="wrapper">
-    <div class="scroll-text">
-      <h1>STAR WARS</h1>
-      <h2>Scrolling Text Effect</h2>
-      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
-      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
-      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
-      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
-      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
-      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
-      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
-      <p>Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts. Hi I am kai and i am tuff as shit ts.</p>
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>Welcome to My Starry Site</h1>
+        <p>This is a sample page with a starry background.</p>
     </div>
-  </div>
-
-<script src="script.js"></script>
 </body>
 </html>
