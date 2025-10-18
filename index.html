@@ -42,11 +42,12 @@
         /* Divider PNG overlaying split */
         .divider {
             position: absolute;
-            top: 100vh; /* exactly at bottom of first section */
+            top: 100vh;
             left: 0;
             width: 100%;
             z-index: 3;
-        }
+            transform: translateY(-50%); /* moves the divider up by 50% of its own height */
+}
 
         /* GIFs for first section */
         .left-gif {
