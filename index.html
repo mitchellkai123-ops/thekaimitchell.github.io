@@ -105,9 +105,14 @@
     <div class="section2">
 
         <!-- CD clickable link -->
-        <a href="https://music.apple.com/profile/kai_michell" target="_blank">
-            <img id="cd-gif" src="images/cd.gif" style="position:absolute; top: 32%; left: 80%; width: 7.2vw;">
-        </a>
+        <div style="position:absolute; top:32%; left:80%; width:7.2vw; text-align:center;">
+            <div id="cd-text" style="color:cyan; font-size:1vw; font-weight:bold; margin-bottom:2px;">
+                click me!
+            </div>
+            <a href="https://music.apple.com/profile/kai_michell" target="_blank">
+                <img id="cd-gif" src="images/cd.gif" style="width:100%;">
+            </a>
+        </div>
 
         <!-- Flynn Planet clickable link -->
         <a href="https://flynnconnolly.com" target="_blank">
@@ -124,31 +129,6 @@
         <img src="images/mars.gif" style="position:absolute; top: 82%; left: 37%; width: 6.54vw;">
         <img src="images/toy-ufo.gif" style="position:absolute; top: 68%; left: 60%; width: 8.5vw;">
 
-        <!-- Text above CD GIF -->
-        <div id="cd-text" style="position:absolute; color:cyan; font-size:1vw; font-weight:bold; text-align:center;">
-            click me!
-        </div>
-
-    </div>
-
-    <script>
-        const cdGif = document.getElementById('cd-gif');
-        const cdText = document.getElementById('cd-text');
-
-        function positionText() {
-            const rect = cdGif.getBoundingClientRect();
-            const scrollTop = window.scrollY || window.pageYOffset;
-            const scrollLeft = window.scrollX || window.pageXOffset;
-
-            // Place the text just above the CD GIF using its height
-            cdText.style.top = (rect.top + scrollTop - cdText.offsetHeight - 2) + 'px'; 
-            cdText.style.left = (rect.left + scrollLeft + rect.width / 2) + 'px';
-            cdText.style.transform = 'translateX(-50%)';
-        }
-
-        window.addEventListener('resize', positionText);
-        window.addEventListener('load', positionText);
-    </script>
 
 </body>
 </html>
