@@ -103,52 +103,52 @@
 
     <!-- Second Section -->
     <div class="section2">
-        
-    <!-- Text above CD GIF -->
-    <div id="cd-text" style="position:absolute; color:cyan; font-size:1vw; font-weight:bold; text-align:center;">
-        click me!
+
+        <!-- CD clickable link -->
+        <a href="https://music.apple.com/profile/kai_michell" target="_blank">
+            <img id="cd-gif" src="images/cd.gif" style="position:absolute; top: 32%; left: 80%; width: 7.2vw;">
+        </a>
+
+        <!-- Flynn Planet clickable link -->
+        <a href="https://flynnconnolly.com" target="_blank">
+            <img src="images/flynn-planet.png" style="position:absolute; top: 45%; left: 25%; width: 9.81vw;">
+        </a>
+
+        <!-- Other GIFs -->
+        <img src="images/high-def-ufo.gif" style="position:absolute; top: 15%; left: 70%; width: 7.848vw;">
+        <img src="images/disco-ball.gif" style="position:absolute; top: 12%; left: 36%; width: 9.156vw;">
+        <img src="images/death-star.gif" style="position:absolute; top: 15%; left: 10%; width: 8.5vw;">
+        <img src="images/moving-ufo.gif" style="position:absolute; top: 44%; left: 48%; width: 45.78vw;">
+        <img src="images/happy-star.gif" style="position:absolute; top: 75%; left: 85%; width: 7.194vw;">
+        <img src="images/inverted-earth.gif" style="position:absolute; top: 55%; left: 6%; width: 8.5vw;">
+        <img src="images/mars.gif" style="position:absolute; top: 82%; left: 37%; width: 6.54vw;">
+        <img src="images/toy-ufo.gif" style="position:absolute; top: 68%; left: 60%; width: 8.5vw;">
+
+        <!-- Text above CD GIF -->
+        <div id="cd-text" style="position:absolute; color:cyan; font-size:1vw; font-weight:bold; text-align:center;">
+            click me!
+        </div>
+
     </div>
-</div>
 
-<script>
-    const cdGif = document.getElementById('cd-gif');
-    const cdText = document.getElementById('cd-text');
+    <script>
+        const cdGif = document.getElementById('cd-gif');
+        const cdText = document.getElementById('cd-text');
 
-    function positionText() {
-        const rect = cdGif.getBoundingClientRect(); // get CD GIF position
-        const scrollTop = window.scrollY || window.pageYOffset;
-        const scrollLeft = window.scrollX || window.pageXOffset;
+        function positionText() {
+            const rect = cdGif.getBoundingClientRect();
+            const scrollTop = window.scrollY || window.pageYOffset;
+            const scrollLeft = window.scrollX || window.pageXOffset;
 
-        // Center horizontally and place above
-        cdText.style.top = (rect.top + scrollTop - cdText.offsetHeight - 5) + 'px'; // 5px above
-        cdText.style.left = (rect.left + scrollLeft + rect.width / 2) + 'px';
-        cdText.style.transform = 'translateX(-50%)'; // center text horizontally
-    }
+            // Center horizontally and place above
+            cdText.style.top = (rect.top + scrollTop - cdText.offsetHeight - 5) + 'px';
+            cdText.style.left = (rect.left + scrollLeft + rect.width / 2) + 'px';
+            cdText.style.transform = 'translateX(-50%)';
+        }
 
-    window.addEventListener('resize', positionText);
-    window.addEventListener('load', positionText);
-</script>
-        
-    <!-- CD clickable link -->
-    <a href="https://music.apple.com/profile/kai_michell" target="_blank">
-        <img src="images/cd.gif" style="position:absolute; top: 32%; left: 80%; width: 7.2vw;">
-    </a>
-
-    <!-- Flynn Planet clickable link -->
-    <a href="https://flynnconnolly.com" target="_blank">
-        <img src="images/flynn-planet.png" style="position:absolute; top: 45%; left: 25%; width: 9.81vw;">
-    </a>
-        
-    <img src="images/high-def-ufo.gif" style="position:absolute; top: 15%; left: 70%; width: 7.848vw;">
-    <img src="images/disco-ball.gif" style="position:absolute; top: 12%; left: 36%; width: 9.156vw;">
-    <img src="images/death-star.gif" style="position:absolute; top: 15%; left: 10%; width: 8.5vw;">
-    <img src="images/moving-ufo.gif" style="position:absolute; top: 44%; left: 48%; width: 45.78vw;">
-    <img src="images/happy-star.gif" style="position:absolute; top: 75%; left: 85%; width: 7.194vw;">
-    <img src="images/inverted-earth.gif" style="position:absolute; top: 55%; left: 6%; width: 8.5vw;">
-    <img src="images/mars.gif" style="position:absolute; top: 82%; left: 37%; width: 6.54vw;">
-    <img src="images/toy-ufo.gif" style="position:absolute; top: 68%; left: 60%; width: 8.5vw;">
-    
-</div>
+        window.addEventListener('resize', positionText);
+        window.addEventListener('load', positionText);
+    </script>
 
 </body>
 </html>
