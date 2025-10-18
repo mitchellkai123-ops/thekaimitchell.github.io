@@ -140,8 +140,8 @@
             const scrollTop = window.scrollY || window.pageYOffset;
             const scrollLeft = window.scrollX || window.pageXOffset;
 
-            // Center horizontally and place above
-            cdText.style.top = (rect.top + scrollTop - cdText.offsetHeight - 5) + 'px';
+            // Place the text just above the CD GIF using its height
+            cdText.style.top = (rect.top + scrollTop - cdText.offsetHeight - 2) + 'px'; 
             cdText.style.left = (rect.left + scrollLeft + rect.width / 2) + 'px';
             cdText.style.transform = 'translateX(-50%)';
         }
