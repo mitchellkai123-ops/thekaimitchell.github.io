@@ -30,16 +30,16 @@
 
         /* Second section */
         .section2 {
-            position: relative; /* important for absolute GIFs */
+            position: relative; 
             height: 100vh;
             width: 100vw;
             background-image: url('images/space-slide-2.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            margin: 0; /* remove any default margin */
+            margin: 0;
         }
-       
+
         /* Third section */
         .section3 {
             position: relative;
@@ -49,18 +49,16 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            margin: 0;
         }
-
-        
 
         /* Divider PNG overlaying split */
         .divider {
             position: absolute;
-            top: 100vh;
             left: 0;
             width: 100%;
             z-index: 3;
-            transform: translateY(-50%); /* moves the divider up by 50% of its own height */
+            transform: translateY(-50%);
         }
 
         /* GIFs for first section */
@@ -111,12 +109,11 @@
         </div>
     </div>
 
-    <!-- Divider PNG over split -->
-    <img src="images/39734795880.png" alt="Divider" class="divider">
+    <!-- Divider between section 1 and 2 -->
+    <img src="images/39734795880.png" alt="Divider" class="divider" style="top:100vh;">
 
     <!-- Second Section -->
     <div class="section2">
-
         <!-- CD clickable link -->
         <div style="position:absolute; top:29%; left:80%; width: calc(6.4vw + 30px); text-align:center;">
             <div id="cd-text" style="color:cyan; font-size:15px; font-weight:bold; margin-bottom:10px;">
@@ -141,17 +138,38 @@
         <img src="images/inverted-earth.gif" style="position:absolute; top: 55%; left: 6%; width: calc(7.7vw + 30px);">
         <img src="images/mars.gif" style="position:absolute; top: 82%; left: 37%; width: calc(5.74vw + 30px);">
         <img src="images/toy-ufo.gif" style="position:absolute; top: 68%; left: 60%; width: calc(7.7vw + 30px);">
+    </div>
 
-    <!-- Divider between section 2 and 3 (optional, remove this block if not needed) -->
+    <!-- Divider between section 2 and 3 -->
     <img src="images/39734795880.png" alt="Divider" class="divider" style="top:200vh;">
 
-    <!-- Third Section -->
+    <!-- Third Section (Moon background) -->
     <div class="section3">
-        <!-- You can add images, text, or links here just like in section2 -->
-        <h1 style="position:absolute; top:40%; left:50%; transform:translate(-50%, -50%); color:white; font-size:3vw;">
-            HEYYYYYY
-        </h1>
+        <!-- CD clickable link -->
+        <div style="position:absolute; top:29%; left:80%; width: calc(6.4vw + 30px); text-align:center;">
+            <div style="color:cyan; font-size:15px; font-weight:bold; margin-bottom:10px;">
+                click me!
+            </div>
+            <a href="https://music.apple.com/profile/kai_michell" target="_blank">
+                <img src="images/cd.gif" style="width:100%;">
+            </a>
+        </div>
+
+        <!-- Flynn Planet clickable link -->
+        <a href="https://flynnconnolly.com" target="_blank">
+            <img src="images/flynn-planet.png" style="position:absolute; top: 45%; left: 25%; width: calc(9.01vw + 30px);">
+        </a>
+
+        <!-- Other GIFs -->
+        <img src="images/high-def-ufo.gif" style="position:absolute; top: 15%; left: 70%; width: calc(7.048vw + 30px);">
+        <img src="images/disco-ball.gif" style="position:absolute; top: 12%; left: 36%; width: calc(8.356vw + 30px);">
+        <img src="images/death-star.gif" style="position:absolute; top: 15%; left: 10%; width: calc(7.7vw + 30px);">
+        <img src="images/moving-ufo.gif" style="position:absolute; top: 44%; left: 48%; width: calc(44.08vw + 30px);">
+        <img src="images/happy-star.gif" style="position:absolute; top: 75%; left: 85%; width: calc(6.394vw + 30px);">
+        <img src="images/inverted-earth.gif" style="position:absolute; top: 55%; left: 6%; width: calc(7.7vw + 30px);">
+        <img src="images/mars.gif" style="position:absolute; top: 82%; left: 37%; width: calc(5.74vw + 30px);">
+        <img src="images/toy-ufo.gif" style="position:absolute; top: 68%; left: 60%; width: calc(7.7vw + 30px);">
     </div>
-        
+
 </body>
 </html>
