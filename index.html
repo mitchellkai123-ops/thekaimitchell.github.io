@@ -11,6 +11,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
             color: yellow;
+            position: relative;
         }
 
         /* First section */
@@ -28,12 +29,6 @@
             overflow: hidden;
         }
 
-        /* Divider image */
-        .divider {
-            width: 100%;
-            display: block;
-        }
-
         /* Second section */
         .section2 {
             height: 100vh;
@@ -42,6 +37,16 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            position: relative;
+        }
+
+        /* Divider overlay */
+        .divider {
+            position: absolute;
+            top: 100vh; /* exactly at the bottom of first section */
+            left: 0;
+            width: 100%;
+            z-index: 3;
         }
 
         /* GIFs for first section */
@@ -92,7 +97,7 @@
         </div>
     </div>
 
-    <!-- Divider -->
+    <!-- Divider PNG on top of split -->
     <img src="images/39734795880.png" alt="Divider" class="divider">
 
     <!-- Second Section -->
