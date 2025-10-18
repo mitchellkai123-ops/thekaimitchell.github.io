@@ -11,7 +11,6 @@
             padding: 0;
             font-family: Arial, sans-serif;
             color: yellow;
-            position: relative;
         }
 
         /* First section */
@@ -33,20 +32,22 @@
         .section2 {
             height: 100vh;
             width: 100vw;
-            background-image: url('images/space-slide-2.jpg');
+            background-image: url('images/Screenshot 2025-10-15 at 9.52.02 PM.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
         }
 
-        /* Divider overlay */
-        .divider {
-            position: absolute;
-            top: 100vh; /* exactly at the bottom of first section */
-            left: 0;
+        /* Divider container to scale with screen */
+        .divider-container {
+            position: relative;
             width: 100%;
-            z-index: 3;
+        }
+
+        .divider {
+            width: 100%;
+            display: block;
         }
 
         /* GIFs for first section */
@@ -98,7 +99,9 @@
     </div>
 
     <!-- Divider PNG on top of split -->
-    <img src="images/39734795880.png" alt="Divider" class="divider">
+    <div class="divider-container">
+        <img src="images/39734795880.png" alt="Divider" class="divider">
+    </div>
 
     <!-- Second Section -->
     <div class="section2"></div>
