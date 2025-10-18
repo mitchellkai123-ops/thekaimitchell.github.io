@@ -105,11 +105,30 @@
     <div class="section2">
         
     <!-- Text above CD GIF -->
-    <div style="position:absolute; top: 25%; left: 80%;
-                color: cyan; font-size: 1vw; font-weight: bold; text-align: center;">
+    <div id="cd-text" style="position:absolute; color:cyan; font-size:1vw; font-weight:bold; text-align:center;">
         click me!
     </div>
-       
+</div>
+
+<script>
+    const cdGif = document.getElementById('cd-gif');
+    const cdText = document.getElementById('cd-text');
+
+    function positionText() {
+        const rect = cdGif.getBoundingClientRect(); // get CD GIF position
+        const scrollTop = window.scrollY || window.pageYOffset;
+        const scrollLeft = window.scrollX || window.pageXOffset;
+
+        // Center horizontally and place above
+        cdText.style.top = (rect.top + scrollTop - cdText.offsetHeight - 5) + 'px'; // 5px above
+        cdText.style.left = (rect.left + scrollLeft + rect.width / 2) + 'px';
+        cdText.style.transform = 'translateX(-50%)'; // center text horizontally
+    }
+
+    window.addEventListener('resize', positionText);
+    window.addEventListener('load', positionText);
+</script>
+        
     <!-- CD clickable link -->
     <a href="https://music.apple.com/profile/kai_michell" target="_blank">
         <img src="images/cd.gif" style="position:absolute; top: 32%; left: 80%; width: 7.2vw;">
