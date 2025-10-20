@@ -66,15 +66,12 @@
 
         .earth-container {
             position: relative;
-            height: 100vh;
-            width: auto;
-            max-width: 100vw;
-        }
-
-        .earth-image {
             height: 100%;
-            width: auto;
-            display: block;
+            width: 100%;
+            background-image: url('images/earthbackground.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .pin {
@@ -90,7 +87,7 @@
             cursor: pointer;
             z-index: 5;
         }
-
+    
         /* Divider PNG overlaying split */
         .divider {
             position: absolute;
@@ -217,12 +214,18 @@
     <!-- Fourth Section (Earth background with pins) -->
     <div class="section4">
         <div class="earth-container">
-            <img src="images/earth-background.jpg" class="earth-image" alt="Earth Background">
 
-            <!-- Example Pin: Philippines -->
-            <div class="pin" style="top:58%; left:75%;" title="Philippines"></div>
+            <!-- 🌏 Example Pin: Philippines -->
+            <div class="pin" style="top:58%; left:75%; transform: rotate(10deg);" title="Philippines"></div>
+
+            <!-- 🌎 Example Pin: California, USA -->
+            <div class="pin" style="top:45%; left:20%; transform: rotate(-20deg);" title="California"></div>
+
+            <!-- 🌍 Example Pin: Spain -->
+            <div class="pin" style="top:48%; left:40%; transform: rotate(20deg);" title="Spain"></div>
     
-            <!-- Add more pins here -->
+            <!-- 🌏 Example Pin: Japan -->
+            <div class="pin" style="top:50%; left:82%; transform: rotate(-10deg);" title="Japan"></div>
         </div>
     </div>
 
