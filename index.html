@@ -51,42 +51,6 @@
             background-repeat: no-repeat;
             margin: 0;
         }
-
-        /* Fourth section */
-        .section4 {
-            position: relative;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
-            overflow: hidden;
-        }
-
-        .earth-container {
-            position: relative;
-            height: 100%;
-            width: 100%;
-            background-image: url('images/earthbackground.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .pin {
-            position: absolute;
-            width: 2vw;
-            height: 2vw;
-            max-width: 25px;
-            max-height: 25px;
-            background-image: url('images/pin-icon.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-            z-index: 5;
-        }
     
         /* Divider PNG overlaying split */
         .divider {
@@ -132,6 +96,159 @@
             font-size: 2em;
             margin: 0;
         }
+        
+        <!-- Press Start 2P font -->
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+        /* ---------- Section4 & Earth container ---------- */
+        .section4 {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        .earth-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            background-image: url('images/earthbackground.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+/* Pin */
+.pin {
+  position: absolute;
+  width: 2.2vw;
+  height: 2.2vw;
+  max-width: 30px;
+  max-height: 30px;
+  background-image: url('images/pin-icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 6;
+}
+
+/* ---------- Overlay & Popup ---------- */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5); /* dim */
+  display: none;                 /* toggled via JS */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: auto; /* allow scrolling page if popup larger than viewport */
+}
+
+/* popup window */
+.popup {
+  background: #c0c0c0;              /* retro grey */
+  width: 60vw;
+  height: 70vh;
+  box-sizing: border-box;
+  border: 6px solid #000000;       /* medium-thickness retro border */
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  outline: none;                   /* focusable element removal of default */
+  position: relative;
+  z-index: 10000;
+}
+
+/* title bar */
+.popup-header {
+  height: 56px;
+  background: #02066f;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  border-bottom: 4px solid #000; /* extra retro separation */
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* flag (left) */
+.popup-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.popup-flag img {
+  height: 24px;
+  width: auto;
+  display: inline-block;
+}
+
+/* title center */
+.popup-title {
+  flex: 1;
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* close button (right) */
+.popup-close {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.popup-close img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/* body with internal scrolling */
+.popup-body {
+  padding: 12px;
+  box-sizing: border-box;
+  overflow: auto;   /* internal scroll */
+  flex: 1 1 auto;
+}
+
+/* gallery grid: responsive (2 columns desktop, 1 column on small screens) */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 4px solid #fff; /* retro postcard border */
+  box-shadow: 0 2px 0 rgba(0,0,0,0.25);
+  object-fit: cover;
+}
+
+/* responsive tweaks */
+@media (max-width: 900px) {
+  .popup { width: 90vw; height: 80vh; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .popup-header { font-size: 12px; }
+  .pin { width: 4.6vw; height: 4.6vw; }
+}
+
+/* small accessibility helper to show popup when open */
+.popup-overlay.show { display: flex; }
+
     </style>
 </head>
 <body>
@@ -211,24 +328,110 @@
     <!-- Divider between section 3 and 4 -->
     <img src="images/blue-glow.png" alt="Divider" class="divider" style="top:300vh;">
 
-    <!-- Fourth Section (Earth background with pins) -->
+    <!-- Fourth Section (Earth background with pins + popup) -->
     <div class="section4">
         <div class="earth-container">
 
-            <!-- 🌏 Example Pin: Philippines -->
-            <div class="pin" style="top:58%; left:75%; transform: rotate(10deg);" title="Philippines"></div>
+        <!-- Example Pin: Greece (click opens popup) -->
+        <!-- data-target refers to the popup id to open -->
+        <div class="pin" style="top:48%; left:40%;" data-target="popup-greece" title="Greece"></div>
 
-            <!-- 🌎 Example Pin: California, USA -->
-            <div class="pin" style="top:45%; left:20%; transform: rotate(-20deg);" title="California"></div>
-
-            <!-- 🌍 Example Pin: Spain -->
-            <div class="pin" style="top:48%; left:40%; transform: rotate(20deg);" title="Spain"></div>
+        <!-- add more pins: change top/left and data-target to match popup id -->
+        <!-- <div class="pin" style="top:58%; left:75%;" data-target="popup-philippines" title="Philippines"></div> -->
     
-            <!-- 🌏 Example Pin: Japan -->
-            <div class="pin" style="top:50%; left:82%; transform: rotate(-10deg);" title="Japan"></div>
         </div>
     </div>
 
+    <!-- Popup Markup(s): you can add one popup per country -->
+    <div class="popup-overlay" id="overlay">
+        <!-- GREECE popup -->
+        <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-greece-title" id="popup-greece">
+            <div class="popup-header">
+                <div class="popup-flag">
+                    <img src="images/flag-green.png" alt="Greece flag (pixel)">
+                </div>
+
+                <div class="popup-title" id="popup-greece-title">GREECE!</div>
+
+                <button class="popup-close" data-close>
+                    <img src="images/pop-up-x.png" alt="Close">
+                </button>
+            </div>
+
+            <div class="popup-body">
+      <!-- image gallery: replace these with your actual filenames -->
+                <div class="gallery-grid">
+                <div class="gallery-item"><img src="images/greece1.jpg" alt="Greece 1"></div>
+                <div class="gallery-item"><img src="images/greece2.jpg" alt="Greece 2"></div>
+                <div class="gallery-item"><img src="images/greece3.jpg" alt="Greece 3"></div>
+                <div class="gallery-item"><img src="images/greece4.jpg" alt="Greece 4"></div>
+                <div class="gallery-item"><img src="images/greece5.jpg" alt="Greece 5"></div>
+                <div class="gallery-item"><img src="images/greece6.jpg" alt="Greece 6"></div>
+                <div class="gallery-item"><img src="images/greece7.jpg" alt="Greece 7"></div>
+                <div class="gallery-item"><img src="images/greece8.jpg" alt="Greece 8"></div>
+                <div class="gallery-item"><img src="images/greece9.jpg" alt="Greece 9"></div>
+                <div class="gallery-item"><img src="images/greece10.jpg" alt="Greece 10"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<script>
+/* Popup open/close logic */
+
+// open popup when pin clicked
+document.addEventListener('click', function(e) {
+  const pin = e.target.closest('.pin');
+  if (pin) {
+    const targetId = pin.getAttribute('data-target');
+    if (targetId) openPopup(targetId);
+  }
+});
+
+// open function
+function openPopup(id) {
+  const overlay = document.getElementById('overlay');
+  const popup = document.getElementById(id);
+  if (!overlay || !popup) return;
+  // hide any currently-open popups
+  Array.from(overlay.querySelectorAll('.popup')).forEach(p => p.style.display = 'none');
+  popup.style.display = 'flex'; // ensure displayed
+  overlay.classList.add('show');
+  // focus for accessibility
+  setTimeout(() => popup.focus && popup.focus(), 50);
+}
+
+// close when clicking X or clicking outside popup
+document.addEventListener('click', function(e) {
+  // close button
+  if (e.target.closest('[data-close]')) {
+    closePopup();
+    return;
+  }
+  // click outside popup: if overlay is visible and click not inside .popup, close
+  const overlay = document.getElementById('overlay');
+  if (overlay && overlay.classList.contains('show')) {
+    const inside = e.target.closest('.popup');
+    if (!inside && e.target.closest('#overlay')) {
+      closePopup();
+    }
+  }
+});
+
+// ESC to close
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePopup();
+});
+
+function closePopup() {
+  const overlay = document.getElementById('overlay');
+  if (!overlay) return;
+  overlay.classList.remove('show');
+  // hide popups after closing
+  Array.from(overlay.querySelectorAll('.popup')).forEach(p => p.style.display = 'none');
+}
+</script>
 
 </body>
 </html>
