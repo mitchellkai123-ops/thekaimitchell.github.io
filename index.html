@@ -52,16 +52,56 @@
             margin: 0;
         }
 
-        /* Fourth section */
-        .section4 {
-            position: relative;
-            width: 100vw;
-            background-image: url('images/earth-background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            margin: 0;
-        }
+    <!-- Updated Section 4 with full-height responsive Earth and pins -->
+        <div class="section4">
+            <div class="earth-container">
+            <img src="images/earth-background.jpg" class="earth-image" alt="Earth Background">
+
+            <!-- Example Pin: Philippines -->
+            <div class="pin" style="top:58%; left:75%;" title="Philippines"></div>
+
+            <!-- Add other pins similarly -->
+        </div>
+    </div>
+
+    <style>
+    .section4 {
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        overflow: hidden;
+    }
+
+    .earth-container {
+        position: relative;
+        height: 100vh;
+        width: auto;
+        max-width: 100vw;
+    }
+
+    .earth-image {
+        height: 100%;
+        width: auto;
+        display: block;
+    }
+
+    .pin {
+        position: absolute;
+        width: 2vw;
+        height: 2vw;
+        max-width: 25px;
+        max-height: 25px;
+        background-image: url('images/pin-icon.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+        z-index: 5;
+    }
 
         /* Divider PNG overlaying split */
         .divider {
@@ -186,40 +226,6 @@
     <!-- Divider between section 3 and 4 -->
     <img src="images/blue-glow.png" alt="Divider" class="divider" style="top:300vh;">
 
-    <!-- Third Section (Earth background) -->
-    <div class="section4">
-        
-        <!-- Instagram clickable link -->
-        <a href="https://www.instagram.com/kai._.mitchell/" target="_blank">
-            <img src="images/instagram.png" style="position:absolute; top: 45%; left: 7%; width: calc(9.01vw + 30px);">
-        </a>
-
-        <!-- Instagram clickable link -->
-        <a href="https://www.instagram.com/kai._.mitchell/" target="_blank">
-            <img src="images/instagram.png" style="position:absolute; top: 45%; left: 7%; width: calc(9.01vw + 30px);">
-        </a>
-
-        <!-- Instagram clickable link -->
-        <a href="https://www.instagram.com/kai._.mitchell/" target="_blank">
-            <img src="images/instagram.png" style="position:absolute; top: 45%; left: 7%; width: calc(9.01vw + 30px);">
-        </a>
-
-        <!-- Instagram clickable link -->
-        <a href="https://www.instagram.com/kai._.mitchell/" target="_blank">
-            <img src="images/instagram.png" style="position:absolute; top: 45%; left: 7%; width: calc(9.01vw + 30px);">
-        </a>
-
-        <!-- Snapchat clickable link -->
-        <a href="https://www.snapchat.com/@kaimyguy123?invite_id=75_6Ouc7&locale=en_US&share_id=3P5ly2WqRXeWpu9OT0qANQ&sid=ff9fda78bad14fe2bb37990f69f840e5" target="_blank">
-            <img src="images/snapchat.png" style="position:absolute; top: 78%; left: 12%; width: calc(9.01vw + 30px);">
-        </a>
-
-        <!-- Other GIFs -->
-        <img src="images/twinklingstar.gif" style="position:absolute; top: 70%; left: 80%; width: calc(1.394vw + 30px);">
-        <img src="images/twinklingstar.gif" style="position:absolute; top: 26%; left: 25%; width: calc(1.394vw + 30px);">
-        <img src="images/twinklingstar.gif" style="position:absolute; top: 63%; left: 18%; width: calc(1.394vw + 30px);">
-        <img src="images/twinklingstar.gif" style="position:absolute; top: 10%; left: 90%; width: calc(1.394vw + 30px);">
-    </div>
 
 </body>
 </html>
