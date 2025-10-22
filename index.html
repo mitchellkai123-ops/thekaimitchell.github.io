@@ -329,10 +329,6 @@ body.simple-mode #mode-toggle {
 #simple-list { z-index: 9998; }   /* slightly below popups */
 .popup-overlay { z-index: 10000; }
 .popup { z-index: 10001; }       /* one more than overlay to ensure top */
-
-.popup {
-  z-index: 10001; /* one more than overlay to ensure they stay on top */
-}
         
 #simple-list li {
   margin-bottom: 20px; /* increase or decrease as needed */
@@ -631,32 +627,6 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     body.style.backgroundImage = '';
     body.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, .pin, #cd-text, img').forEach(el => el.style.display = '');
     simpleList.style.display = 'none';
-
-    // Reset button position
-    document.getElementById('mode-toggle').addEventListener('click', () => {
-  simpleMode = !simpleMode;
-  const body = document.body;
-  const button = document.getElementById('mode-toggle');
-
-  if (simpleMode) {
-    button.innerText = "Visual Mode";
-    body.classList.add('simple-mode');
-    body.classList.remove('visual-mode'); // optional
-
-    document.querySelectorAll(
-      '.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text'
-    ).forEach(el => el.style.display = 'none');
-
-    document.querySelectorAll('.pin').forEach(el => el.style.display = 'block');
-
-    simpleList.style.display = 'block';
-    simpleList.innerHTML = "<ul>" + links.map(link => {
-      if (link.url) {
-        return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
-      } else {
-        return `<li><a href="#" data-popup="${link.popup}" style="color: cyan;">${link.text}</a></li>`;
-      }
-    }).join('') + "</ul>";
 
     // only toggle class here
     button.classList.add('simple');
