@@ -328,6 +328,18 @@ body.simple-mode #mode-toggle {
     display: block !important;
 }
 
+#simple-list {
+  z-index: 9998; /* slightly below popups */
+}
+
+.popup-overlay {
+  z-index: 10000; /* higher than simple-list so popups appear on top */
+}
+
+.popup {
+  z-index: 10001; /* one more than overlay to ensure they stay on top */
+}
+        
 #simple-list li {
   margin-bottom: 20px; /* increase or decrease as needed */
   list-style: none; /* optional: removes bullets */
