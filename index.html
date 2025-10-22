@@ -301,10 +301,8 @@ body.simple-mode .section1 {
   overflow: hidden;
 }
 
-body.simple-mode .section2,
-body.simple-mode .section3,
-body.simple-mode .section4 {
-  overflow: hidden; /* prevent scrolling inside other sections */
+body.simple-mode, html.simple-mode {
+  overflow: hidden; /* prevent whole page scrolling */
 }
 
 /* Hide all unnecessary content in Simple Mode */
@@ -595,7 +593,7 @@ simpleList.style.textAlign = "left";
 simpleList.style.fontFamily = "'Press Start 2P', monospace";
 simpleList.style.fontSize = "14px";
 simpleList.style.color = "yellow";
-document.body.appendChild(simpleList);
+document.body.insertBefore(simpleList, document.getElementById('overlay'));
 
 document.getElementById('mode-toggle').addEventListener('click', () => {
   simpleMode = !simpleMode;
@@ -606,10 +604,6 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     // Simple mode ON
     button.innerText = "Visual Mode";
     body.classList.add('simple-mode');
-
-     // Set section 1 background as fixed
-    body.style.backgroundImage = "url('images/starry-space.jpg')";
-    body.style.backgroundAttachment = "fixed";
 
     // Hide all normal site images/text
     document.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text').forEach(el => el.style.display = 'none');
@@ -626,10 +620,8 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     }).join('') + "</ul>";
 
     // Move button to top-left
-    button.style.position = 'absolute';
-    button.style.bottom = '25%';
-    button.style.left = '50%';
-    button.style.transform = 'translateX(-50%)';
+    button.classList.add('simple');
+    button.classList.remove('visual');
 
   } else {
     // Simple Mode OFF
