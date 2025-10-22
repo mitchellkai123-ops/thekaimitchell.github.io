@@ -640,8 +640,17 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
   if (simpleMode) {
     // Simple mode ON
     button.innerText = "Visual Mode";
-    body.style.backgroundImage = "url('images/simple-bg.jpg')";
-    body.querySelectorAll('img:not(.popup img), .pin').forEach(el => el.style.display = 'none');
+    body.classList.add('simple-mode');
+
+     // Set section 1 background as fixed
+    body.style.backgroundImage = "url('images/starry-space.jpg')";
+    body.style.backgroundAttachment = "fixed";
+
+    // Hide all normal site images/text
+    document.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.pin').forEach(el => el.style.display = 'block'); // keep pins for popups
+
+    // Show the SVM list
     simpleList.style.display = 'block';
     simpleList.innerHTML = "<ul>" + links.map(link => {
       if (link.url) {
@@ -650,15 +659,37 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
         return `<li><a href="#" data-popup="${link.popup}" style="color: cyan;">${link.text}</a></li>`;
       }
     }).join('') + "</ul>";
+
+    // Move button to top-left
+    button.style.position = 'fixed';
+    button.style.top = '20px';
+    button.style.left = '20px';
+    button.style.bottom = 'auto';
+    button.style.transform = 'none';
   } else {
-    // Simple mode OFF
+    // Simple Mode OFF
     button.innerText = "Simple Viewing Mode";
-    body.style.backgroundImage = "";
-    body.querySelectorAll('img, .pin').forEach(el => el.style.display = '');
+    body.classList.remove('simple-mode');
+    body.style.backgroundImage = '';
+    body.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, .pin, #cd-text, img').forEach(el => el.style.display = '');
     simpleList.style.display = 'none';
+
+    // Reset button position
+    button.style.position = 'absolute';
+    button.style.bottom = '25%';
+    button.style.left = '50%';
+    button.style.transform = 'translateX(-50%)';
   }
 });
 
+// Enable popups from SVM list
+document.addEventListener('click', e => {
+  const popupLink = e.target.closest('[data-popup]');
+  if (popupLink) {
+    e.preventDefault();
+    openPopup(popupLink.getAttribute('data-popup'));
+  }
+});
 // Enable popups when in simple mode
 document.addEventListener('click', function(e) {
   const popupLink = e.target.closest('[data-popup]');
