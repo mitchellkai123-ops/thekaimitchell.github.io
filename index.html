@@ -7,6 +7,33 @@
     <link rel="icon" href="images/skull.gif" type="image/gif">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
+        /* Simple Mode Button inside first section */
+        #mode-toggle {
+            position: absolute;
+            bottom: 25%; /* roughly bottom third */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #02066f;
+            color: yellow;
+            font-family: 'Press Start 2P', monospace;
+            border: 3px solid yellow;
+            padding: 12px 24px;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+        #mode-toggle:hover {
+            background-color: yellow;
+            color: #02066f;
+        }
+
+#mode-toggle:hover {
+  background-color: yellow;
+  color: #02066f;
+}
+
+        
         body {
             margin: 0;
             padding: 0;
@@ -259,6 +286,9 @@
             <h1>Kai Mitchell</h1>
             <p>Welcome to my site</p>
         </div>
+    <!-- Simple Mode Toggle Button -->
+    <button id="mode-toggle">Simple Viewing Mode</button>
+        
     </div>
 
     <!-- Divider between section 1 and 2 -->
@@ -271,13 +301,13 @@
             <div id="cd-text" style="color:cyan; font-size:15px; font-weight:bold; margin-bottom:10px;">
                 click me!
             </div>
-            <a href="https://music.apple.com/profile/kai_michell" target="_blank">
+            <a href="https://music.apple.com/profile/kai_michell" target="_blank" data-label="Apple Music">
                 <img id="cd-gif" src="images/cd.gif" style="width:100%;">
             </a>
         </div>
 
         <!-- Flynn Planet clickable link -->
-        <a href="flynnconnolly.com" target="_blank">
+        <a href="https://flynnconnolly.com" target="_blank" data-label="Flynn's Website!">
             <img src="images/flynn-planet.png" style="position:absolute; top: 45%; left: 25%; width: calc(9.01vw + 30px);">
         </a>
 
@@ -303,13 +333,13 @@
             <div style="color:white; font-size:15px; font-weight:bold; margin-bottom:-5px;">
                   add me!
             </div>
-            <a href="https://www.linkedin.com/in/kai-m-mitchell/" target="_blank">
+            <a href="https://www.linkedin.com/in/kai-m-mitchell/" target="_blank" data-label="LinkedIn">
                 <img src="images/linkedin.png" style="width:100%;">
             </a>
         </div>
 
         <!-- Instagram clickable link -->
-        <a href="https://www.instagram.com/kai._.mitchell/" target="_blank">
+        <a href="https://www.instagram.com/kai._.mitchell/" target="_blank" data-label="Instagram">
             <img src="images/instagram.png" style="position:absolute; top: 50%; left: 7%; width: calc(9.01vw + 30px);">
         </a>
 
@@ -333,9 +363,9 @@
 
         <!-- Example Pin: Greece (click opens popup) -->
         <!-- data-target refers to the popup id to open -->
-        <div class="pin" style="top:48%; left:40%;" data-target="popup-greece" title="Greece"></div>
+        <div class="pin" style="top:48%; left:40%;" data-target="popup-greece" title="Greece" data-label="Greece"></div>
 
-        <div class="pin" style="top:48%; left:60%;" data-target="popup-japan" title="Japan"></div>
+        <div class="pin" style="top:48%; left:60%;" data-target="popup-japan" title="Japan" data-label="Japan"></div>
 
         </div>
     </div>
@@ -462,6 +492,66 @@ function closePopup() {
   // hide popups after closing
   Array.from(overlay.querySelectorAll('.popup')).forEach(p => p.style.display = 'none');
 }
+
+let simpleMode = false;
+
+const links = [
+  { text: "Apple Music", url: "https://music.apple.com/profile/kai_michell" },
+  { text: "LinkedIn", url: "https://www.linkedin.com/in/kai-m-mitchell/" },
+  { text: "Instagram", url: "https://www.instagram.com/kai._.mitchell/" },
+  { text: "Greece (photos)", popup: "popup-greece" },
+  { text: "Japan (photos)", popup: "popup-japan" }
+];
+
+const simpleList = document.createElement('div');
+simpleList.id = "simple-list";
+simpleList.style.display = "none";
+simpleList.style.position = "fixed";
+simpleList.style.top = "20%";
+simpleList.style.left = "50%";
+simpleList.style.transform = "translateX(-50%)";
+simpleList.style.zIndex = "9999";
+simpleList.style.textAlign = "left";
+simpleList.style.fontFamily = "'Press Start 2P', monospace";
+simpleList.style.fontSize = "14px";
+simpleList.style.color = "yellow";
+document.body.appendChild(simpleList);
+
+document.getElementById('mode-toggle').addEventListener('click', () => {
+  simpleMode = !simpleMode;
+  const body = document.body;
+  const button = document.getElementById('mode-toggle');
+
+  if (simpleMode) {
+    // Simple mode ON
+    button.innerText = "Visual Mode";
+    body.style.backgroundImage = "url('images/simple-bg.jpg')";
+    body.querySelectorAll('img, .pin').forEach(el => el.style.display = 'none');
+    simpleList.style.display = 'block';
+    simpleList.innerHTML = "<ul>" + links.map(link => {
+      if (link.url) {
+        return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
+      } else {
+        return `<li><a href="#" data-popup="${link.popup}" style="color: cyan;">${link.text}</a></li>`;
+      }
+    }).join('') + "</ul>";
+  } else {
+    // Simple mode OFF
+    button.innerText = "Simple Viewing Mode";
+    body.style.backgroundImage = "";
+    body.querySelectorAll('img, .pin').forEach(el => el.style.display = '');
+    simpleList.style.display = 'none';
+  }
+});
+
+// Enable popups when in simple mode
+document.addEventListener('click', function(e) {
+  const popupLink = e.target.closest('[data-popup]');
+  if (popupLink) {
+    e.preventDefault();
+    openPopup(popupLink.getAttribute('data-popup'));
+  }
+});
 </script>
 
 </body>
