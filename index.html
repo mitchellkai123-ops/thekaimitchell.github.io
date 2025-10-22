@@ -289,8 +289,17 @@ body.simple-mode .text-container,
 body.simple-mode .left-gif,
 body.simple-mode .right-gif,
 body.simple-mode #cd-text {
-  display: none !important;
+    display: none !important;
 }
+
+/* Hide all text in Simple Mode */
+body.simple-mode .text-container,
+body.simple-mode #cd-text,
+body.simple-mode .section2 div,
+body.simple-mode .section3 div {
+    display: none !important;
+}
+
 
 /* Move Simple Mode button to top-left */
 body.simple-mode #mode-toggle {
@@ -496,13 +505,88 @@ document.addEventListener('click', function(e) {
     closePopup();
     return;
   }
-  // click outside popup: if overlay is visible and click not inside .popup, close
+  // click outside popup
   const overlay = document.getElementById('overlay');
   if (overlay && overlay.classList.contains('show')) {
     const inside = e.target.closest('.popup');
     if (!inside && e.target.closest('#overlay')) {
       closePopup();
     }
+  }
+});
+
+// ESC to close
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePopup();
+});
+
+function closePopup() {
+  const overlay = document.getElementById('overlay');
+  if (!overlay) return;
+  overlay.classList.remove('show');
+  Array.from(overlay.querySelectorAll('.popup')).forEach(p => p.style.display = 'none');
+}
+
+// Simple Viewing Mode toggle
+let simpleMode = false;
+
+const links = [
+  { text: "Apple Music", url: "https://music.apple.com/profile/kai_michell" },
+  { text: "LinkedIn", url: "https://www.linkedin.com/in/kai-m-mitchell/" },
+  { text: "Instagram", url: "https://www.instagram.com/kai._.mitchell/" },
+  { text: "Greece (photos)", popup: "popup-greece" },
+  { text: "Japan (photos)", popup: "popup-japan" }
+];
+
+const simpleList = document.createElement('div');
+simpleList.id = "simple-list";
+simpleList.style.display = "none";
+simpleList.style.position = "fixed";
+simpleList.style.top = "20%";
+simpleList.style.left = "50%";
+simpleList.style.transform = "translateX(-50%)";
+simpleList.style.zIndex = "9999";
+simpleList.style.textAlign = "left";
+simpleList.style.fontFamily = "'Press Start 2P', monospace";
+simpleList.style.fontSize = "14px";
+simpleList.style.color = "yellow";
+document.body.appendChild(simpleList);
+
+document.getElementById('mode-toggle').addEventListener('click', () => {
+  simpleMode = !simpleMode;
+  const body = document.body;
+  const button = document.getElementById('mode-toggle');
+
+  if (simpleMode) {
+    // Simple Mode ON
+    button.innerText = "Visual Mode";
+    body.classList.add('simple-mode'); // use class to handle CSS background + hiding text
+    // Hide all images except popups
+    body.querySelectorAll('img:not(.popup img), .pin').forEach(el => el.style.display = 'none');
+
+    simpleList.style.display = 'block';
+    simpleList.innerHTML = "<ul>" + links.map(link => {
+      if (link.url) {
+        return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
+      } else {
+        return `<li><a href="#" data-popup="${link.popup}" style="color: cyan;">${link.text}</a></li>`;
+      }
+    }).join('') + "</ul>";
+  } else {
+    // Simple Mode OFF
+    button.innerText = "Simple Viewing Mode";
+    body.classList.remove('simple-mode');
+    body.querySelectorAll('img, .pin').forEach(el => el.style.display = '');
+    simpleList.style.display = 'none';
+  }
+});
+
+// Enable popups when in Simple Mode list
+document.addEventListener('click', function(e) {
+  const popupLink = e.target.closest('[data-popup]');
+  if (popupLink) {
+    e.preventDefault();
+    openPopup(popupLink.getAttribute('data-popup'));
   }
 });
 
