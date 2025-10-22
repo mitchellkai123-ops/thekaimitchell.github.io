@@ -292,9 +292,13 @@
 }
 
 /* Simple Viewing Mode background */
-body.simple-mode, body.simple-mode .section1 {
+body.simple-mode .section1 {
+  background-image: url('images/starry-space.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
-  overflow: hidden; /* prevent scrolling of other sections */
+  overflow: hidden;
 }
 
 body.simple-mode .section2,
@@ -610,11 +614,11 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     }).join('') + "</ul>";
 
     // Move button to top-left
-    button.style.position = 'fixed';
-    button.style.top = '20px';
-    button.style.left = '20px';
-    button.style.bottom = 'auto';
-    button.style.transform = 'none';
+    button.style.position = 'absolute';
+    button.style.bottom = '25%';
+    button.style.left = '50%';
+    button.style.transform = 'translateX(-50%)';
+
   } else {
     // Simple Mode OFF
     button.innerText = "Simple Viewing Mode";
@@ -640,20 +644,22 @@ if (simpleMode) {
 
 });
 
-// Enable popups from SVM list
-document.addEventListener('click', e => {
-  const popupLink = e.target.closest('[data-popup]');
-  if (popupLink) {
-    e.preventDefault();
-    openPopup(popupLink.getAttribute('data-popup'));
-  }
-});
-// Enable popups when in simple mode
+// single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
+  const pin = e.target.closest('.pin');
+  if (pin) openPopup(pin.dataset.target);
+
   const popupLink = e.target.closest('[data-popup]');
   if (popupLink) {
     e.preventDefault();
-    openPopup(popupLink.getAttribute('data-popup'));
+    openPopup(popupLink.dataset.popup);
+  }
+
+  if (e.target.closest('[data-close]')) closePopup();
+
+  const overlay = document.getElementById('overlay');
+  if (overlay?.classList.contains('show') && !e.target.closest('.popup') && e.target.closest('#overlay')) {
+    closePopup();
   }
 });
 </script>
