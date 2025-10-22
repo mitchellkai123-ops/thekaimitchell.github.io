@@ -552,7 +552,7 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     // Simple mode ON
     button.innerText = "Visual Mode";
     body.style.backgroundImage = "url('images/simple-bg.jpg')";
-    body.querySelectorAll('img, .pin').forEach(el => el.style.display = 'none');
+    body.querySelectorAll('img:not(.popup img), .pin').forEach(el => el.style.display = 'none');
     simpleList.style.display = 'block';
     simpleList.innerHTML = "<ul>" + links.map(link => {
       if (link.url) {
