@@ -483,11 +483,23 @@ body.simple-mode #mode-toggle {
 
 // open popup when pin clicked
 document.addEventListener('click', function(e) {
+  // pins
   const pin = e.target.closest('.pin');
-  if (pin) {
-    const targetId = pin.getAttribute('data-target');
-    if (targetId) openPopup(targetId);
+  if (pin) { openPopup(pin.getAttribute('data-target')); }
+
+  // SVM popup links
+  const popupLink = e.target.closest('[data-popup]');
+  if (popupLink) {
+    e.preventDefault();
+    openPopup(popupLink.getAttribute('data-popup'));
   }
+
+  // close button
+  if (e.target.closest('[data-close]')) closePopup();
+
+  // click outside popup
+  const overlay = document.getElementById('overlay');
+  if (overlay?.classList.contains('show') && !e.target.closest('.popup') && e.target.closest('#overlay')) closePopup();
 });
 
 // open function
@@ -558,32 +570,48 @@ simpleList.style.color = "yellow";
 document.body.appendChild(simpleList);
 
 document.getElementById('mode-toggle').addEventListener('click', () => {
-  simpleMode = !simpleMode;
-  const body = document.body;
-  const button = document.getElementById('mode-toggle');
+    simpleMode = !simpleMode;
+    const body = document.body;
+    const button = document.getElementById('mode-toggle');
 
-  if (simpleMode) {
-    // Simple Mode ON
-    button.innerText = "Visual Mode";
-    body.classList.add('simple-mode'); // use class to handle CSS background + hiding text
-    // Hide all images except popups
-    body.querySelectorAll('img:not(.popup img), .pin').forEach(el => el.style.display = 'none');
+    if (simpleMode) {
+        button.innerText = "Visual Mode";
+        body.classList.add('simple-mode');
+        body.style.backgroundImage = "url('images/starry-space.jpg')";
+        body.style.backgroundAttachment = "fixed";
+        document.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.pin').forEach(el => el.style.display = 'block');
 
-    simpleList.style.display = 'block';
-    simpleList.innerHTML = "<ul>" + links.map(link => {
-      if (link.url) {
-        return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
-      } else {
-        return `<li><a href="#" data-popup="${link.popup}" style="color: cyan;">${link.text}</a></li>`;
-      }
-    }).join('') + "</ul>";
-  } else {
-    // Simple Mode OFF
-    button.innerText = "Simple Viewing Mode";
-    body.classList.remove('simple-mode');
-    body.querySelectorAll('img, .pin').forEach(el => el.style.display = '');
-    simpleList.style.display = 'none';
-  }
+        // Generate the SVM list dynamically
+        const links = getSVMLinks();
+        simpleList.innerHTML = "<ul>" + links.map(link => {
+            if (link.url) {
+                return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
+            } else if (link.popup) {
+                return `<li><a href="#" data-popup="${link.popup}" style="color: cyan;">${link.text}</a></li>`;
+            }
+        }).join('') + "</ul>";
+        simpleList.style.display = 'block';
+
+        // Move button
+        button.style.position = 'fixed';
+        button.style.top = '20px';
+        button.style.left = '20px';
+        button.style.bottom = 'auto';
+        button.style.transform = 'none';
+    } else {
+        button.innerText = "Simple Viewing Mode";
+        body.classList.remove('simple-mode');
+        body.style.backgroundImage = '';
+        document.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, .pin, #cd-text, img').forEach(el => el.style.display = '');
+        simpleList.style.display = 'none';
+
+        // Reset button position
+        button.style.position = 'absolute';
+        button.style.bottom = '25%';
+        button.style.left = '50%';
+        button.style.transform = 'translateX(-50%)';
+    }
 });
 
 // Enable popups when in Simple Mode list
