@@ -593,32 +593,30 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
   const button = document.getElementById('mode-toggle');
 
   if (simpleMode) {
-    // Simple mode ON
-    button.innerText = "Visual Mode";
-    body.classList.add('simple-mode');
+        button.innerText = "Visual Mode";
+        body.classList.add('simple-mode');
 
-    // Hide all normal site images/text
-    document.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text').forEach(el => el.style.display = 'none');
-    document.querySelectorAll('.pin').forEach(el => el.style.display = 'block'); // keep pins for popups
+        document.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text').forEach(el => {
+            if (el) el.style.display = 'none';
+        });
 
-    // Show the SVM list
-    simpleList.style.display = 'block';
-    simpleList.innerHTML = "<ul>" + links.map(link => {
-      if (link.url) {
-        return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
-      } else {
-        return `<li><a href="#" data-popup="${link.popup}" style="color: cyan;">${link.text}</a></li>`;
-      }
-    }).join('') + "</ul>";
+        document.querySelectorAll('.pin').forEach(el => {
+            if (el) el.style.display = 'block';
+        });
 
-    // Move button to top-left
-    if (simpleMode) {
-        button.classList.add('simple');
-        button.classList.remove('visual');
-    } else {
-        button.classList.add('visual');
-        button.classList.remove('simple');
-    }
+        if (simpleList) {
+            simpleList.style.display = 'block';
+            simpleList.innerHTML = "<ul>" + links.map(link => {
+                if (link.url) {
+                    return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
+                } else {
+                    return `<li><a href=\"#\" data-popup=\"${link.popup}\" style=\"color: cyan;\">${link.text}</a></li>`;
+                }
+            }).join('') + "</ul>";
+        }
+
+    button.classList.add('simple');
+    button.classList.remove('visual');
 
   } else {
     // Simple Mode OFF
@@ -628,26 +626,11 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     body.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, .pin, #cd-text, img').forEach(el => el.style.display = '');
     simpleList.style.display = 'none';
 
-    // only toggle class here
-    button.classList.add('simple');
-    button.classList.remove('visual');
-
-  } else {
-    button.innerText = "Simple Viewing Mode";
-    body.classList.remove('simple-mode');
-
-    document.querySelectorAll(
-      '.text-container, .left-gif, .right-gif, .section2 div, .section3 div, .pin, #cd-text, img'
-    ).forEach(el => el.style.display = '');
-
-    simpleList.style.display = 'none';
-
-    // only toggle class here
     button.classList.remove('simple');
     button.classList.add('visual');
   }
-
 });
+
 
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
