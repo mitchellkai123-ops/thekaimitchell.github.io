@@ -310,9 +310,9 @@ body.simple-mode .text-container,
 body.simple-mode .left-gif,
 body.simple-mode .right-gif,
 body.simple-mode #cd-text,
-body.simple-mode .section2 *:not([data-label]),
-body.simple-mode .section3 *:not([data-label]),
-body.simple-mode .section4 *:not(.pin) {
+body.simple-mode .section2 > *:not([data-label]),
+body.simple-mode .section3 > *:not([data-label]),
+body.simple-mode .section4 > *:not(.pin) {
     display: none !important;
 }
 
@@ -326,13 +326,9 @@ body.simple-mode #mode-toggle {
     display: block !important;
 }
 
-#simple-list {
-  z-index: 9998; /* slightly below popups */
-}
-
-.popup-overlay {
-  z-index: 10000; /* higher than simple-list so popups appear on top */
-}
+#simple-list { z-index: 9998; }   /* slightly below popups */
+.popup-overlay { z-index: 10000; }
+.popup { z-index: 10001; }       /* one more than overlay to ensure top */
 
 .popup {
   z-index: 10001; /* one more than overlay to ensure they stay on top */
