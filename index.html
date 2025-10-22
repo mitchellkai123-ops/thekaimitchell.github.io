@@ -275,31 +275,44 @@
 /* small accessibility helper to show popup when open */
 .popup-overlay.show { display: flex; }
 
-/* Simple Viewing Mode background */
-body.simple-mode {
-  background-image: url('images/starry-space.jpg'); /* Section 1 background */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* keeps it stationary while scrolling */
+/* Visual Mode button inside section 1 */
+#mode-toggle.visual {
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-/* Hide text and GIFs in Simple Mode */
+/* Simple Mode button */
+#mode-toggle.simple {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    transform: none;
+}
+
+/* Simple Viewing Mode background */
+body.simple-mode, body.simple-mode .section1 {
+  background-attachment: fixed;
+  overflow: hidden; /* prevent scrolling of other sections */
+}
+
+body.simple-mode .section2,
+body.simple-mode .section3,
+body.simple-mode .section4 {
+  overflow: hidden; /* prevent scrolling inside other sections */
+}
+
+/* Hide all unnecessary content in Simple Mode */
 body.simple-mode .text-container,
 body.simple-mode .left-gif,
 body.simple-mode .right-gif,
-body.simple-mode #cd-text {
-    display: none !important;
-}
-
-/* Hide all text in Simple Mode */
-body.simple-mode .text-container,
 body.simple-mode #cd-text,
-body.simple-mode .section2 div,
-body.simple-mode .section3 div {
+body.simple-mode .section2 *:not([data-label]),
+body.simple-mode .section3 *:not([data-label]),
+body.simple-mode .section4 *:not(.pin) {
     display: none !important;
 }
-
 
 /* Move Simple Mode button to top-left */
 body.simple-mode #mode-toggle {
@@ -616,6 +629,15 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     button.style.left = '50%';
     button.style.transform = 'translateX(-50%)';
   }
+
+if (simpleMode) {
+    button.classList.add('simple');
+    button.classList.remove('visual');
+} else {
+    button.classList.add('visual');
+    button.classList.remove('simple');
+}
+
 });
 
 // Enable popups from SVM list
