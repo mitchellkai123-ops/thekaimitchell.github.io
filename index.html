@@ -275,20 +275,20 @@
 /* small accessibility helper to show popup when open */
 .popup-overlay.show { display: flex; }
 
-/* Visual Mode button inside section 1 */
-#mode-toggle.visual {
-    position: absolute;
-    bottom: 25%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
 /* Simple Mode button */
 #mode-toggle.simple {
     position: fixed;
     top: 20px;
     left: 20px;
     transform: none;
+}
+        
+/* Visual Mode button inside section 1 */
+#mode-toggle.visual {
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Simple Viewing Mode background */
@@ -616,8 +616,13 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     }).join('') + "</ul>";
 
     // Move button to top-left
-    button.classList.add('simple');
-    button.classList.remove('visual');
+    if (simpleMode) {
+        button.classList.add('simple');
+        button.classList.remove('visual');
+    } else {
+        button.classList.add('visual');
+        button.classList.remove('simple');
+    }
 
   } else {
     // Simple Mode OFF
@@ -628,10 +633,48 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     simpleList.style.display = 'none';
 
     // Reset button position
-    button.style.position = 'absolute';
-    button.style.bottom = '25%';
-    button.style.left = '50%';
-    button.style.transform = 'translateX(-50%)';
+    document.getElementById('mode-toggle').addEventListener('click', () => {
+  simpleMode = !simpleMode;
+  const body = document.body;
+  const button = document.getElementById('mode-toggle');
+
+  if (simpleMode) {
+    button.innerText = "Visual Mode";
+    body.classList.add('simple-mode');
+    body.classList.remove('visual-mode'); // optional
+
+    document.querySelectorAll(
+      '.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text'
+    ).forEach(el => el.style.display = 'none');
+
+    document.querySelectorAll('.pin').forEach(el => el.style.display = 'block');
+
+    simpleList.style.display = 'block';
+    simpleList.innerHTML = "<ul>" + links.map(link => {
+      if (link.url) {
+        return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
+      } else {
+        return `<li><a href="#" data-popup="${link.popup}" style="color: cyan;">${link.text}</a></li>`;
+      }
+    }).join('') + "</ul>";
+
+    // only toggle class here
+    button.classList.add('simple');
+    button.classList.remove('visual');
+
+  } else {
+    button.innerText = "Simple Viewing Mode";
+    body.classList.remove('simple-mode');
+
+    document.querySelectorAll(
+      '.text-container, .left-gif, .right-gif, .section2 div, .section3 div, .pin, #cd-text, img'
+    ).forEach(el => el.style.display = '');
+
+    simpleList.style.display = 'none';
+
+    // only toggle class here
+    button.classList.remove('simple');
+    button.classList.add('visual');
   }
 
 if (simpleMode) {
