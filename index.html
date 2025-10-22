@@ -275,6 +275,32 @@
 /* small accessibility helper to show popup when open */
 .popup-overlay.show { display: flex; }
 
+/* Simple Viewing Mode background */
+body.simple-mode {
+  background-image: url('images/starry-space.jpg'); /* Section 1 background */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* keeps it stationary while scrolling */
+}
+
+/* Hide text and GIFs in Simple Mode */
+body.simple-mode .text-container,
+body.simple-mode .left-gif,
+body.simple-mode .right-gif,
+body.simple-mode #cd-text {
+  display: none !important;
+}
+
+/* Move Simple Mode button to top-left */
+body.simple-mode #mode-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  bottom: auto;
+  transform: none;
+}
+        
     </style>
 </head>
 <body>
