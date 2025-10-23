@@ -676,6 +676,24 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
   }
 });
 
+// new code v
+    
+if (simpleMode) {
+    // hide Section 2 content
+    const section2 = document.querySelector('.section2');
+    if (section2) {
+        section2.style.backgroundImage = 'none';
+        section2.querySelectorAll('img').forEach(img => img.style.display = 'none');
+    }
+} else {
+    // restore Section 2 content
+    const section2 = document.querySelector('.section2');
+    if (section2) {
+        section2.style.backgroundImage = "url('images/space-slide-2.jpg')";
+        section2.querySelectorAll('img').forEach(img => img.style.display = '');
+    }
+}
+//new code ^
 
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
