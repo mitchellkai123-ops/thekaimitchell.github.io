@@ -624,7 +624,12 @@ simpleList.style.fontSize = "14px";
 simpleList.style.color = "yellow";
 document.body.insertBefore(simpleList, document.getElementById('overlay'));
 
-document.getElementById('mode-toggle
+document.getElementById('mode-toggle').addEventListener('click', () => {
+  simpleMode = !simpleMode;
+  document.body.classList.toggle('simple-mode', simpleMode);
+  simpleList.style.display = simpleMode ? 'block' : 'none';
+});
+    
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
   const pin = e.target.closest('.pin');
