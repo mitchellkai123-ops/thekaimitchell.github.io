@@ -623,11 +623,14 @@ document.getElementById('mode-toggle').addEventListener('click', function() {
     document.body.classList.toggle('simple-mode', simpleMode);
 
     const simpleList = document.getElementById('simple-list');
+    const toggleBtn = document.getElementById('mode-toggle');
+
     if (simpleMode) {
         // hide GIFs
         document.querySelectorAll('.left-gif, .right-gif, .section2 img, .section3 img').forEach(img => {
             img.style.display = 'none';
         });
+
         // build list
         simpleList.innerHTML = '';
         links.forEach(link => {
@@ -637,6 +640,7 @@ document.getElementById('mode-toggle').addEventListener('click', function() {
                 a.href = link.url;
                 a.textContent = link.text;
                 a.target = '_blank';
+                a.style.color = 'yellow'; // force SVM link color
                 li.appendChild(a);
             } else {
                 li.textContent = link.text;
@@ -644,14 +648,21 @@ document.getElementById('mode-toggle').addEventListener('click', function() {
             simpleList.appendChild(li);
         });
         simpleList.style.display = 'block';
+
+        // update button text
+        toggleBtn.textContent = 'Visual Mode';
     } else {
         // show GIFs
         document.querySelectorAll('.left-gif, .right-gif, .section2 img, .section3 img').forEach(img => {
             img.style.display = 'block';
         });
         simpleList.style.display = 'none';
+
+        // reset button text
+        toggleBtn.textContent = 'Simple Viewing Mode';
     }
 });
+
 
     
 // single listener for SVM popup links and pins
