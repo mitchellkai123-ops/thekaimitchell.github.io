@@ -299,6 +299,7 @@ body.simple-mode .section1 {
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow: hidden;
+  z-index: 10000;
 }
 
 body.simple-mode, html.simple-mode {
@@ -326,9 +327,9 @@ body.simple-mode #mode-toggle {
     display: block !important;
 }
 
-#simple-list { z-index: 9998; }   /* slightly below popups */
-.popup-overlay { z-index: 10000; }
-.popup { z-index: 10001; }       /* one more than overlay to ensure top */
+#simple-list { z-index: 10001; }   /* slightly below popups */
+.popup-overlay { z-index: 10002; }
+.popup { z-index: 10003; }       /* one more than overlay to ensure top */
         
 #simple-list li {
   margin-bottom: 20px; /* increase or decrease as needed */
@@ -350,12 +351,8 @@ body.simple-mode #mode-toggle {
         
     </div>
 
-    <div id="svm-text" style="display:none; position:fixed; top:15%; left:50%; transform:translateX(-50%); color: yellow; monospace; font-size: 16px; text-align:center;">
+    <div id="svm-text" style="display:none; position:fixed; top:12%; left:50%; transform:translateX(-50%); color: yellow; monospace; font-size: 40px; text-align:center;">
     Kai Mitchell
-    </div>
-
-    <div id="svm-text" style="display:none; position:fixed; top:22%; left:50%; transform:translateX(-50%); color: yellow; monospace; font-size: 12px; text-align:center;">
-    Welcome to my site
     </div>
 
     <!-- Divider between section 1 and 2 -->
