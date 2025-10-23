@@ -27,6 +27,12 @@
             background-color: yellow;
             color: #02066f;
         }
+
+#mode-toggle:hover {
+  background-color: yellow;
+  color: #02066f;
+}
+
         
         body {
             margin: 0;
@@ -299,6 +305,17 @@ body.simple-mode, html.simple-mode {
   overflow: hidden; /* prevent whole page scrolling */
 }
 
+/* Hide all unnecessary content in Simple Mode */
+body.simple-mode .text-container,
+body.simple-mode .left-gif,
+body.simple-mode .right-gif,
+body.simple-mode #cd-text,
+body.simple-mode .section2 > *:not([data-label]),
+body.simple-mode .section3 > *:not([data-label]),
+body.simple-mode .section4 > *:not(.pin) {
+    display: none !important;
+}
+
 /* Move Simple Mode button to top-left */
 body.simple-mode #mode-toggle {
     position: fixed;
@@ -307,10 +324,6 @@ body.simple-mode #mode-toggle {
     bottom: auto;
     transform: none;
     display: block !important;
-}
-
-.text-container h1, .text-container p {
-  transition: top 300ms ease, transform 300ms ease;
 }
 
 #simple-list { z-index: 9998; }   /* slightly below popups */
@@ -353,7 +366,7 @@ body.simple-mode #mode-toggle {
         </div>
 
         <!-- Flynn Planet clickable link -->
-        <a href="https://flynnconnolly.com" target="_blank" data-label="Flynns Website">
+        <a href="https://flynnconnolly.com" target="_blank" data-label="Flynn's Website!">
             <img src="images/flynn-planet.png" style="position:absolute; top: 45%; left: 25%; width: calc(9.01vw + 30px);">
         </a>
 
@@ -533,30 +546,54 @@ body.simple-mode #mode-toggle {
 
 // open popup when pin clicked
 document.addEventListener('click', function(e) {
+  // pins
   const pin = e.target.closest('.pin');
-  if (pin) {
-    openPopup(pin.dataset.target);
-    return; // stop further checks once popup opens
-  }
+  if (pin) { openPopup(pin.getAttribute('data-target')); }
 
+  // SVM popup links
   const popupLink = e.target.closest('[data-popup]');
   if (popupLink) {
     e.preventDefault();
-    openPopup(popupLink.dataset.popup);
-    return;
+    openPopup(popupLink.getAttribute('data-popup'));
   }
 
+  // close button
+  if (e.target.closest('[data-close]')) closePopup();
+
+  // click outside popup
+  const overlay = document.getElementById('overlay');
+  if (overlay?.classList.contains('show') && !e.target.closest('.popup') && e.target.closest('#overlay')) closePopup();
+});
+
+// open function
+function openPopup(id) {
+  const overlay = document.getElementById('overlay');
+  const popup = document.getElementById(id);
+  if (!overlay || !popup) return;
+  // hide any currently-open popups
+  Array.from(overlay.querySelectorAll('.popup')).forEach(p => p.style.display = 'none');
+  popup.style.display = 'flex'; // ensure displayed
+  overlay.classList.add('show');
+  // focus for accessibility
+  setTimeout(() => popup.focus && popup.focus(), 50);
+}
+
+// close when clicking X or clicking outside popup
+document.addEventListener('click', function(e) {
+  // close button
   if (e.target.closest('[data-close]')) {
     closePopup();
     return;
   }
-
+  // click outside popup
   const overlay = document.getElementById('overlay');
-  if (overlay?.classList.contains('show') && !e.target.closest('.popup') && e.target.closest('#overlay')) {
-    closePopup();
+  if (overlay && overlay.classList.contains('show')) {
+    const inside = e.target.closest('.popup');
+    if (!inside && e.target.closest('#overlay')) {
+      closePopup();
+    }
   }
 });
-
 
 // ESC to close
 document.addEventListener('keydown', function(e) {
@@ -572,13 +609,13 @@ function closePopup() {
 
 let simpleMode = false;
 
-// Automatically build links from elements that have data-label
-const links = Array.from(document.querySelectorAll('[data-label]')).map(el => {
-  const text = el.dataset.label;
-  const url = el.href || null;
-  const popup = el.dataset.popup || null;
-  return { text, url, popup };
-});
+const links = [
+  { text: "Apple Music", url: "https://music.apple.com/profile/kai_michell" },
+  { text: "LinkedIn", url: "https://www.linkedin.com/in/kai-m-mitchell/" },
+  { text: "Instagram", url: "https://www.instagram.com/kai._.mitchell/" },
+  { text: "Greece (photos)", popup: "popup-greece" },
+  { text: "Japan (photos)", popup: "popup-japan" }
+];
 
 const simpleList = document.createElement('div');
 simpleList.id = "simple-list";
@@ -594,53 +631,51 @@ simpleList.style.fontSize = "14px";
 simpleList.style.color = "yellow";
 document.body.insertBefore(simpleList, document.getElementById('overlay'));
 
-document.getElementById('mode-toggle').addEventListener('click', function() {
-    simpleMode = !simpleMode;
-    document.body.classList.toggle('simple-mode', simpleMode);
+document.getElementById('mode-toggle').addEventListener('click', () => {
+  simpleMode = !simpleMode;
+  const body = document.body;
+  const button = document.getElementById('mode-toggle');
 
-    const simpleList = document.getElementById('simple-list');
-    const toggleBtn = document.getElementById('mode-toggle');
+  if (simpleMode) {
+        button.innerText = "Visual Mode";
+        body.classList.add('simple-mode');
 
-    if (simpleMode) {
-        // hide GIFs
-        document.querySelectorAll('.left-gif, .right-gif, .section2 img, .section3 img').forEach(img => {
-            img.style.display = 'none';
+        document.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text').forEach(el => {
+            if (el) el.style.display = 'none';
         });
 
-        // build list
-        simpleList.innerHTML = '';
-        links.forEach(link => {
-            const li = document.createElement('li');
-            if (link.url) {
-                const a = document.createElement('a');
-                a.href = link.url;
-                a.textContent = link.text;
-                a.target = '_blank';
-                a.style.color = 'yellow'; // force SVM link color
-                li.appendChild(a);
-            } else {
-                li.textContent = link.text;
-            }
-            simpleList.appendChild(li);
+        document.querySelectorAll('.pin').forEach(el => {
+            if (el) el.style.display = 'block';
         });
-        simpleList.style.display = 'block';
 
-        // update button text
-        toggleBtn.textContent = 'Visual Mode';
-    } else {
-        // show GIFs
-        document.querySelectorAll('.left-gif, .right-gif, .section2 img, .section3 img').forEach(img => {
-            img.style.display = 'block';
-        });
-        simpleList.style.display = 'none';
+        if (simpleList) {
+            simpleList.style.display = 'block';
+            simpleList.innerHTML = "<ul>" + links.map(link => {
+                if (link.url) {
+                    return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
+                } else {
+                    return `<li><a href=\"#\" data-popup=\"${link.popup}\" style=\"color: cyan;\">${link.text}</a></li>`;
+                }
+            }).join('') + "</ul>";
+        }
 
-        // reset button text
-        toggleBtn.textContent = 'Simple Viewing Mode';
-    }
+    button.classList.add('simple');
+    button.classList.remove('visual');
+
+  } else {
+    // Simple Mode OFF
+    button.innerText = "Simple Viewing Mode";
+    body.classList.remove('simple-mode');
+    body.style.backgroundImage = '';
+    body.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, .pin, #cd-text, img').forEach(el => el.style.display = '');
+    simpleList.style.display = 'none';
+
+    button.classList.remove('simple');
+    button.classList.add('visual');
+  }
 });
 
 
-    
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
   const pin = e.target.closest('.pin');
