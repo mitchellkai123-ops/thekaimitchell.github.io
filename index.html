@@ -27,12 +27,6 @@
             background-color: yellow;
             color: #02066f;
         }
-
-#mode-toggle:hover {
-  background-color: yellow;
-  color: #02066f;
-}
-
         
         body {
             margin: 0;
@@ -624,11 +618,41 @@ simpleList.style.fontSize = "14px";
 simpleList.style.color = "yellow";
 document.body.insertBefore(simpleList, document.getElementById('overlay'));
 
-document.getElementById('mode-toggle').addEventListener('click', () => {
-  simpleMode = !simpleMode;
-  document.body.classList.toggle('simple-mode', simpleMode);
-  simpleList.style.display = simpleMode ? 'block' : 'none';
+document.getElementById('mode-toggle').addEventListener('click', function() {
+    simpleMode = !simpleMode;
+    document.body.classList.toggle('simple-mode', simpleMode);
+
+    const simpleList = document.getElementById('simple-list');
+    if (simpleMode) {
+        // hide GIFs
+        document.querySelectorAll('.left-gif, .right-gif, .section2 img, .section3 img').forEach(img => {
+            img.style.display = 'none';
+        });
+        // build list
+        simpleList.innerHTML = '';
+        links.forEach(link => {
+            const li = document.createElement('li');
+            if (link.url) {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.textContent = link.text;
+                a.target = '_blank';
+                li.appendChild(a);
+            } else {
+                li.textContent = link.text;
+            }
+            simpleList.appendChild(li);
+        });
+        simpleList.style.display = 'block';
+    } else {
+        // show GIFs
+        document.querySelectorAll('.left-gif, .right-gif, .section2 img, .section3 img').forEach(img => {
+            img.style.display = 'block';
+        });
+        simpleList.style.display = 'none';
+    }
 });
+
     
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
