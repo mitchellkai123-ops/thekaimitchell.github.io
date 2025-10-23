@@ -299,7 +299,7 @@ body.simple-mode .section1 {
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow: hidden;
-  z-index: 10000;
+  z-index: 10;
 }
 
 body.simple-mode, html.simple-mode {
@@ -327,9 +327,9 @@ body.simple-mode #mode-toggle {
     display: block !important;
 }
 
-#simple-list { z-index: 10001; }   /* slightly below popups */
-.popup-overlay { z-index: 10002; }
-.popup { z-index: 10003; }       /* one more than overlay to ensure top */
+#simple-list { z-index: 9998; }   /* slightly below popups */
+.popup-overlay { z-index: 10001; }
+.popup { z-index: 10002; }       /* one more than overlay to ensure top */
         
 #simple-list li {
   margin-bottom: 20px; /* increase or decrease as needed */
