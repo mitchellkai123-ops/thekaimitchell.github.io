@@ -625,53 +625,103 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
   const body = document.body;
   const button = document.getElementById('mode-toggle');
 
-// Move Kai Mitchell text up in Simple Mode
+  // Move Kai Mitchell + Welcome text up in Simple Mode
   const cdText = document.getElementById('cd-text');
-  if (cdText) {
-    if (simpleMode) {
-      cdText.style.top = "5%";      // move it higher on the screen
-      cdText.style.position = "absolute";
-    } else {
-      cdText.style.top = "";        // restore normal position
-      cdText.style.position = "";
-    }
-  }
-    
+  const welcomeText = document.querySelector('.text-container h2'); // adjust if your welcome line uses a different tag
+
   if (simpleMode) {
-        button.innerText = "Visual Mode";
-        body.classList.add('simple-mode');
+    button.innerText = "Visual Mode";
+    body.classList.add('simple-mode');
 
-        document.querySelectorAll('.pin').forEach(el => {
-            if (el) el.style.display = 'block';
-        });
+    // Move name and welcome text upward
+    if (cdText) {
+      cdText.style.position = "absolute";
+      cdText.style.top = "5%";
+      cdText.style.left = "50%";
+      cdText.style.transform = "translateX(-50%)";
+    }
+    if (welcomeText) {
+      welcomeText.style.position = "absolute";
+      welcomeText.style.top = "12%";
+      welcomeText.style.left = "50%";
+      welcomeText.style.transform = "translateX(-50%)";
+    }
 
-        if (simpleList) {
-            simpleList.style.display = 'block';
-            simpleList.innerHTML = "<ul>" + links.map(link => {
-                if (link.url) {
-                    return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
-                } else {
-                    return `<li><a href=\"#\" data-popup=\"${link.popup}\" style=\"color: cyan;\">${link.text}</a></li>`;
-                }
-            }).join('') + "</ul>";
+    // Hide all .gif and .webp images, but keep other text visible
+    body.querySelectorAll('img').forEach(img => {
+      if (img.src.match(/\.(gif|webp)$/i)) {
+        img.style.display = 'none';
+      }
+    });
+
+    // Show pins and create the simple list of links
+    document.querySelectorAll('.pin').forEach(el => {
+      el.style.display = 'block';
+    });
+
+    if (simpleList) {
+      simpleList.style.display = 'block';
+      simpleList.style.position = "fixed";
+      simpleList.style.top = "60%"; // moved further down
+      simpleList.style.left = "50%";
+      simpleList.style.transform = "translateX(-50%)";
+      simpleList.style.zIndex = "9999";
+      simpleList.style.textAlign = "left";
+      simpleList.style.fontFamily = "'Press Start 2P', monospace";
+      simpleList.style.fontSize = "14px";
+      simpleList.style.color = "yellow";
+
+      // Auto-generate link list from all data-labels
+      const links = Array.from(document.querySelectorAll('[data-label]')).map(el => {
+        const text = el.dataset.label;
+        const url = el.href || null;
+        const popup = el.dataset.popup || null;
+        return { text, url, popup };
+      });
+
+      simpleList.innerHTML = "<ul>" + links.map(link => {
+        if (link.url) {
+          return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
+        } else {
+          return `<li><a href="#" data-popup="${link.popup}" style="color: cyan;">${link.text}</a></li>`;
         }
+      }).join('') + "</ul>";
+    }
 
     button.classList.add('simple');
     button.classList.remove('visual');
-
   } else {
     // Simple Mode OFF
     button.innerText = "Simple Viewing Mode";
     body.classList.remove('simple-mode');
     body.style.backgroundImage = '';
-    body.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, .pin, #cd-text, img').forEach(el => el.style.display = '');
-    simpleList.style.display = 'none';
 
+    // Show images again
+    body.querySelectorAll('img').forEach(img => {
+      if (img.src.match(/\.(gif|webp)$/i)) {
+        img.style.display = '';
+      }
+    });
+
+    // Restore text positions
+    if (cdText) {
+      cdText.style.position = "";
+      cdText.style.top = "";
+      cdText.style.left = "";
+      cdText.style.transform = "";
+    }
+    if (welcomeText) {
+      welcomeText.style.position = "";
+      welcomeText.style.top = "";
+      welcomeText.style.left = "";
+      welcomeText.style.transform = "";
+    }
+
+    simpleList.style.display = 'none';
     button.classList.remove('simple');
     button.classList.add('visual');
   }
 });
-
 
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
