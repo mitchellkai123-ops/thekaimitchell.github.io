@@ -533,54 +533,30 @@ body.simple-mode #mode-toggle {
 
 // open popup when pin clicked
 document.addEventListener('click', function(e) {
-  // pins
   const pin = e.target.closest('.pin');
-  if (pin) { openPopup(pin.getAttribute('data-target')); }
+  if (pin) {
+    openPopup(pin.dataset.target);
+    return; // stop further checks once popup opens
+  }
 
-  // SVM popup links
   const popupLink = e.target.closest('[data-popup]');
   if (popupLink) {
     e.preventDefault();
-    openPopup(popupLink.getAttribute('data-popup'));
+    openPopup(popupLink.dataset.popup);
+    return;
   }
 
-  // close button
-  if (e.target.closest('[data-close]')) closePopup();
-
-  // click outside popup
-  const overlay = document.getElementById('overlay');
-  if (overlay?.classList.contains('show') && !e.target.closest('.popup') && e.target.closest('#overlay')) closePopup();
-});
-
-// open function
-function openPopup(id) {
-  const overlay = document.getElementById('overlay');
-  const popup = document.getElementById(id);
-  if (!overlay || !popup) return;
-  // hide any currently-open popups
-  Array.from(overlay.querySelectorAll('.popup')).forEach(p => p.style.display = 'none');
-  popup.style.display = 'flex'; // ensure displayed
-  overlay.classList.add('show');
-  // focus for accessibility
-  setTimeout(() => popup.focus && popup.focus(), 50);
-}
-
-// close when clicking X or clicking outside popup
-document.addEventListener('click', function(e) {
-  // close button
   if (e.target.closest('[data-close]')) {
     closePopup();
     return;
   }
-  // click outside popup
+
   const overlay = document.getElementById('overlay');
-  if (overlay && overlay.classList.contains('show')) {
-    const inside = e.target.closest('.popup');
-    if (!inside && e.target.closest('#overlay')) {
-      closePopup();
-    }
+  if (overlay?.classList.contains('show') && !e.target.closest('.popup') && e.target.closest('#overlay')) {
+    closePopup();
   }
 });
+
 
 // ESC to close
 document.addEventListener('keydown', function(e) {
