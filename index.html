@@ -305,17 +305,6 @@ body.simple-mode, html.simple-mode {
   overflow: hidden; /* prevent whole page scrolling */
 }
 
-/* Hide all unnecessary content in Simple Mode */
-body.simple-mode .text-container,
-body.simple-mode .left-gif,
-body.simple-mode .right-gif,
-body.simple-mode #cd-text,
-body.simple-mode .section2 > *:not([data-label]),
-body.simple-mode .section3 > *:not([data-label]),
-body.simple-mode .section4 > *:not(.pin) {
-    display: none !important;
-}
-
 /* Move Simple Mode button to top-left */
 body.simple-mode #mode-toggle {
     position: fixed;
@@ -651,10 +640,6 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
   if (simpleMode) {
         button.innerText = "Visual Mode";
         body.classList.add('simple-mode');
-
-        document.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text').forEach(el => {
-            if (el) el.style.display = 'none';
-        });
 
         document.querySelectorAll('.pin').forEach(el => {
             if (el) el.style.display = 'block';
