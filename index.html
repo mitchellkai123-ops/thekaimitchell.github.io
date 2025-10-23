@@ -350,6 +350,14 @@ body.simple-mode #mode-toggle {
         
     </div>
 
+    <div id="svm-text" style="display:none; position:fixed; top:15%; left:50%; transform:translateX(-50%); color: yellow; monospace; font-size: 16px; text-align:center;">
+    Kai Mitchell
+    </div>
+
+    <div id="svm-text" style="display:none; position:fixed; top:22%; left:50%; transform:translateX(-50%); color: yellow; monospace; font-size: 12px; text-align:center;">
+    Welcome to my site
+    </div>
+
     <!-- Divider between section 1 and 2 -->
     <img src="images/39734795880.png" alt="Divider" class="divider" style="top:100vh;">
 
@@ -676,6 +684,24 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
   }
 });
 
+    // Toggle SVM text display when simpleMode changes
+    function updateSVMText() {
+        const svmText = document.getElementById('svm-text');
+        if (simpleMode) {
+            svmText.style.display = 'block';
+        } else {
+            svmText.style.display = 'none';
+        }
+    }
+
+    // Hook into your existing toggle button
+    const modeToggle = document.getElementById('mode-toggle');
+    modeToggle.addEventListener('click', () => {
+        // simpleMode toggling already happens elsewhere
+        // just update the text display
+        setTimeout(updateSVMText, 50); // wait for simpleMode to toggle
+    });
+    
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
   const pin = e.target.closest('.pin');
