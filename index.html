@@ -617,6 +617,32 @@ const links = [
   { text: "Japan (photos)", popup: "popup-japan" }
 ];
 
+const container = document.getElementById('svm-links');
+
+links.forEach(link => {
+  const el = document.createElement('a');
+
+  el.textContent = link.text;
+
+  // If it's a normal link
+  if (link.url) {
+    el.href = link.url;
+    el.target = "_blank"; // open in new tab
+  }
+
+  // If it triggers a popup
+  if (link.popup) {
+    el.href = "#";
+    el.setAttribute('data-popup', link.popup);
+    el.addEventListener('click', () => openPopup(link.popup));
+  }
+
+  // Add the data-label automatically
+  el.setAttribute('data-label', link.text);
+
+  container.appendChild(el);
+});
+
 const simpleList = document.createElement('div');
 simpleList.id = "simple-list";
 simpleList.style.display = "none";
