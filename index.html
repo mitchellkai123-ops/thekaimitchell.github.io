@@ -609,13 +609,13 @@ function closePopup() {
 
 let simpleMode = false;
 
-const links = [
-  { text: "Apple Music", url: "https://music.apple.com/profile/kai_michell" },
-  { text: "LinkedIn", url: "https://www.linkedin.com/in/kai-m-mitchell/" },
-  { text: "Instagram", url: "https://www.instagram.com/kai._.mitchell/" },
-  { text: "Greece (photos)", popup: "popup-greece" },
-  { text: "Japan (photos)", popup: "popup-japan" }
-];
+// Automatically build links from elements that have data-label
+const links = Array.from(document.querySelectorAll('[data-label]')).map(el => {
+  const text = el.dataset.label;
+  const url = el.href || null;
+  const popup = el.dataset.popup || null;
+  return { text, url, popup };
+});
 
 const simpleList = document.createElement('div');
 simpleList.id = "simple-list";
@@ -636,6 +636,18 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
   const body = document.body;
   const button = document.getElementById('mode-toggle');
 
+// Move Kai Mitchell text up in Simple Mode
+  const cdText = document.getElementById('cd-text');
+  if (cdText) {
+    if (simpleMode) {
+      cdText.style.top = "5%";      // move it higher on the screen
+      cdText.style.position = "absolute";
+    } else {
+      cdText.style.top = "";        // restore normal position
+      cdText.style.position = "";
+    }
+  }
+    
   if (simpleMode) {
         button.innerText = "Visual Mode";
         body.classList.add('simple-mode');
