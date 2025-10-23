@@ -315,6 +315,10 @@ body.simple-mode #mode-toggle {
     display: block !important;
 }
 
+.text-container h1, .text-container p {
+  transition: top 300ms ease, transform 300ms ease;
+}
+
 #simple-list { z-index: 9998; }   /* slightly below popups */
 .popup-overlay { z-index: 10000; }
 .popup { z-index: 10001; }       /* one more than overlay to ensure top */
@@ -620,109 +624,7 @@ simpleList.style.fontSize = "14px";
 simpleList.style.color = "yellow";
 document.body.insertBefore(simpleList, document.getElementById('overlay'));
 
-document.getElementById('mode-toggle').addEventListener('click', () => {
-  simpleMode = !simpleMode;
-  const body = document.body;
-  const button = document.getElementById('mode-toggle');
-
-  // Move Kai Mitchell + Welcome text up in Simple Mode
-  const cdText = document.getElementById('cd-text');
-  const welcomeText = document.querySelector('.text-container h2'); // adjust if your welcome line uses a different tag
-
-  if (simpleMode) {
-    button.innerText = "Visual Mode";
-    body.classList.add('simple-mode');
-
-    // Move name and welcome text upward
-    if (cdText) {
-      cdText.style.position = "absolute";
-      cdText.style.top = "5%";
-      cdText.style.left = "50%";
-      cdText.style.transform = "translateX(-50%)";
-    }
-    if (welcomeText) {
-      welcomeText.style.position = "absolute";
-      welcomeText.style.top = "12%";
-      welcomeText.style.left = "50%";
-      welcomeText.style.transform = "translateX(-50%)";
-    }
-
-    // Hide all .gif and .webp images, but keep other text visible
-    body.querySelectorAll('img').forEach(img => {
-      if (img.src.match(/\.(gif|webp)$/i)) {
-        img.style.display = 'none';
-      }
-    });
-
-    // Show pins and create the simple list of links
-    document.querySelectorAll('.pin').forEach(el => {
-      el.style.display = 'block';
-    });
-
-    if (simpleList) {
-      simpleList.style.display = 'block';
-      simpleList.style.position = "fixed";
-      simpleList.style.top = "60%"; // moved further down
-      simpleList.style.left = "50%";
-      simpleList.style.transform = "translateX(-50%)";
-      simpleList.style.zIndex = "9999";
-      simpleList.style.textAlign = "left";
-      simpleList.style.fontFamily = "'Press Start 2P', monospace";
-      simpleList.style.fontSize = "14px";
-      simpleList.style.color = "yellow";
-
-      // Auto-generate link list from all data-labels
-      const links = Array.from(document.querySelectorAll('[data-label]')).map(el => {
-        const text = el.dataset.label;
-        const url = el.href || null;
-        const popup = el.dataset.popup || null;
-        return { text, url, popup };
-      });
-
-      simpleList.innerHTML = "<ul>" + links.map(link => {
-        if (link.url) {
-          return `<li><a href="${link.url}" target="_blank" style="color: cyan;">${link.text}</a></li>`;
-        } else {
-          return `<li><a href="#" data-popup="${link.popup}" style="color: cyan;">${link.text}</a></li>`;
-        }
-      }).join('') + "</ul>";
-    }
-
-    button.classList.add('simple');
-    button.classList.remove('visual');
-  } else {
-    // Simple Mode OFF
-    button.innerText = "Simple Viewing Mode";
-    body.classList.remove('simple-mode');
-    body.style.backgroundImage = '';
-
-    // Show images again
-    body.querySelectorAll('img').forEach(img => {
-      if (img.src.match(/\.(gif|webp)$/i)) {
-        img.style.display = '';
-      }
-    });
-
-    // Restore text positions
-    if (cdText) {
-      cdText.style.position = "";
-      cdText.style.top = "";
-      cdText.style.left = "";
-      cdText.style.transform = "";
-    }
-    if (welcomeText) {
-      welcomeText.style.position = "";
-      welcomeText.style.top = "";
-      welcomeText.style.left = "";
-      welcomeText.style.transform = "";
-    }
-
-    simpleList.style.display = 'none';
-    button.classList.remove('simple');
-    button.classList.add('visual');
-  }
-});
-
+document.getElementById('mode-toggle
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
   const pin = e.target.closest('.pin');
