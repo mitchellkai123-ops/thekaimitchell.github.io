@@ -612,8 +612,8 @@ let simpleMode = false;
 const links = [
   { text: "Apple Music", url: "https://music.apple.com/profile/kai_michell" },
   { text: "LinkedIn", url: "https://www.linkedin.com/in/kai-m-mitchell/" },
-  { text: "Flynn Website", url: "flynnconnolly.com" },
   { text: "Instagram", url: "https://www.instagram.com/kai._.mitchell/" },
+  { text: "Flynn Website", url: "flynnconnolly.com" },
   { text: "Greece (photos)", popup: "popup-greece" },
   { text: "Japan (photos)", popup: "popup-japan" }
 ];
@@ -675,25 +675,6 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     button.classList.add('visual');
   }
 });
-
-// new code v
-    
-if (simpleMode) {
-    // hide Section 2 content
-    const section2 = document.querySelector('.section2');
-    if (section2) {
-        section2.style.backgroundImage = 'none';
-        section2.querySelectorAll('img').forEach(img => img.style.display = 'none');
-    }
-} else {
-    // restore Section 2 content
-    const section2 = document.querySelector('.section2');
-    if (section2) {
-        section2.style.backgroundImage = "url('images/space-slide-2.jpg')";
-        section2.querySelectorAll('img').forEach(img => img.style.display = '');
-    }
-}
-//new code ^
 
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
