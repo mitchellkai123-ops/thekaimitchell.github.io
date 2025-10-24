@@ -127,33 +127,54 @@
         
 
         /* ---------- Section4 & Earth container ---------- */
-        .section4 {
+
+.earth-container {
+    position: relative;
+    width: 100%;
+    max-width: 1920px; /* optional, for PC scaling */
+}
+
+.earth-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.pin {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url('images/pin-icon.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%);
+}
+        
+/* .section4 {
   position: relative;
   background-image: url('images/earthbackground.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh; /* keep your dynamic full-height look */
-  overflow: hidden;
+/*  overflow: hidden;
 }
 
 /* The invisible coordinate layer */
-.pin-layer {
+/* .pin-layer {
   position: absolute;
   top: 0;
   left: 50%;
   width: 100vw;            /* same as viewport width */
-  height: 100%;  /* full section height */
-  z-index: 10;
+/*  height: 100%;  /* full section height */
+/*  z-index: 10;
   transform: translateX(-50%); 
 }
 
 /* The pins themselves */
-.pin {
+/* .pin {
   position: absolute;
-  width: 2.2vw;
-  height: 2.2vw;
-  max-width: 30px;
-  max-height: 30px;
+  width: 20px;
+  height: 20px;
   background-image: url('images/pin-icon.webp');
   background-size: contain;
   background-repeat: no-repeat;
@@ -168,7 +189,7 @@
 
 
 /* ---------- Overlay & Popup ---------- */
-.popup-overlay {
+ .popup-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.5); /* dim */
@@ -177,10 +198,10 @@
   align-items: center;
   z-index: 9999;
   overflow: auto; /* allow scrolling page if popup larger than viewport */
-}
+ }
 
 /* popup window */
-.popup {
+ .popup {
   background: #c0c0c0;              /* retro grey */
   width: 60vw;
   height: 70vh;
@@ -447,13 +468,19 @@ body.simple-mode #mode-toggle {
     <!-- Divider between section 3 and 4 -->
     <img src="images/blue-glow.png" alt="Divider" class="divider" style="top:400vh;">
 
-    <!-- Fourth Section (Earth background with pins + popup) -->
+    <!-- Fourth Section (Earth background with pins + popup)
     <section class="section4">
         <div class="pin-layer">
             <div class="pin japan"></div>
             <div class="pin greece"></div>
         </div>
-    </section>
+    </section> -->
+
+    <div class="earth-container">
+        <img src="images/earthbackground.jpg" alt="Earth" class="earth-img">
+        <div class="pin japan" style="top: 38%; left: 84%;"></div>
+        <div class="pin greece" style="top: 50%; left: 56%;"></div>
+    </div>
 
     <!-- Popup Markup(s): you can add one popup per country -->
     <div class="popup-overlay" id="overlay">
