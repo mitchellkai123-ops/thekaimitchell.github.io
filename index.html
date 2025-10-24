@@ -342,9 +342,11 @@ body.simple-mode #mode-toggle {
 }
 
 /* new code */ 
-#mode-toggle.simple {
-    background-color: #02066f; /* resting blue */
-    color: yellow;             /* text yellow */
+@media (hover: hover) {
+    #mode-toggle.hover {
+        background-color: yellow; 
+        color: #02066f;             
+    }
 }
 
 /* optional: prevent hover from applying on touch devices */
