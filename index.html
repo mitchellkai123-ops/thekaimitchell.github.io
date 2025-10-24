@@ -128,40 +128,37 @@
 
         /* ---------- Section4 & Earth container ---------- */
         .section4 {
-            position: relative;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
-            overflow: hidden;
-        }
+  position: relative;
+  background-image: url('images/earthbackground.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* keep your dynamic full-height look */
+  overflow: hidden;
+}
 
-        .earth-container {
-            position: relative;
-            height: 100%;
-            width: 100%;
-            background-image: url('images/earthbackground.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+/* The invisible coordinate layer */
+.pin-layer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;            /* same as viewport width */
+  height: 100%;            /* full section height */
+  transform: translateX(-50%);
+  pointer-events: none;    /* so clicks pass through */
+}
 
-/* Pin */
+/* The pins themselves */
 .pin {
   position: absolute;
-  width: 2.2vw;
-  height: 2.2vw;
-  max-width: 30px;
-  max-height: 30px;
-  background-image: url('images/pin-icon.webp');
-  background-size: contain;
-  background-repeat: no-repeat;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  z-index: 6;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -100%);
 }
+
+/* These percentages now act like coordinates on the background */
+.pin.japan { top: 38%; left: 84%; }
+.pin.greece { top: 50%; left: 56%; }
+
 
 /* ---------- Overlay & Popup ---------- */
 .popup-overlay {
@@ -341,7 +338,7 @@ body.simple-mode #mode-toggle {
   list-style: none; /* optional: removes bullets */
 }
 
-/* new code */ 
+
 @media (hover: hover) {
     #mode-toggle.hover {
         background-color: yellow; 
@@ -356,7 +353,7 @@ body.simple-mode #mode-toggle {
     color: yellow;
   }
 }
-/* new code */    
+    
     </style>
 </head>
 <body>
@@ -444,17 +441,12 @@ body.simple-mode #mode-toggle {
     <img src="images/blue-glow.png" alt="Divider" class="divider" style="top:400vh;">
 
     <!-- Fourth Section (Earth background with pins + popup) -->
-    <div class="section4">
-        <div class="earth-container">
-
-        <!-- Example Pin: Greece (click opens popup) -->
-        <!-- data-target refers to the popup id to open -->
-        <div class="pin" style="top:48%; left:40%;" data-target="popup-greece" title="Greece" data-label="Greece"></div>
-
-        <div class="pin" style="top:48%; left:60%;" data-target="popup-japan" title="Japan" data-label="Japan"></div>
-
+    <section class="section4">
+        <div class="pin-layer">
+            <div class="pin japan"></div>
+            <div class="pin greece"></div>
         </div>
-    </div>
+    </section>
 
     <!-- Popup Markup(s): you can add one popup per country -->
     <div class="popup-overlay" id="overlay">
