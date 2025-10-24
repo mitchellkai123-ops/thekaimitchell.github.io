@@ -340,6 +340,21 @@ body.simple-mode #mode-toggle {
   margin-bottom: 20px; /* increase or decrease as needed */
   list-style: none; /* optional: removes bullets */
 }
+
+/* new code */ 
+#mode-toggle.simple {
+    background-color: #02066f; /* resting blue */
+    color: yellow;             /* text yellow */
+}
+
+/* optional: prevent hover from applying on touch devices */
+@media (hover: none) {
+  #mode-toggle:hover {
+    background-color: #02066f;
+    color: yellow;
+  }
+}
+/* new code */    
     </style>
 </head>
 <body>
@@ -703,6 +718,14 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
         // just update the text display
         setTimeout(updateSVMText, 50); // wait for simpleMode to toggle
     });
+
+    // new code
+modeToggle.addEventListener('click', () => {
+    // your existing toggle logic...
+    modeToggle.style.backgroundColor = "#02066f";
+    modeToggle.style.color = "yellow";
+});
+    // new code
     
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
