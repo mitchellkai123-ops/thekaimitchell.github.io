@@ -129,17 +129,21 @@
         /* ---------- Section4 & Earth container ---------- */
 
 .earth-container {
-    position: relative;
-    height: 100vh;       /* fill the viewport height */
-    width: auto;          /* width adjusts to maintain aspect ratio */
-    max-width: 100%;      /* never exceed viewport width */
-    overflow: hidden;     /* hide any overflow if aspect ratio differs */
+  position: relative;
+  height: 100vh;          /* fills viewport height */
+  width: auto;             /* width adjusts proportionally */
+  overflow: hidden;        /* hide any overflow */
+  margin: 0 auto;          /* centers horizontally if narrower than screen */
+
+  display: flex;           /* keeps content centered */
+  justify-content: center; /* horizontal centering */
+  align-items: center;     /* vertical centering */
 }
 
 .earth-container img {
-    height: 100%;         /* always match container height */
-    width: auto;          /* width adjusts to maintain aspect ratio */
-    display: block;
+  height: 100%;            /* match container height */
+  width: auto;              /* maintain aspect ratio */
+  display: block;
 }
 
 .pin {
