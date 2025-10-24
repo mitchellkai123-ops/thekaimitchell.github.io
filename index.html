@@ -130,25 +130,30 @@
 
 .earth-container {
     position: relative;
-    height: 100%;
-    max-width: 1920px; /* optional, for PC scaling */
+    height: 100vh;       /* fill the viewport height */
+    width: auto;          /* width adjusts to maintain aspect ratio */
+    max-width: 100%;      /* never exceed viewport width */
+    overflow: hidden;     /* hide any overflow if aspect ratio differs */
 }
 
-.earth-img {
-    width: 100%;
-    height: auto;
+.earth-container img {
+    height: 100%;         /* always match container height */
+    width: auto;          /* width adjusts to maintain aspect ratio */
     display: block;
 }
 
 .pin {
     position: absolute;
-    width: 20vw;
-    height: 20vw;
+    width: 5vw;
+    height: 5vw;
     background-image: url('images/pin-icon.webp');
     background-size: contain;
     background-repeat: no-repeat;
     transform: translate(-50%, -50%);
 }
+
+.pin.japan { top: 38%; left: 84%; }
+.pin.greece { top: 50%; left: 56%; }
         
 /* .section4 {
   position: relative;
@@ -182,11 +187,6 @@
   cursor: pointer;
   z-index: 6;
 }
-
-/* These percentages now act like coordinates on the background */
-.pin.japan { top: 38%; left: 84%; }
-.pin.greece { top: 50%; left: 56%; }
-
 
 /* ---------- Overlay & Popup ---------- */
  .popup-overlay {
