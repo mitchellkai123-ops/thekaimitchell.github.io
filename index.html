@@ -624,8 +624,8 @@ let vpCenterX = window.innerWidth / 2;
 let vpCenterY = window.innerHeight / 2;
 
 const pins = {
-  japan: { offsetX: 200, offsetY: -150 },
-  greece: { offsetX: -100, offsetY: 50 }
+  japan: { offsetX: -50, offsetY: 0 },
+  greece: { offsetX: 50, offsetY: 0 }
 };
 
 function positionPins() {
@@ -646,19 +646,19 @@ window.addEventListener('resize', () => {
 window.addEventListener('load', positionPins);
 
 
-function positionPins() {
-  const rect = earthImg.getBoundingClientRect(); // actual size and position
-  for (const [country, coords] of Object.entries(pins)) {
-    const pin = document.querySelector(`.pin.${country}`);
-    if (!pin) continue;
+//function positionPins() {
+//  const rect = earthImg.getBoundingClientRect(); // actual size and position
+//  for (const [country, coords] of Object.entries(pins)) {
+//    const pin = document.querySelector(`.pin.${country}`);
+//    if (!pin) continue;
     // pin position relative to image
-    pin.style.left = `${rect.left + coords.x * rect.width}px`;
-    pin.style.top = `${rect.top + coords.y * rect.height}px`;
-  }
-}
+//    pin.style.left = `${rect.left + coords.x * rect.width}px`;
+//    pin.style.top = `${rect.top + coords.y * rect.height}px`;
+//  }
+// }
     
-window.addEventListener('resize', positionPins);
-window.addEventListener('load', positionPins);
+// window.addEventListener('resize', positionPins);
+// window.addEventListener('load', positionPins);
     
 // open popup when pin clicked
 document.addEventListener('click', function(e) {
