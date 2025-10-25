@@ -146,8 +146,8 @@
 
 .pin {
   position: absolute;
-  width: 5vw;
-  height: 5vw;
+  width: 50px;
+  height: 50px;
   background-image: url('images/pin-icon.webp');
   background-size: contain;
   background-repeat: no-repeat;
@@ -620,11 +620,31 @@ body.simple-mode #mode-toggle {
 <script>
 
 
-const earthImg = document.querySelector('.earth-img');
+let vpCenterX = window.innerWidth / 2;
+let vpCenterY = window.innerHeight / 2;
+
 const pins = {
-  japan: { x: 0.84, y: 0.38 },  // x, y as fractions of image width/height
-  greece: { x: 0.56, y: 0.50 }
+  japan: { offsetX: 200, offsetY: -150 },
+  greece: { offsetX: -100, offsetY: 50 }
 };
+
+function positionPins() {
+  for (const [country, coords] of Object.entries(pins)) {
+    const pin = document.querySelector(`.pin.${country}`);
+    if (!pin) continue;
+    pin.style.left = `${vpCenterX + coords.offsetX}px`;
+    pin.style.top = `${vpCenterY + coords.offsetY}px`;
+  }
+}
+
+window.addEventListener('resize', () => {
+  vpCenterX = window.innerWidth / 2;
+  vpCenterY = window.innerHeight / 2;
+  positionPins();
+});
+
+window.addEventListener('load', positionPins);
+
 
 function positionPins() {
   const rect = earthImg.getBoundingClientRect(); // actual size and position
