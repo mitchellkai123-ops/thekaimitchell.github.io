@@ -574,6 +574,7 @@ function positionPins() {
     if (!pin) continue;
     pin.style.left = `${vpCenterX + coords.offsetX}px`;
     pin.style.top = `${vpCenterY + coords.offsetY}px`;
+    pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
   }
 }
 
