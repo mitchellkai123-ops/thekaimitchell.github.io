@@ -608,23 +608,18 @@ body.simple-mode #mode-toggle {
 
 
 <script>
-/* Popup open/close logic */
 
-const earthImg = document.querySelector('.earth-container img');
-const pins = {
-  japan: { x: 0.84, y: 0.38 },
-  greece: { x: 0.56, y: 0.50 }
-};
 
 const pins = {
-  japan: { x: 84, y: 38 }, // percentages of viewport
+  japan: { x: 84, y: 38 },
   greece: { x: 56, y: 50 }
 };
 
 for (const [country, coords] of Object.entries(pins)) {
   const pin = document.querySelector(`.pin.${country}`);
-  pin.style.left = `${coords.x}vw`; // percentage of viewport width
-  pin.style.top = `${coords.y}vh`;  // percentage of viewport height
+  pin.style.left = `${coords.x}vw`;
+  pin.style.top = `${coords.y}vh`;
+  pin.dataset.target = `popup-${country}`; // ensure popup link works
 }
 
 window.addEventListener('resize', positionPins);
