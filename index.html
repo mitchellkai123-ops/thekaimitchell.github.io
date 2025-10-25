@@ -154,14 +154,14 @@
 }
 
 .pin {
-  position: absolute;
+  position: fixed;
   width: 5vw;
   height: 5vw;
   background-image: url('images/pin-icon.webp');
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 9995;
   transform: translate(-50%, -50%);
+  z-index: 9999;
 }
 /* .pin.japan { top: 38%; left: 84%; }
 .pin.greece { top: 50%; left: 56%; }
@@ -616,13 +616,15 @@ const pins = {
   greece: { x: 0.56, y: 0.50 }
 };
 
-function positionPins() {
-  const rect = earthImg.getBoundingClientRect();
-  for (const [country, coords] of Object.entries(pins)) {
-    const pin = document.querySelector(`.pin.${country}`);
-    pin.style.left = `${rect.left + coords.x * rect.width}px`;
-    pin.style.top = `${rect.top + coords.y * rect.height}px`;
-  }
+const pins = {
+  japan: { x: 84, y: 38 }, // percentages of viewport
+  greece: { x: 56, y: 50 }
+};
+
+for (const [country, coords] of Object.entries(pins)) {
+  const pin = document.querySelector(`.pin.${country}`);
+  pin.style.left = `${coords.x}vw`; // percentage of viewport width
+  pin.style.top = `${coords.y}vh`;  // percentage of viewport height
 }
 
 window.addEventListener('resize', positionPins);
