@@ -156,62 +156,6 @@
   z-index: 999;
 }
 
-/* .pin-layer {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100%;
-  z-index: 9995;
-  width: auto; /* optional: same as image width 
-} */
-/* 
-.pin {
-  position: fixed;
-  width: 5vw;
-  height: 5vw;
-  background-image: url('images/pin-icon.webp');
-  background-size: contain;
-  background-repeat: no-repeat;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-}
- .pin.japan { top: 38%; left: 84%; }
-.pin.greece { top: 50%; left: 56%; } */
-        
-/* .section4 {
-  position: relative;
-  background-image: url('images/earthbackground.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh; /* keep your dynamic full-height look */
-/*  overflow: hidden;
-}
-
-/* The invisible coordinate layer */
-/* .pin-layer {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 100vw;            /* same as viewport width */
-/*  height: 100%;  /* full section height */
-/*  z-index: 10;
-  transform: translateX(-50%); 
-}
-
-/* The pins themselves */
-/* .pin {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-image: url('images/pin-icon.webp');
-  background-size: contain;
-  background-repeat: no-repeat;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  z-index: 6;
-}
-
 /* ---------- Overlay & Popup ---------- */
  .popup-overlay {
   position: fixed;
@@ -491,14 +435,6 @@ body.simple-mode #mode-toggle {
     <!-- Divider between section 3 and 4 -->
     <img src="images/blue-glow.png" alt="Divider" class="divider" style="top:400vh;">
 
-    <!-- Fourth Section (Earth background with pins + popup)
-    <section class="section4">
-        <div class="pin-layer">
-            <div class="pin japan"></div>
-            <div class="pin greece"></div>
-        </div>
-    </section> -->
-
     <div class="earth-container">
         <img src="images/earthbackground.jpg" alt="Earth" class="earth-img">
         <div class="pin japan" id="pin-japan" data-target="popup-japan"></div>
@@ -624,8 +560,8 @@ let vpCenterX = window.innerWidth / 2;
 let vpCenterY = window.innerHeight / 2;
 
 const pins = {
-  japan: { offsetX: -50, offsetY: 0 },
-  greece: { offsetX: 50, offsetY: 0 }
+  japan: { offsetX: 175, offsetY: 50 },
+  greece: { offsetX: -150, offsetY: 20 }
 };
 
 function positionPins() {
@@ -644,21 +580,6 @@ window.addEventListener('resize', () => {
 });
 
 window.addEventListener('load', positionPins);
-
-
-//function positionPins() {
-//  const rect = earthImg.getBoundingClientRect(); // actual size and position
-//  for (const [country, coords] of Object.entries(pins)) {
-//    const pin = document.querySelector(`.pin.${country}`);
-//    if (!pin) continue;
-    // pin position relative to image
-//    pin.style.left = `${rect.left + coords.x * rect.width}px`;
-//    pin.style.top = `${rect.top + coords.y * rect.height}px`;
-//  }
-// }
-    
-// window.addEventListener('resize', positionPins);
-// window.addEventListener('load', positionPins);
     
 // open popup when pin clicked
 document.addEventListener('click', function(e) {
