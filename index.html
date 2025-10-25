@@ -131,10 +131,11 @@
 .earth-container {
   position: relative;
   height: 100vh;
-  overflow: hidden;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .earth-container img {
@@ -143,16 +144,28 @@
   display: block;
 }
 
-.pin-layer {
+.pin {
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+  background-image: url('images/pin-icon.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 999;
+}
+
+/* .pin-layer {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   height: 100%;
   z-index: 9995;
-  width: auto; /* optional: same as image width */
-}
-
+  width: auto; /* optional: same as image width 
+} */
+/* 
 .pin {
   position: fixed;
   width: 5vw;
@@ -163,8 +176,8 @@
   transform: translate(-50%, -50%);
   z-index: 9999;
 }
-/* .pin.japan { top: 38%; left: 84%; }
-.pin.greece { top: 50%; left: 56%; }
+ .pin.japan { top: 38%; left: 84%; }
+.pin.greece { top: 50%; left: 56%; } */
         
 /* .section4 {
   position: relative;
@@ -349,7 +362,6 @@ body.simple-mode .right-gif,
 body.simple-mode #cd-text,
 body.simple-mode .section2 > *:not([data-label]),
 body.simple-mode .section3 > *:not([data-label]),
-body.simple-mode .section4 > *:not(.pin) {
     display: none !important;
 }
 
@@ -489,10 +501,8 @@ body.simple-mode #mode-toggle {
 
     <div class="earth-container">
         <img src="images/earthbackground.jpg" alt="Earth" class="earth-img">
-        <div class="pin-layer">
-            <div class="pin japan"></div>
-            <div class="pin greece"></div>
-        </div>    
+        <div class="pin japan"></div>
+        <div class="pin greece"></div>    
     </div>
 
     <!-- Popup Markup(s): you can add one popup per country -->
@@ -610,21 +620,25 @@ body.simple-mode #mode-toggle {
 <script>
 
 
+const earthImg = document.querySelector('.earth-img');
 const pins = {
-  japan: { x: 84, y: 38 },
-  greece: { x: 56, y: 50 }
+  japan: { x: 0.84, y: 0.38 },  // x, y as fractions of image width/height
+  greece: { x: 0.56, y: 0.50 }
 };
 
-for (const [country, coords] of Object.entries(pins)) {
-  const pin = document.querySelector(`.pin.${country}`);
-  pin.style.left = `${coords.x}vw`;
-  pin.style.top = `${coords.y}vh`;
-  pin.dataset.target = `popup-${country}`; // ensure popup link works
+function positionPins() {
+  const rect = earthImg.getBoundingClientRect(); // actual size and position
+  for (const [country, coords] of Object.entries(pins)) {
+    const pin = document.querySelector(`.pin.${country}`);
+    if (!pin) continue;
+    // pin position relative to image
+    pin.style.left = `${rect.left + coords.x * rect.width}px`;
+    pin.style.top = `${rect.top + coords.y * rect.height}px`;
+  }
 }
-
+    
 window.addEventListener('resize', positionPins);
 window.addEventListener('load', positionPins);
-
     
 // open popup when pin clicked
 document.addEventListener('click', function(e) {
