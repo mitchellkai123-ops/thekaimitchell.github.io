@@ -572,32 +572,35 @@ const pins = {
 };
 
 function positionPins() {
-    const earthImg = document.querySelector('.earth-container img');
+    const earthImg = document.querySelector('.earth-container img.earth-img');
     if (!earthImg) return;
 
-    // Get Earth image position and dimensions
     const rect = earthImg.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+    const earthCenterX = rect.left + rect.width / 2;
+    const earthCenterY = rect.top + rect.height / 2;
+
+    const pins = {
+        japan: { offsetX: 12, offsetY: -13, rotate: 10 },
+        greece: { offsetX: -15, offsetY: -12, rotate: 160 }
+    };
 
     for (const [country, coords] of Object.entries(pins)) {
         const pin = document.querySelector(`.pin.${country}`);
         if (!pin) continue;
 
-        const offsetXPx = (coords.offsetX / 100) * rect.height; // still relative to image height
+        // offsets are percentages of Earth image width/height
+        const offsetXPx = (coords.offsetX / 100) * rect.width;
         const offsetYPx = (coords.offsetY / 100) * rect.height;
 
-        pin.style.left = `${centerX + offsetXPx}px`;
-        pin.style.top = `${centerY + offsetYPx}px`;
+        pin.style.left = `${earthCenterX + offsetXPx}px`;
+        pin.style.top = `${earthCenterY + offsetYPx}px`;
         pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
     }
 }
 
-window.addEventListener('resize', () => {
-    positionPins();
-});
-
+window.addEventListener('resize', positionPins);
 window.addEventListener('load', positionPins);
+
 
     
 // open popup when pin clicked
