@@ -563,38 +563,38 @@ body.simple-mode #mode-toggle {
 
 
 const pins = {
-    japan: { offsetX: 0.12, offsetY: -0.13, rotate: 10 },
-    greece: { offsetX: -0.15, offsetY: -0.12, rotate: 160 }
+  japan: { offsetX: 0.12, offsetY: -0.13, rotate: 10 },
+  greece: { offsetX: -0.15, offsetY: -0.12, rotate: 160 }
 };
 
 function positionPins() {
-    const earthImg = document.querySelector('.earth-container img.earth-img');
-    if (!earthImg) return;
+  const earthImg = document.querySelector('.earth-container img.earth-img');
+  if (!earthImg) return;
 
-    // Get the position and size of the image
-    const rect = earthImg.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2 + window.scrollX;
-    const centerY = rect.top + rect.height / 2 + window.scrollY;
+  // Get the bounding rectangle
+  const rect = earthImg.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2 + window.scrollX;
+  const centerY = rect.top + rect.height / 2 + window.scrollY;
 
+  for (const [country, coords] of Object.entries(pins)) {
+    const pin = document.querySelector(`.pin.${country}`);
+    if (!pin) continue;
 
-    for (const [country, coords] of Object.entries(pins)) {
-        const pin = document.querySelector(`.pin.${country}`);
-        if (!pin) continue;
+    // Use height-based percentages for both axes
+    const offsetXPx = coords.offsetX * rect.height;
+    const offsetYPx = coords.offsetY * rect.height;
 
-        // Offsets are now proportional to image dimensions
-        const offsetXPx = coords.offsetX * rect.height;
-        const offsetYPx = coords.offsetY * rect.height;
-
-
-        pin.style.left = `${centerX + offsetXPx}px`;
-        pin.style.top = `${centerY + offsetYPx}px`;
-        pin.style.transform = `translate(-50%, -50%) rotate(${coords.rotate}deg)`;
-    }
+    pin.style.position = 'absolute';
+    pin.style.left = `${centerX + offsetXPx}px`;
+    pin.style.top = `${centerY + offsetYPx}px`;
+    pin.style.transform = `translate(-50%, -50%) rotate(${coords.rotate}deg)`;
+  }
 }
 
-
-window.addEventListener('resize', positionPins);
+// Reposition on load and resize
 window.addEventListener('load', positionPins);
+window.addEventListener('resize', positionPins);
+
 
 
     
