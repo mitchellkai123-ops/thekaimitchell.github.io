@@ -566,16 +566,21 @@ let vpCenterX = window.innerWidth / 2;
 let vpCenterY = window.innerHeight / 2;
 
 const pins = {
-  japan: { offsetX: 159, offsetY: -53, rotate: 10 },
-  greece: { offsetX: -130, offsetY: -22, rotate: 160 }
+  japan: { offsetX: 12, offsetY: -13, rotate: 10 },
+  greece: { offsetX: -15, offsetY: -12, rotate: 160 }
 };
 
 function positionPins() {
   for (const [country, coords] of Object.entries(pins)) {
     const pin = document.querySelector(`.pin.${country}`);
     if (!pin) continue;
-    pin.style.left = `${vpCenterX + coords.offsetX}px`;
-    pin.style.top = `${vpCenterY + coords.offsetY}px`;
+
+    // use vh for both axes
+    const offsetXPx = (coords.offsetX / 100) * window.vpheight;
+    const offsetYPx = (coords.offsetY / 100) * window.vpheight;
+
+    pin.style.left = `${vpCenterX + offsetXPx}px`;
+    pin.style.top = `${vpCenterY + offsetYPx}px`;
     pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
   }
 }
