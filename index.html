@@ -30,14 +30,14 @@
         }
 
         #mode-toggle:hover {
-          background-color: yellow;
-          color: #02066f;
+            background-color: yellow;
+            color: #02066f;
         }
 
         body.simple-mode {
-          overflow: hidden !important;
-          position: fixed;
-          width: 100%;
+            overflow: hidden !important;
+            position: fixed;
+            width: 100%;
         }
         
         body {
@@ -131,235 +131,238 @@
         }
         
 
-        /* ---------- Section4 & Earth container ---------- */
+        /* ---------- Section4 & Earth container (UPDATED) ---------- */
 
-.earth-container {
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
+        .earth-container {
+            /* This container sets the boundaries and centers the content */
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center; /* Centers the image horizontally */
+            align-items: center;     /* Centers the image vertically */
+            overflow: hidden;
+        }
 
-.earth-container img {
-  height: 100%;
-  width: auto;
-  display: block;
-}
+        .earth-container img.earth-img {
+            /* Setting a fixed vh height ensures your vh offsets are proportional 
+               to the main element you're mapping against. */
+            height: 80vh; 
+            width: auto;
+            display: block;
+        }
 
-.pin {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background-image: url('images/pin-icon.webp');
-    background-size: contain;
-    background-repeat: no-repeat;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    z-index: 1000;
-    display: block;
-}
+        .pin {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('images/pin-icon.webp');
+            background-size: contain;
+            background-repeat: no-repeat;
+            /* Places the tip of the pin exactly on the coordinate */
+            transform: translate(-50%, -100%); 
+            cursor: pointer;
+            z-index: 1000;
+            display: block;
+        }
 
 
-/* ---------- Overlay & Popup ---------- */
- .popup-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5); /* dim */
-  display: none;                 /* toggled via JS */
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  overflow: auto; /* allow scrolling page if popup larger than viewport */
- }
+        /* ---------- Overlay & Popup (EXISTING STYLES) ---------- */
+        .popup-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5); /* dim */
+        display: none;             /* toggled via JS */
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        overflow: auto; /* allow scrolling page if popup larger than viewport */
+        }
 
-/* popup window */
- .popup {
-  background: #c0c0c0;              /* retro grey */
-  width: 60vw;
-  height: 70vh;
-  box-sizing: border-box;
-  border: 6px solid #474747;       /* medium-thickness retro border */
-  box-shadow: 6px 6px 0 rgba(0,0,0,0.35);
-  display: flex;
-  flex-direction: column;
-  outline: none;                   /* focusable element removal of default */
-  position: relative;
-  z-index: 10000;
-}
+        /* popup window */
+        .popup {
+        background: #c0c0c0;              /* retro grey */
+        width: 60vw;
+        height: 70vh;
+        box-sizing: border-box;
+        border: 6px solid #474747;        /* medium-thickness retro border */
+        box-shadow: 6px 6px 0 rgba(0,0,0,0.35);
+        display: flex;
+        flex-direction: column;
+        outline: none;                    /* focusable element removal of default */
+        position: relative;
+        z-index: 10000;
+        }
 
-/* title bar */
-.popup-header {
-  height: 56px;
-  background: #02066f;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 12px;
-  box-sizing: border-box;
-  border-bottom: 4px solid #000; /* extra retro separation */
-  font-family: 'Press Start 2P', monospace;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
+        /* title bar */
+        .popup-header {
+        height: 56px;
+        background: #02066f;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        box-sizing: border-box;
+        border-bottom: 4px solid #000; /* extra retro separation */
+        font-family: 'Press Start 2P', monospace;
+        font-size: 14px;
+        letter-spacing: 1px;
+        }
 
-/* flag (left) */
-.popup-flag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.popup-flag img {
-  height: 24px;
-  width: auto;
-  display: inline-block;
-}
+        /* flag (left) */
+        .popup-flag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        }
+        .popup-flag img {
+        height: 24px;
+        width: auto;
+        display: inline-block;
+        }
 
-/* title center */
-.popup-title {
-  flex: 1;
-  text-align: center;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 14px;
-  color: #fff;
-}
+        /* title center */
+        .popup-title {
+        flex: 1;
+        text-align: center;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 14px;
+        color: #fff;
+        }
 
-/* close button (right) */
-.popup-close {
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-}
-.popup-close img {
-  height: 28px;
-  width: auto;
-  display: block;
-}
+        /* close button (right) */
+        .popup-close {
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        }
+        .popup-close img {
+        height: 28px;
+        width: auto;
+        display: block;
+        }
 
-/* body with internal scrolling */
-.popup-body {
-  padding: 12px;
-  box-sizing: border-box;
-  overflow: auto;   /* internal scroll */
-  flex: 1 1 auto;
-}
+        /* body with internal scrolling */
+        .popup-body {
+        padding: 12px;
+        box-sizing: border-box;
+        overflow: auto;    /* internal scroll */
+        flex: 1 1 auto;
+        }
 
-/* gallery grid: responsive (2 columns desktop, 1 column on small screens) */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-.gallery-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 4px solid #fff; /* retro postcard border */
-  box-shadow: 0 2px 0 rgba(0,0,0,0.25);
-  object-fit: cover;
-}
+        /* gallery grid: responsive (2 columns desktop, 1 column on small screens) */
+        .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        }
+        .gallery-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 4px solid #fff; /* retro postcard border */
+        box-shadow: 0 2px 0 rgba(0,0,0,0.25);
+        object-fit: cover;
+        }
 
-/* responsive tweaks */
-@media (max-width: 900px) {
-  .popup { width: 90vw; height: 80vh; }
-  .gallery-grid { grid-template-columns: 1fr; }
-  .popup-header { font-size: 12px; }
-  .pin { width: 40px; height: 40px; }
-}
+        /* responsive tweaks */
+        @media (max-width: 900px) {
+        .popup { width: 90vw; height: 80vh; }
+        .gallery-grid { grid-template-columns: 1fr; }
+        .popup-header { font-size: 12px; }
+        .pin { width: 40px; height: 40px; }
+        }
 
-/* small accessibility helper to show popup when open */
-.popup-overlay.show { display: flex; }
+        /* small accessibility helper to show popup when open */
+        .popup-overlay.show { display: flex; }
 
-/* Simple Mode button */
-#mode-toggle.simple {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    transform: none;
-}
+        /* Simple Mode button */
+        #mode-toggle.simple {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            transform: none;
+        }
         
-/* Visual Mode button inside section 1 */
-#mode-toggle.visual {
-    position: absolute;
-    bottom: 25%;
-    left: 50%;
-    transform: translateX(-50%);
-}
+        /* Visual Mode button inside section 1 */
+        #mode-toggle.visual {
+            position: absolute;
+            bottom: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-/* Simple Viewing Mode background */
-body.simple-mode .section1 {
-  background-image: url('images/starry-space.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  overflow: hidden;
-  z-index: 10;
-}
+        /* Simple Viewing Mode background */
+        body.simple-mode .section1 {
+        background-image: url('images/starry-space.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        overflow: hidden;
+        z-index: 10;
+        }
 
-body.simple-mode, html.simple-mode {
-  overflow: hidden; /* prevent whole page scrolling */
-}
+        body.simple-mode, html.simple-mode {
+        overflow: hidden; /* prevent whole page scrolling */
+        }
 
-/* Hide all unnecessary content in Simple Mode */
-body.simple-mode .text-container,
-body.simple-mode .left-gif,
-body.simple-mode .right-gif,
-body.simple-mode #cd-text,
-body.simple-mode .section2 > *:not([data-label]),
-body.simple-mode .section3 > *:not([data-label]) {
-    display: none !important;
-}
+        /* Hide all unnecessary content in Simple Mode */
+        body.simple-mode .text-container,
+        body.simple-mode .left-gif,
+        body.simple-mode .right-gif,
+        body.simple-mode #cd-text,
+        body.simple-mode .section2 > *:not([data-label]),
+        body.simple-mode .section3 > *:not([data-label]) {
+            display: none !important;
+        }
 
-/* Move Simple Mode button to top-left */
-body.simple-mode #mode-toggle {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    bottom: auto;
-    transform: none;
-    display: block !important;
-}
+        /* Move Simple Mode button to top-left */
+        body.simple-mode #mode-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            bottom: auto;
+            transform: none;
+            display: block !important;
+        }
 
-#simple-list ul {
-    margin: 0;
-    padding: 0;
-}
+        #simple-list ul {
+            margin: 0;
+            padding: 0;
+        }
         
-#simple-list { z-index: 9998; }   /* slightly below popups */
-.popup-overlay { z-index: 10001; }
-.popup { z-index: 10002; }       /* one more than overlay to ensure top */
+        #simple-list { z-index: 9998; }   /* slightly below popups */
+        .popup-overlay { z-index: 10001; }
+        .popup { z-index: 10002; }        /* one more than overlay to ensure top */
         
-#simple-list li {
-  margin-bottom: 20px; /* increase or decrease as needed */
-  list-style: none; /* optional: removes bullets */
-}
+        #simple-list li {
+        margin-bottom: 20px; /* increase or decrease as needed */
+        list-style: none; /* optional: removes bullets */
+        }
 
 
-@media (hover: hover) {
-    #mode-toggle.hover {
-        background-color: yellow; 
-        color: #02066f;             
-    }
-}
+        @media (hover: hover) {
+            #mode-toggle.hover {
+                background-color: yellow; 
+                color: #02066f;             
+            }
+        }
 
-/* optional: prevent hover from applying on touch devices */
-@media (hover: none) {
-  #mode-toggle:hover {
-    background-color: #02066f;
-    color: yellow;
-  }
-}
-    
+        /* optional: prevent hover from applying on touch devices */
+        @media (hover: none) {
+        #mode-toggle:hover {
+            background-color: #02066f;
+            color: yellow;
+        }
+        }
+        
     </style>
 </head>
 <body>
-    <!-- First Section -->
     <div class="section1">
         <img src="images/7G3VU4WW2YY4OC4XVDBFQJO7D5G7B662.gif" alt="Left GIF" class="left-gif">
         <img src="images/saturn.gif" alt="Right GIF" class="right-gif">
@@ -367,8 +370,7 @@ body.simple-mode #mode-toggle {
             <h1>Kai Mitchell</h1>
             <p>Welcome to my site</p>
         </div>
-    <!-- Simple Mode Toggle Button -->
-        <button id="mode-toggle">Simple Viewing Mode</button>
+    <button id="mode-toggle">Simple Viewing Mode</button>
         
     </div>
 
@@ -376,12 +378,9 @@ body.simple-mode #mode-toggle {
     Kai Mitchell
     </div>
 
-    <!-- Divider between section 1 and 2 -->
     <img src="images/39734795880.png" alt="Divider" class="divider" style="top:100vh;">
 
-    <!-- Second Section -->
     <div class="section2">
-        <!-- CD clickable link -->
         <div style="position:absolute; top:29%; left:80%; width: calc(6.4vw + 30px); text-align:center;">
             <div id="cd-text" style="color:cyan; font-size:15px; font-weight:bold; margin-bottom:10px;">
                 click me!
@@ -391,12 +390,10 @@ body.simple-mode #mode-toggle {
             </a>
         </div>
 
-        <!-- Flynn Planet clickable link -->
         <a href="https://flynnconnolly.com" target="_blank" data-label="Flynn's Website!">
             <img src="images/flynn-planet.png" style="position:absolute; top: 45%; left: 25%; width: calc(9.01vw + 30px);">
         </a>
 
-        <!-- Other GIFs -->
         <img src="images/high-def-ufo.gif" style="position:absolute; top: 15%; left: 70%; width: calc(7.048vw + 30px);">
         <img src="images/disco-ball.gif" style="position:absolute; top: 12%; left: 36%; width: calc(8.356vw + 30px);">
         <img src="images/death-star.gif" style="position:absolute; top: 15%; left: 10%; width: calc(7.7vw + 30px);">
@@ -408,27 +405,22 @@ body.simple-mode #mode-toggle {
         <img src="images/twinklingstar.gif" style="position:absolute; top: 68%; left: 78%; width: calc(1.3vw + 30px);">
     </div>
 
-    <!-- Divider between section 2 and 3 -->
     <img src="images/light-saber.gif" alt="Divider" class="divider" style="top:200vh;">
 
-    <!-- Third Section (Moon background) -->
     <div class="section3">
-        <!-- LinkedIn clickable link -->
         <div style="position:absolute; top:35%; left:24%; width: calc(9.4vw + 30px); text-align:center;">
             <div style="color:white; font-size:15px; font-weight:bold; margin-bottom:-5px;">
-                  add me!
+                    add me!
             </div>
             <a href="https://www.linkedin.com/in/kai-m-mitchell/" target="_blank" data-label="LinkedIn">
                 <img src="images/linkedin.png" style="width:100%;">
             </a>
         </div>
 
-        <!-- Instagram clickable link -->
         <a href="https://www.instagram.com/kai._.mitchell/" target="_blank" data-label="Instagram">
             <img src="images/instagram.png" style="position:absolute; top: 50%; left: 7%; width: calc(9.01vw + 30px);">
         </a>
 
-        <!-- Other GIFs -->
         <img src="images/USAflag.gif" loading="lazy" style="position:absolute; top: 60%; left: 63%; width: calc(3.048vw + 30px); transform: rotate(10deg);">
         <img src="images/Philippinesflag.gif" loading="lazy" style="position:absolute; top: 50%; left: 58%; width: calc(3.556vw + 30px); transform: rotate(-10deg);">
         <img src="images/rocket-circle.gif" loading="lazy" style="position:absolute; top: 69%; left: 28%; width: calc(7.7vw + 30px);">
@@ -439,7 +431,6 @@ body.simple-mode #mode-toggle {
         <img src="images/streetsign.png" style="position:absolute; top: 20%; left: 66%; width: calc(12.394vw + 70px);">
     </div>
 
-    <!-- Divider between section 3 and 4 -->
     <img src="images/blue-glow.png" alt="Divider" class="divider" style="top:400vh;">
 
     <div class="earth-container">
@@ -448,9 +439,7 @@ body.simple-mode #mode-toggle {
         <div class="pin greece" id="pin-greece" data-target="popup-greece"></div>    
     </div>
 
-    <!-- Popup Markup(s): you can add one popup per country -->
     <div class="popup-overlay" id="overlay">
-        <!-- GREECE popup -->
         <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-greece-title" id="popup-greece">
             <div class="popup-header">
                 <div class="popup-flag">
@@ -465,8 +454,7 @@ body.simple-mode #mode-toggle {
             </div>
 
             <div class="popup-body">
-      <!-- image gallery: replace these with your actual filenames -->
-                <div class="gallery-grid">
+    <div class="gallery-grid">
                     <div class="gallery-item"><img src="images/greece1.jpeg" alt="Greece 1"></div>
                     <div class="gallery-item"><img src="images/greece2.jpeg" alt="Greece 2"></div>
                     <div class="gallery-item"><img src="images/greece3.jpeg" alt="Greece 3"></div>
@@ -482,7 +470,6 @@ body.simple-mode #mode-toggle {
             </div>
         </div>
 
-        <!-- JAPAN popup -->
         <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-japan-title" id="popup-japan">
             <div class="popup-header">
                 <div class="popup-flag">
@@ -497,8 +484,7 @@ body.simple-mode #mode-toggle {
             </div>
 
             <div class="popup-body">
-      <!-- image gallery: replace these with your actual filenames -->
-                <div class="gallery-grid">
+    <div class="gallery-grid">
                     <div class="gallery-item"><img src="images/japan1.webp" alt="Japan 1"></div>
                     <div class="gallery-item"><img src="images/japan2.webp" alt="Japan 2"></div>
                     <div class="gallery-item"><img src="images/japan3.webp" alt="Japan 3"></div>
@@ -562,117 +548,121 @@ body.simple-mode #mode-toggle {
 
 <script>
 
+// --- PIN POSITIONING LOGIC (UPDATED) ---
 
+// Define offsets from the absolute center of the viewport (50vw, 50vh).
+// The offsets are given in multiples of viewport height (vh) units, 
+// fulfilling your requirement for using vh for both axes.
 const pins = {
-  japan: { offsetX: 0, offsetY: 0, rotate: 0 },
-  greece: { offsetX: 0, offsetY: 0, rotate: 0 }
+    // offset_vh_x: positive shifts right, negative shifts left.
+    // offset_vh_y: positive shifts down, negative shifts up.
+    
+    // **NOTE: TUNE THESE VALUES**
+    japan: { offset_vh_x: 22, offset_vh_y: -10, rotate: 0 }, 
+    greece: { offset_vh_x: -10, offset_vh_y: -5, rotate: 0 }
 };
 
 function positionPins() {
-  const earthImg = document.querySelector('.earth-container img.earth-img');
-  earthImg.onload = positionPins;
+    // The center is established by CSS at 50vw/50vh of the viewport.
+    for (const [country, coords] of Object.entries(pins)) {
+        const pin = document.querySelector(`.pin.${country}`);
+        if (!pin) continue;
 
-  // Get the bounding rectangle
-  const rect = earthImg.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2 + window.scrollX;
-  const centerY = rect.top + rect.height / 2 + window.scrollY;
+        // X Position: 50vw (center) + offset_vh_x * 1vh
+        const finalLeft = `calc(50vw + ${coords.offset_vh_x}vh)`;
+        
+        // Y Position: 50vh (center) + offset_vh_y * 1vh
+        const finalTop = `calc(50vh + ${coords.offset_vh_y}vh)`; 
 
-  for (const [country, coords] of Object.entries(pins)) {
-    const pin = document.querySelector(`.pin.${country}`);
-    if (!pin) continue;
-
-    // Use height-based percentages for both axes
-    const offsetXPx = coords.offsetX * rect.height;
-    const offsetYPx = coords.offsetY * rect.height;
-
-    pin.style.position = 'absolute';
-    pin.style.left = `${centerX + offsetXPx}px`;
-    pin.style.top = `${centerY + offsetYPx}px`;
-    pin.style.transform = `translate(-50%, -50%) rotate(${coords.rotate}deg)`;
-    pin.style.display = 'block';
-  }
+        pin.style.position = 'absolute';
+        pin.style.left = finalLeft;
+        pin.style.top = finalTop;
+        pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
+        pin.style.display = 'block';
+    }
 }
 
-// Reposition on load and resize
+// Reposition on load and resize to ensure consistency
 window.addEventListener('load', positionPins);
 window.addEventListener('resize', positionPins);
 
+// --- END OF PIN POSITIONING LOGIC ---
 
 
     
 // open popup when pin clicked
 document.addEventListener('click', function(e) {
-  // pins
-  const pin = e.target.closest('.pin');
-  if (pin) { openPopup(pin.getAttribute('data-target')); }
+    // pins
+    const pin = e.target.closest('.pin');
+    if (pin) { openPopup(pin.getAttribute('data-target')); }
 
-  // SVM popup links
-  const popupLink = e.target.closest('[data-popup]');
-  if (popupLink) {
-    e.preventDefault();
-    openPopup(popupLink.getAttribute('data-popup'));
-  }
+    // SVM popup links
+    const popupLink = e.target.closest('[data-popup]');
+    if (popupLink) {
+        e.preventDefault();
+        openPopup(popupLink.getAttribute('data-popup'));
+    }
 
-  // close button
-  if (e.target.closest('[data-close]')) closePopup();
+    // close button
+    if (e.target.closest('[data-close]')) closePopup();
 
-  // click outside popup
-  const overlay = document.getElementById('overlay');
-  if (overlay?.classList.contains('show') && !e.target.closest('.popup') && e.target.closest('#overlay')) closePopup();
+    // click outside popup
+    const overlay = document.getElementById('overlay');
+    if (overlay?.classList.contains('show') && !e.target.closest('.popup') && e.target.closest('#overlay')) closePopup();
 });
 
 // open function
 function openPopup(id) {
-  const overlay = document.getElementById('overlay');
-  const popup = document.getElementById(id);
-  if (!overlay || !popup) return;
-  // hide any currently-open popups
-  Array.from(overlay.querySelectorAll('.popup')).forEach(p => p.style.display = 'none');
-  popup.style.display = 'flex'; // ensure displayed
-  overlay.classList.add('show');
-  // focus for accessibility
-  setTimeout(() => popup.focus && popup.focus(), 50);
+    const overlay = document.getElementById('overlay');
+    const popup = document.getElementById(id);
+    if (!overlay || !popup) return;
+    // hide any currently-open popups
+    Array.from(overlay.querySelectorAll('.popup')).forEach(p => p.style.display = 'none');
+    popup.style.display = 'flex'; // ensure displayed
+    overlay.classList.add('show');
+    // focus for accessibility
+    setTimeout(() => popup.focus && popup.focus(), 50);
 }
 
 // close when clicking X or clicking outside popup
 document.addEventListener('click', function(e) {
-  // close button
-  if (e.target.closest('[data-close]')) {
-    closePopup();
-    return;
-  }
-  // click outside popup
-  const overlay = document.getElementById('overlay');
-  if (overlay && overlay.classList.contains('show')) {
-    const inside = e.target.closest('.popup');
-    if (!inside && e.target.closest('#overlay')) {
-      closePopup();
+    // close button
+    if (e.target.closest('[data-close]')) {
+        closePopup();
+        return;
     }
-  }
+    // click outside popup
+    const overlay = document.getElementById('overlay');
+    if (overlay && overlay.classList.contains('show')) {
+        const inside = e.target.closest('.popup');
+        if (!inside && e.target.closest('#overlay')) {
+            closePopup();
+        }
+    }
 });
 
 // ESC to close
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closePopup();
+    if (e.key === 'Escape') closePopup();
 });
 
 function closePopup() {
-  const overlay = document.getElementById('overlay');
-  if (!overlay) return;
-  overlay.classList.remove('show');
-  Array.from(overlay.querySelectorAll('.popup')).forEach(p => p.style.display = 'none');
+    const overlay = document.getElementById('overlay');
+    if (!overlay) return;
+    overlay.classList.remove('show');
+    Array.from(overlay.querySelectorAll('.popup')).forEach(p => p.style.display = 'none');
 }
 
 let simpleMode = false;
 
 const links = [
-  { text: "Resume", url: "https://docs.google.com/document/d/1Cz3ejhUNQtdBSGaBaF9coz_Gjt_xv3XMFN_uzu7-iYE/edit?usp=sharing" },
-  { text: "Apple Music", url: "https://music.apple.com/profile/kai_michell" },
-  { text: "LinkedIn", url: "https://www.linkedin.com/in/kai-m-mitchell/" },
-  { text: "Instagram", url: "https://www.instagram.com/kai._.mitchell/" },
-  { text: "Flynns Website", url: "flynnconnolly.com" },
-  { text: "Greece (photos)", popup: "popup-greece" },
-  { text: "Japan (photos)", popup: "popup-japan" }
+    { text: "Resume", url: "https://docs.google.com/document/d/1Cz3ejhUNQtdBSGaBaF9coz_Gjt_xv3XMFN_uzu7-iYE/edit?usp=sharing" },
+    { text: "Apple Music", url: "https://music.apple.com/profile/kai_michell" },
+    { text: "LinkedIn", url: "https://www.linkedin.com/in/kai-m-mitchell/" },
+    { text: "Instagram", url: "https://www.instagram.com/kai._.mitchell/" },
+    { text: "Flynns Website", url: "flynnconnolly.com" },
+    { text: "Greece (photos)", popup: "popup-greece" },
+    { text: "Japan (photos)", popup: "popup-japan" }
 ];
 
 const simpleList = document.createElement('div');
@@ -690,11 +680,11 @@ simpleList.style.color = "yellow";
 document.body.insertBefore(simpleList, document.getElementById('overlay'));
 
 document.getElementById('mode-toggle').addEventListener('click', () => {
-  simpleMode = !simpleMode;
-  const body = document.body;
-  const button = document.getElementById('mode-toggle');
+    simpleMode = !simpleMode;
+    const body = document.body;
+    const button = document.getElementById('mode-toggle');
 
-  if (simpleMode) {
+    if (simpleMode) {
         button.innerText = "Visual Mode";
         body.classList.add('simple-mode');
 
@@ -720,18 +710,18 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     button.classList.add('simple');
     button.classList.remove('visual');
 
-  } else {
-    // Simple Mode OFF
-    button.innerText = "Simple Viewing Mode";
-    body.classList.remove('simple-mode');
-    body.style.backgroundImage = '';
-    body.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text, img').forEach(el => el.style.display = '');
-    document.querySelectorAll('.pin').forEach(el => el.style.display = 'block');
-    simpleList.style.display = 'none';
+    } else {
+        // Simple Mode OFF
+        button.innerText = "Simple Viewing Mode";
+        body.classList.remove('simple-mode');
+        body.style.backgroundImage = '';
+        body.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text, img').forEach(el => el.style.display = '');
+        document.querySelectorAll('.pin').forEach(el => el.style.display = 'block');
+        simpleList.style.display = 'none';
 
-    button.classList.remove('simple');
-    button.classList.add('visual');
-  }
+        button.classList.remove('simple');
+        button.classList.add('visual');
+    }
 });
 
     // Toggle SVM text display when simpleMode changes
@@ -754,21 +744,21 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
-  const pin = e.target.closest('.pin');
-  if (pin) openPopup(pin.dataset.target);
+    const pin = e.target.closest('.pin');
+    if (pin) openPopup(pin.dataset.target);
 
-  const popupLink = e.target.closest('[data-popup]');
-  if (popupLink) {
-    e.preventDefault();
-    openPopup(popupLink.dataset.popup);
-  }
+    const popupLink = e.target.closest('[data-popup]');
+    if (popupLink) {
+        e.preventDefault();
+        openPopup(popupLink.dataset.popup);
+    }
 
-  if (e.target.closest('[data-close]')) closePopup();
+    if (e.target.closest('[data-close]')) closePopup();
 
-  const overlay = document.getElementById('overlay');
-  if (overlay?.classList.contains('show') && !e.target.closest('.popup') && e.target.closest('#overlay')) {
-    closePopup();
-  }
+    const overlay = document.getElementById('overlay');
+    if (overlay?.classList.contains('show') && !e.target.closest('.popup') && e.target.closest('#overlay')) {
+        closePopup();
+    }
 });
 </script>
 
