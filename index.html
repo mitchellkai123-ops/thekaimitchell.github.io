@@ -562,13 +562,9 @@ body.simple-mode #mode-toggle {
 <script>
 
 
-let vpCenterX = window.innerWidth / 2;
-let vpCenterY = window.innerHeight / 2;
-let vpHeight = window.innerHeight;
-
 const pins = {
-  japan: { offsetX: 12, offsetY: -13, rotate: 10 },
-  greece: { offsetX: -15, offsetY: -12, rotate: 160 }
+    japan: { offsetX: 0.12, offsetY: -0.13, rotate: 10 },
+    greece: { offsetX: -0.15, offsetY: -0.12, rotate: 160 }
 };
 
 function positionPins() {
@@ -579,22 +575,16 @@ function positionPins() {
     const earthCenterX = rect.left + rect.width / 2;
     const earthCenterY = rect.top + rect.height / 2;
 
-    const pins = {
-        japan: { offsetX: 12, offsetY: -13, rotate: 10 },
-        greece: { offsetX: -15, offsetY: -12, rotate: 160 }
-    };
-
     for (const [country, coords] of Object.entries(pins)) {
         const pin = document.querySelector(`.pin.${country}`);
         if (!pin) continue;
 
-        // offsets are percentages of Earth image width/height
-        const offsetXPx = (coords.offsetX / 100) * rect.width;
-        const offsetYPx = (coords.offsetY / 100) * rect.height;
+        const offsetXPx = coords.offsetX * rect.height;
+        const offsetYPx = coords.offsetY * rect.height;
 
         pin.style.left = `${earthCenterX + offsetXPx}px`;
         pin.style.top = `${earthCenterY + offsetYPx}px`;
-        pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
+        pin.style.transform = `translate(-50%, -50%) rotate(${coords.rotate}deg)`; 
     }
 }
 
