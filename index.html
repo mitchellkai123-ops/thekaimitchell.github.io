@@ -571,22 +571,25 @@ function positionPins() {
     const earthImg = document.querySelector('.earth-container img.earth-img');
     if (!earthImg) return;
 
+    // Get the position and size of the image
     const rect = earthImg.getBoundingClientRect();
-    const earthCenterX = rect.left + rect.width / 2;
-    const earthCenterY = rect.top + rect.height / 2;
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
 
     for (const [country, coords] of Object.entries(pins)) {
         const pin = document.querySelector(`.pin.${country}`);
         if (!pin) continue;
 
-        const offsetXPx = coords.offsetX * rect.height;
-        const offsetYPx = coords.offsetY * rect.height;
+        // Offsets are now proportional to image dimensions
+        const offsetXPx = coords.offsetX * rect.height;  // use width for X
+        const offsetYPx = coords.offsetY * rect.height; // use height for Y
 
-        pin.style.left = `${earthCenterX + offsetXPx}px`;
-        pin.style.top = `${earthCenterY + offsetYPx}px`;
-        pin.style.transform = `translate(-50%, -50%) rotate(${coords.rotate}deg)`; 
+        pin.style.left = `${centerX + offsetXPx}px`;
+        pin.style.top = `${centerY + offsetYPx}px`;
+        pin.style.transform = `translate(-50%, -50%) rotate(${coords.rotate}deg)`;
     }
 }
+
 
 window.addEventListener('resize', positionPins);
 window.addEventListener('load', positionPins);
