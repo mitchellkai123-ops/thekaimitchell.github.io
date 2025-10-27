@@ -166,6 +166,39 @@
             display: block;
         }
 
+        /* ---------- Section5 & americas container (UPDATED) ---------- */
+
+        .americas-container {
+            /* This container sets the boundaries and centers the content */
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center; /* Centers the image horizontally */
+            align-items: center;     /* Centers the image vertically */
+            overflow: hidden;
+        }
+
+        .americas-container img.earth-img {
+            /* Setting a fixed vh height ensures your vh offsets are proportional 
+               to the main element you're mapping against. */
+            height: 100vh; 
+            width: auto;
+            display: block;
+        }
+
+        .americas-container .pin {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('images/pin-icon.webp');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: translate(-50%, -100%);
+            cursor: pointer;
+            z-index: 1000;
+            display: block;
+        }
 
         /* ---------- Overlay & Popup (EXISTING STYLES) ---------- */
         .popup-overlay {
@@ -433,11 +466,12 @@
 
     <img src="images/blue-glow.png" alt="Divider" class="divider" style="top:400vh;">
 
+    <! -- Section 4 --!>
     <div class="earth-container">
         <img src="images/earthbackground.jpg" alt="Earth" class="earth-img">
         <div class="pin japan" id="pin-japan" data-target="popup-japan"></div>
         <div class="pin greece" id="pin-greece" data-target="popup-greece"></div>    
-    </div>
+    </div>    
 
     <div class="popup-overlay" id="overlay">
         <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-greece-title" id="popup-greece">
@@ -545,6 +579,55 @@
         </div>
     </div>
 
+ <!-- Section 5 -->
+<div class="americas-container">
+    <img src="images/americas-background.jpg" alt="Americas" class="earth-img">
+    <div class="pin usa" id="pin-usa" data-target="popup-usa"></div>
+    <div class="pin canada" id="pin-canada" data-target="popup-canada"></div>
+</div>
+
+<!-- Popups -->
+<div class="popup-overlay" id="overlay">
+    <div class="popup" role="dialog" aria-modal="true" id="popup-usa">
+        <div class="popup-header">
+            <div class="popup-flag">
+                <img src="images/flag-usa.png" alt="USA flag">
+            </div>
+            <div class="popup-title">USA!</div>
+            <button class="popup-close" data-close>
+                <img src="images/pop-up-x.png" alt="Close">
+            </button>
+        </div>
+        <div class="popup-body">
+            <!-- Gallery for USA -->
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="images/usa1.jpeg" alt="USA 1"></div>
+                <div class="gallery-item"><img src="images/usa2.jpeg" alt="USA 2"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" role="dialog" aria-modal="true" id="popup-canada">
+        <div class="popup-header">
+            <div class="popup-flag">
+                <img src="images/flag-canada.png" alt="Canada flag">
+            </div>
+            <div class="popup-title">Canada!</div>
+            <button class="popup-close" data-close>
+                <img src="images/pop-up-x.png" alt="Close">
+            </button>
+        </div>
+        <div class="popup-body">
+            <!-- Gallery for Canada -->
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="images/canada1.jpeg" alt="Canada 1"></div>
+                <div class="gallery-item"><img src="images/canada2.jpeg" alt="Canada 2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
 
 <script>
 
@@ -585,6 +668,32 @@ function positionPins() {
 // Reposition on load and resize to ensure consistency
 window.addEventListener('load', positionPins);
 window.addEventListener('resize', positionPins);
+
+
+const pins2 = {
+    bc: { offset_vh_x: 18.8, offset_vh_y: -5, rotate: 10 },
+    nyc: { offset_vh_x: -16.7, offset_vh_y: 5.6, rotate: -160 }
+};
+
+function positionPins2() {
+    for (const [country, coords] of Object.entries(pins2)) {
+        const pin = document.querySelector(`#pin-${country}-2`);
+        if (!pin) continue;
+
+        const finalLeft = `calc(50vw + ${coords.offset_vh_x}vh)`;
+        const finalTop = `calc(50vh + ${coords.offset_vh_y}vh)`;
+
+        pin.style.position = 'absolute';
+        pin.style.left = finalLeft;
+        pin.style.top = finalTop;
+        pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
+        pin.style.display = 'block';
+    }
+}
+
+window.addEventListener('load', positionPins2);
+window.addEventListener('resize', positionPins2);
+
 
 // --- END OF PIN POSITIONING LOGIC ---
 
