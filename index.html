@@ -591,6 +591,7 @@ function positionPins() {
     pin.style.left = `${centerX + offsetXPx}px`;
     pin.style.top = `${centerY + offsetYPx}px`;
     pin.style.transform = `translate(-50%, -50%) rotate(${coords.rotate}deg)`;
+    pin.style.display = 'block';
   }
 }
 
@@ -727,6 +728,7 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     body.classList.remove('simple-mode');
     body.style.backgroundImage = '';
     body.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text, img').forEach(el => el.style.display = '');
+    document.querySelectorAll('.pin').forEach(el => el.style.display = 'block');
     simpleList.style.display = 'none';
 
     button.classList.remove('simple');
