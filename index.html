@@ -572,7 +572,7 @@ const pins = {
 
 function positionPins() {
   const earthImg = document.querySelector('.earth-container img.earth-img');
-  if (!earthImg) return;
+  earthImg.onload = positionPins;
 
   // Get the bounding rectangle
   const rect = earthImg.getBoundingClientRect();
