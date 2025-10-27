@@ -564,6 +564,7 @@ body.simple-mode #mode-toggle {
 
 let vpCenterX = window.innerWidth / 2;
 let vpCenterY = window.innerHeight / 2;
+let vpHeight = window.innerHeight;
 
 const pins = {
   japan: { offsetX: 12, offsetY: -13, rotate: 10 },
@@ -575,9 +576,8 @@ function positionPins() {
     const pin = document.querySelector(`.pin.${country}`);
     if (!pin) continue;
 
-    // use vh for both axes
-    const offsetXPx = (coords.offsetX / 100) * window.vpheight;
-    const offsetYPx = (coords.offsetY / 100) * window.vpheight;
+    const offsetXPx = (coords.offsetX / 100) * vpHeight;
+    const offsetYPx = (coords.offsetY / 100) * vpHeight;
 
     pin.style.left = `${vpCenterX + offsetXPx}px`;
     pin.style.top = `${vpCenterY + offsetYPx}px`;
@@ -586,12 +586,16 @@ function positionPins() {
 }
 
 window.addEventListener('resize', () => {
-  vpCenterX = window.innerWidth / 2;
-  vpCenterY = window.innerHeight / 2;
-  positionPins();
+  if (Math.abs(window.innerHeight - vpHeight) > 100) {
+    vpHeight = window.innerHeight;
+    vpCenterX = window.innerWidth / 2;
+    vpCenterY = window.innerHeight / 2;
+    positionPins();
+  }
 });
 
 window.addEventListener('load', positionPins);
+
     
 // open popup when pin clicked
 document.addEventListener('click', function(e) {
