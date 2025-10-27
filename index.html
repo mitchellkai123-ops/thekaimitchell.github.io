@@ -726,7 +726,7 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
     button.innerText = "Simple Viewing Mode";
     body.classList.remove('simple-mode');
     body.style.backgroundImage = '';
-    body.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, .pin, #cd-text, img').forEach(el => el.style.display = '');
+    body.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text, img').forEach(el => el.style.display = '');
     simpleList.style.display = 'none';
 
     button.classList.remove('simple');
