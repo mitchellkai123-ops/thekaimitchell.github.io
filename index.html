@@ -572,26 +572,29 @@ const pins = {
 };
 
 function positionPins() {
-  for (const [country, coords] of Object.entries(pins)) {
-    const pin = document.querySelector(`.pin.${country}`);
-    if (!pin) continue;
+    const earthImg = document.querySelector('.earth-container img');
+    if (!earthImg) return;
 
-    const offsetXPx = (coords.offsetX / 100) * vpHeight;
-    const offsetYPx = (coords.offsetY / 100) * vpHeight;
+    // Get Earth image position and dimensions
+    const rect = earthImg.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
 
-    pin.style.left = `${vpCenterX + offsetXPx}px`;
-    pin.style.top = `${vpCenterY + offsetYPx}px`;
-    pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
-  }
+    for (const [country, coords] of Object.entries(pins)) {
+        const pin = document.querySelector(`.pin.${country}`);
+        if (!pin) continue;
+
+        const offsetXPx = (coords.offsetX / 100) * rect.height; // still relative to image height
+        const offsetYPx = (coords.offsetY / 100) * rect.height;
+
+        pin.style.left = `${centerX + offsetXPx}px`;
+        pin.style.top = `${centerY + offsetYPx}px`;
+        pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
+    }
 }
 
 window.addEventListener('resize', () => {
-  if (Math.abs(window.innerHeight - vpHeight) > 100) {
-    vpHeight = window.innerHeight;
-    vpCenterX = window.innerWidth / 2;
-    vpCenterY = window.innerHeight / 2;
     positionPins();
-  }
 });
 
 window.addEventListener('load', positionPins);
