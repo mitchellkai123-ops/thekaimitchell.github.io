@@ -677,7 +677,7 @@ const pins2 = {
 
 function positionPins2() {
     for (const [country, coords] of Object.entries(pins2)) {
-        const pin = document.querySelector(`#pin-${country}-2`);
+        const pin = document.querySelector(`#pin-${country}`);
         if (!pin) continue;
 
         const finalLeft = `calc(50vw + ${coords.offset_vh_x}vh)`;
