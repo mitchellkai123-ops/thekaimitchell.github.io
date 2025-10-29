@@ -578,40 +578,40 @@
             </div>
         </div>
 
-        <div class="popup" role="dialog" aria-modal="true" id="popup-usa">
+        <div class="popup" role="dialog" aria-modal="true" id="popup-np">
             <div class="popup-header">
                 <div class="popup-flag">
-                    <img src="images/flag-usa.png" alt="USA flag">
+                    <img src="images/flag-np.png" alt="New Port flag">
                 </div>
-                <div class="popup-title">USA!</div>
+                <div class="popup-title">NEW PORT!</div>
                 <button class="popup-close" data-close>
                     <img src="images/pop-up-x.png" alt="Close">
                 </button>
             </div>
             <div class="popup-body">
-                <!-- Gallery for USA -->
+                <!-- Gallery for New Port Trip -->
                 <div class="gallery-grid">
-                    <div class="gallery-item"><img src="images/usa1.jpeg" alt="USA 1"></div>
-                    <div class="gallery-item"><img src="images/usa2.jpeg" alt="USA 2"></div>
+                    <div class="gallery-item"><img src="images/np1.jpeg" alt="NP 1"></div>
+                    <div class="gallery-item"><img src="images/np2.jpeg" alt="NP 2"></div>
                 </div>
             </div>
         </div>
 
-        <div class="popup" role="dialog" aria-modal="true" id="popup-canada">
+        <div class="popup" role="dialog" aria-modal="true" id="popup-couve">
             <div class="popup-header">
                 <div class="popup-flag">
                     <img src="images/flag-canada.png" alt="Canada flag">
                 </div>
-                <div class="popup-title">Canada!</div>
+                <div class="popup-title">VANCOUVER!</div>
                 <button class="popup-close" data-close>
                     <img src="images/pop-up-x.png" alt="Close">
                 </button>
             </div>
             <div class="popup-body">
-                <!-- Gallery for Canada -->
+                <!-- Gallery for Couve -->
                 <div class="gallery-grid">
-                    <div class="gallery-item"><img src="images/canada1.jpeg" alt="Canada 1"></div>
-                    <div class="gallery-item"><img src="images/canada2.jpeg" alt="Canada 2"></div>
+                    <div class="gallery-item"><img src="images/couve1.jpeg" alt="Couve 1"></div>
+                    <div class="gallery-item"><img src="images/couve2.jpeg" alt="Couve 2"></div>
                 </div>
             </div>
         </div>
@@ -621,8 +621,8 @@
  <!-- Section 5 -->
 <div class="americas-container">
     <img src="images/americas.webp" alt="Americas" class="earth-img">
-    <div class="pin usa" id="pin-usa" data-target="popup-usa"></div>
-    <div class="pin canada" id="pin-canada" data-target="popup-canada"></div>
+    <div class="pin np" id="pin-np" data-target="popup-np"></div>
+    <div class="pin couve" id="pin-couve" data-target="popup-couve"></div>
 </div>
 
 <script>
@@ -667,8 +667,8 @@ window.addEventListener('resize', positionPins);
 
 
 const pins2 = {
-    canada: { offset_vh_x: 18.8, offset_vh_y: -5, rotate: 10 },
-    usa: { offset_vh_x: -16.7, offset_vh_y: 5.6, rotate: -160 }
+    couve: { offset_vh_x: -15.8, offset_vh_y: 5, rotate: 0 },
+    np: { offset_vh_x: -18.7, offset_vh_y: -15.6, rotate: -10 }
 };
 
 function positionPins2() {
