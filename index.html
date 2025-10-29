@@ -621,7 +621,7 @@
                 <div class="popup-flag">
                     <img src="images/flag-nyc.png" alt="NYC flag">
                 </div>
-                <div class="popup-title">NYC!!</div>
+                <div class="popup-title">NYC!</div>
                 <button class="popup-close" data-close>
                     <img src="images/pop-up-x.png" alt="Close">
                 </button>
@@ -634,6 +634,25 @@
                 </div>
             </div>
         </div>
+
+        <div class="popup" role="dialog" aria-modal="true" id="popup-ys">
+            <div class="popup-header">
+                <div class="popup-flag">
+                    <img src="images/flag-ys.png" alt="YS flag">
+                </div>
+                <div class="popup-title">YELLOW STONE!</div>
+                <button class="popup-close" data-close>
+                    <img src="images/pop-up-x.png" alt="Close">
+                </button>
+            </div>
+            <div class="popup-body">
+                <!-- Gallery for YS -->
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="images/ys1.jpeg" alt="YS 1"></div>
+                    <div class="gallery-item"><img src="images/ys2.jpeg" alt="YS 2"></div>
+                </div>
+            </div>
+        </div>
         
     </div>
 
@@ -643,6 +662,7 @@
     <div class="pin np" id="pin-np" data-target="popup-np"></div>
     <div class="pin couve" id="pin-couve" data-target="popup-couve"></div>
     <div class="pin nyc" id="pin-nyc" data-target="popup-nyc"></div>
+    <div class="pin ys" id="pin-ys" data-target="popup-ys"></div>
 </div>
 
 <script>
@@ -689,7 +709,8 @@ window.addEventListener('resize', positionPins);
 const pins2 = {
     couve: { offset_vh_x: -18.8, offset_vh_y: 12, rotate: -5 },
     np: { offset_vh_x: -21.7, offset_vh_y: 21.6, rotate: -15 },
-    nyc: { offset_vh_x: 18.7, offset_vh_y: 12.6, rotate: 10 }
+    nyc: { offset_vh_x: 18.7, offset_vh_y: 12.6, rotate: 10 },
+    ys: { offset_vh_x: -6, offset_vh_y: 17, rotate: 0 }
 };
 
 function positionPins2() {
