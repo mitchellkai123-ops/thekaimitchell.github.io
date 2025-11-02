@@ -748,74 +748,6 @@
 
 <script>
 
-// --- PIN POSITIONING LOGIC (UPDATED) ---
-
-// Define offsets from the absolute center of the viewport (50vw, 50vh).
-// The offsets are given in multiples of viewport height (vh) units, 
-// fulfilling your requirement for using vh for both axes.
-const pins = {
-    // offset_vh_x: positive shifts right, negative shifts left.
-    // offset_vh_y: positive shifts down, negative shifts up.
-    
-    // **NOTE: TUNE THESE VALUES**
-    japan: { offset_vh_x: 18.8, offset_vh_y: -5, rotate: 10 }, 
-    greece: { offset_vh_x: -16.7, offset_vh_y: 5.6, rotate: -160 }
-};
-
-function positionPins() {
-    // The center is established by CSS at 50vw/50vh of the viewport.
-    for (const [country, coords] of Object.entries(pins)) {
-        const pin = document.querySelector(`.pin.${country}`);
-        if (!pin) continue;
-
-        // X Position: 50vw (center) + offset_vh_x * 1vh
-        const finalLeft = `calc(50vw + ${coords.offset_vh_x}vh)`;
-        
-        // Y Position: 50vh (center) + offset_vh_y * 1vh
-        const finalTop = `calc(50vh + ${coords.offset_vh_y}vh)`; 
-
-        pin.style.position = 'absolute';
-        pin.style.left = finalLeft;
-        pin.style.top = finalTop;
-        pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
-        pin.style.display = 'block';
-    }
-}
-
-// Reposition on load and resize to ensure consistency
-window.addEventListener('load', positionPins);
-window.addEventListener('resize', positionPins);
-
-
-const pins2 = {
-    couve: { offset_vh_x: -19.1, offset_vh_y: 12, rotate: -5 },
-    np: { offset_vh_x: -19.7, offset_vh_y: 24.6, rotate: -15 },
-    nyc: { offset_vh_x: 18.7, offset_vh_y: 12.6, rotate: 10 },
-    ys: { offset_vh_x: 0, offset_vh_y: 17, rotate: 0 }
-};
-
-function positionPins2() {
-    for (const [country, coords] of Object.entries(pins2)) {
-        const pin = document.querySelector(`#pin-${country}`);
-        if (!pin) continue;
-
-        const finalLeft = `calc(50vw + ${coords.offset_vh_x}vh)`;
-        const finalTop = `calc(50vh + ${coords.offset_vh_y}vh)`;
-
-        pin.style.position = 'absolute';
-        pin.style.left = finalLeft;
-        pin.style.top = finalTop;
-        pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
-        pin.style.display = 'block';
-    }
-}
-
-window.addEventListener('load', positionPins2);
-window.addEventListener('resize', positionPins2);
-
-
-// --- END OF PIN POSITIONING LOGIC ---
-
 
     
 // open popup when pin clicked
@@ -988,6 +920,79 @@ document.addEventListener('click', function(e) {
         closePopup();
     }
 });
+
+
+// --- PIN POSITIONING LOGIC (UPDATED) ---
+
+// Define offsets from the absolute center of the viewport (50vw, 50vh).
+// The offsets are given in multiples of viewport height (vh) units, 
+// fulfilling your requirement for using vh for both axes.
+const pins = {
+    // offset_vh_x: positive shifts right, negative shifts left.
+    // offset_vh_y: positive shifts down, negative shifts up.
+    
+    // **NOTE: TUNE THESE VALUES**
+    japan: { offset_vh_x: 18.8, offset_vh_y: -5, rotate: 10 }, 
+    greece: { offset_vh_x: -16.7, offset_vh_y: 5.6, rotate: -160 }
+};
+
+function positionPins() {
+    // The center is established by CSS at 50vw/50vh of the viewport.
+    for (const [country, coords] of Object.entries(pins)) {
+        const pin = document.querySelector(`.pin.${country}`);
+        if (!pin) continue;
+
+        // X Position: 50vw (center) + offset_vh_x * 1vh
+        const finalLeft = `calc(50vw + ${coords.offset_vh_x}vh)`;
+        
+        // Y Position: 50vh (center) + offset_vh_y * 1vh
+        const finalTop = `calc(50vh + ${coords.offset_vh_y}vh)`; 
+
+        pin.style.position = 'absolute';
+        pin.style.left = finalLeft;
+        pin.style.top = finalTop;
+        pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
+        pin.style.display = 'block';
+    }
+}
+
+// Reposition on load and resize to ensure consistency
+window.addEventListener('load', positionPins);
+window.addEventListener('resize', positionPins);
+
+
+const pins2 = {
+    couve: { offset_vh_x: -19.1, offset_vh_y: 12, rotate: -5 },
+    np: { offset_vh_x: -19.7, offset_vh_y: 24.6, rotate: -15 },
+    nyc: { offset_vh_x: 18.7, offset_vh_y: 12.6, rotate: 10 },
+    ys: { offset_vh_x: 0, offset_vh_y: 17, rotate: 0 }
+};
+
+function positionPins2() {
+    for (const [country, coords] of Object.entries(pins2)) {
+        const pin = document.querySelector(`#pin-${country}`);
+        if (!pin) continue;
+
+        const finalLeft = `calc(50vw + ${coords.offset_vh_x}vh)`;
+        const finalTop = `calc(50vh + ${coords.offset_vh_y}vh)`;
+
+        pin.style.position = 'absolute';
+        pin.style.left = finalLeft;
+        pin.style.top = finalTop;
+        pin.style.transform = `translate(-50%, -100%) rotate(${coords.rotate}deg)`;
+        pin.style.display = 'block';
+    }
+}
+
+window.addEventListener('load', positionPins2);
+window.addEventListener('resize', positionPins2);
+
+
+// --- END OF PIN POSITIONING LOGIC ---
+
+
+
+    
 </script>
 
 </body>
