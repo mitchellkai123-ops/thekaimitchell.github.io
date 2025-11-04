@@ -367,10 +367,6 @@
             margin: 0;
             padding: 0;
         }
-
-        #svm-text {
-            z-index: 9998; /* below popups at 10000 */
-        }
         
         #simple-list {
             z-index: 9998; /* slightly below popups */
@@ -940,41 +936,17 @@ function openFolder(folderName) {
     });
 
 
-// Add Back button styled like SVM/Visual Mode button
-const backBtn = document.createElement('div');
-backBtn.textContent = "Back";
-
-// Retro-style SVM/Visual Mode styles
-backBtn.style.color = "yellow";             // text color: dark
-backBtn.style.backgroundColor = "#02066f";    // background: yellow
-backBtn.style.fontFamily = "'Press Start 2P', monospace";
-backBtn.style.fontWeight = "bold";
-backBtn.style.fontSize = "14px";
-backBtn.style.padding = "6px 24px";
-backBtn.style.border = "6px solid yellow;
-backBtn.style.cursor = "pointer";
-backBtn.style.display = "inline-block";
-backBtn.style.margin = "10px 0";
-backBtn.style.boxShadow = "4px 4px 0 rgba(0,0,0,0.5)";
-backBtn.style.textAlign = "center";
-
-// Hover effect to match SVM button
-backBtn.addEventListener('mouseenter', () => {
-    backBtn.style.backgroundColor = "yellow";
-    backBtn.style.color = "#02066f";
-});
-backBtn.addEventListener('mouseleave', () => {
-    backBtn.style.backgroundColor = "#02066f";
-    backBtn.style.color = "yellow";
-});
-
-// Click to go back to main SVM links
-backBtn.addEventListener('click', () => {
-    if (svmTitle) svmTitle.textContent = "Kai Mitchell"; // reset title
-    renderDefaultLinks(); // restore main SVM links
-});
-
-simpleList.appendChild(backBtn);
+    // Add Back button
+    const backBtn = document.createElement('div');
+        backBtn.textContent = "Back";
+        backBtn.style.color = "yellow"; // same as links
+        backBtn.style.cursor = "pointer";
+        backBtn.style.margin = "10px 0";
+        backBtn.addEventListener('click', () => {
+            if (svmTitle) svmTitle.textContent = "Kai Mitchell"; // reset title
+            renderDefaultLinks(); // restore main SVM links
+        });
+        simpleList.appendChild(backBtn);
 }
     
 const simpleList = document.createElement('div');
@@ -983,17 +955,15 @@ simpleList.style.display = "none";
 simpleList.style.position = "fixed";
 simpleList.style.top = "36%";
 simpleList.style.left = "50%";
-simpleList.style.transform = "translateX(-50%) translateY(-30%)";
+simpleList.style.transform = "translateX(-50%)";
 simpleList.style.zIndex = "9999";
 simpleList.style.textAlign = "center";
 simpleList.style.fontFamily = "'Press Start 2P', monospace";
 simpleList.style.fontSize = "14px";
 simpleList.style.color = "yellow";
-
-// populate SVM links
+    
 renderDefaultLinks();
-
-// insert into DOM
+    
 document.body.insertBefore(simpleList, document.getElementById('overlay'));
     
 document.getElementById('mode-toggle').addEventListener('click', () => {
@@ -1007,7 +977,7 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
 
         simpleList.style.display = 'block';
         
-        document.querySelectorAll('.text-container, .left-gif, .right-gif, #cd-text').forEach(el => {
+        document.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text').forEach(el => {
             if (el) el.style.display = 'none';
         });
 
