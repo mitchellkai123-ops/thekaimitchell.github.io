@@ -856,9 +856,11 @@ function renderDefaultLinks() {
         if (link.folder) {
             const folderBtn = document.createElement('div');
             folderBtn.textContent = link.text;
-            folderBtn.classList.add('folder'); // use the CSS class for styling
-            folderBtn.addEventListener('click', () => openFolder(link.folder));
-            simpleList.appendChild(folderBtn);
+            folderBtn.style.color = "orange";
+            folderBtn.style.cursor = "pointer";
+            folderBtn.style.margin = "10px";
+            folderBtn.style.display = "inline-block";
+            folderBtn.style.fontWeight = "bold";
         } else if (link.url) {
             const a = document.createElement('a');
             a.href = link.url;
@@ -910,6 +912,7 @@ function openFolder(folderName) {
         a.style.display = "block";
         a.style.margin = "5px 0";
         simpleList.appendChild(a);
+        a.style.color = "cyan";
     });
 
     // Add Back button
