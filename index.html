@@ -858,24 +858,37 @@ function renderDefaultLinks() {
             folderBtn.textContent = link.text;
             folderBtn.style.color = "orange";
             folderBtn.style.cursor = "pointer";
-            folderBtn.style.margin = "10px";
-            folderBtn.style.display = "inline-block";
+            folderBtn.style.margin = "10px 0";
+            folderBtn.style.display = "block";
             folderBtn.style.fontWeight = "bold";
+
+            // Add click to open folder
+            folderBtn.addEventListener('click', () => openFolder(link.folder));
+
+            // Append to list
+            simpleList.appendChild(folderBtn);
         } else if (link.url) {
             const a = document.createElement('a');
             a.href = link.url;
             a.textContent = link.text;
             a.target = "_blank";
+            a.style.color = "cyan"; // set default link color
+            a.style.display = "block";
+            a.style.margin = "10px 0";
             simpleList.appendChild(a);
         } else if (link.popup) {
             const a = document.createElement('a');
             a.href = "#";
             a.textContent = link.text;
             a.addEventListener('click', () => openPopup(link.popup));
+            a.style.color = "cyan"; // popups are also cyan
+            a.style.display = "block";
+            a.style.margin = "10px 0";
             simpleList.appendChild(a);
         }
     });
 }
+
 
 function openFolder(folderName) {
     let folderLinks = [];
