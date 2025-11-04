@@ -983,15 +983,17 @@ simpleList.style.display = "none";
 simpleList.style.position = "fixed";
 simpleList.style.top = "36%";
 simpleList.style.left = "50%";
-simpleList.style.transform = "translateX(-50%)";
+simpleList.style.transform = "translateX(-50%) translateY(-30%)";
 simpleList.style.zIndex = "9999";
 simpleList.style.textAlign = "center";
 simpleList.style.fontFamily = "'Press Start 2P', monospace";
 simpleList.style.fontSize = "14px";
 simpleList.style.color = "yellow";
-    
+
+// populate SVM links
 renderDefaultLinks();
-    
+
+// insert into DOM
 document.body.insertBefore(simpleList, document.getElementById('overlay'));
     
 document.getElementById('mode-toggle').addEventListener('click', () => {
@@ -1005,7 +1007,7 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
 
         simpleList.style.display = 'block';
         
-        document.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text').forEach(el => {
+        document.querySelectorAll('.text-container, .left-gif, .right-gif, #cd-text').forEach(el => {
             if (el) el.style.display = 'none';
         });
 
