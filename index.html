@@ -822,9 +822,89 @@ const links = [
     { text: "Instagram", url: "https://www.instagram.com/kai._.mitchell/" },
     { text: "Flynns Website", url: "flynnconnolly.com" },
     { text: "Greece (photos)", popup: "popup-greece" },
-    { text: "Japan (photos)", popup: "popup-japan" }
+    { text: "Japan (photos)", popup: "popup-japan" },
+
+    // Folders
+    { text: "Travel", folder: "travel" },
+    { text: "Socials", folder: "socials" }
+    
 ];
 
+function renderDefaultLinks() {
+  simpleList.innerHTML = ""; // clear current links
+  links.forEach(link => {
+    if (link.folder) {
+      const folderBtn = document.createElement('div');
+      folderBtn.textContent = link.text;
+      folderBtn.style.color = "orange";
+      folderBtn.style.cursor = "pointer";
+      folderBtn.style.margin = "10px";
+      folderBtn.addEventListener('click', () => openFolder(link.folder));
+      simpleList.appendChild(folderBtn);
+        
+    } else if (link.url) {
+      const a = document.createElement('a');
+      a.href = link.url;
+      a.textContent = link.text;
+      a.target = "_blank";
+      a.style.display = "block";
+      a.style.margin = "5px 0";
+      simpleList.appendChild(a);
+        
+    } else if (link.popup) {
+      const a = document.createElement('a');
+      a.href = "#";
+      a.textContent = link.text;
+      a.style.display = "block";
+      a.style.margin = "5px 0";
+      a.addEventListener('click', () => openPopup(link.popup));
+      simpleList.appendChild(a);
+    }
+  });
+}
+
+function openFolder(folderName) {
+  let folderLinks = [];
+
+  if (folderName === "travel") {
+    folderLinks = [
+      { text: "TripAdvisor", url: "https://www.tripadvisor.com" },
+      { text: "Airbnb", url: "https://www.airbnb.com" },
+      { text: "Lonely Planet", url: "https://www.lonelyplanet.com" }
+    ];
+  } else if (folderName === "socials") {
+    folderLinks = [
+      { text: "Twitter", url: "https://twitter.com" },
+      { text: "Instagram", url: "https://www.instagram.com" },
+      { text: "Facebook", url: "https://www.facebook.com" }
+    ];
+  }
+
+  simpleList.innerHTML = ""; // clear current SVM links
+
+  folderLinks.forEach(link => {
+    const a = document.createElement('a');
+    a.href = link.url;
+    a.textContent = link.text;
+    a.target = "_blank";
+    a.style.display = "block";
+    a.style.margin = "5px 0";
+    simpleList.appendChild(a);
+  });
+
+  // Add Back button
+  const backBtn = document.createElement('div');
+  backBtn.textContent = "Back";
+  backBtn.style.color = "yellow";
+  backBtn.style.cursor = "pointer";
+  backBtn.style.margin = "10px";
+  backBtn.addEventListener('click', () => {
+    renderDefaultLinks();
+  });
+  simpleList.appendChild(backBtn);
+}
+
+    
 const simpleList = document.createElement('div');
 simpleList.id = "simple-list";
 simpleList.style.display = "none";
@@ -837,8 +917,11 @@ simpleList.style.textAlign = "center";
 simpleList.style.fontFamily = "'Press Start 2P', monospace";
 simpleList.style.fontSize = "14px";
 simpleList.style.color = "yellow";
+    
+renderDefaultLinks();
+    
 document.body.insertBefore(simpleList, document.getElementById('overlay'));
-
+    
 document.getElementById('mode-toggle').addEventListener('click', () => {
     simpleMode = !simpleMode;
     const body = document.body;
