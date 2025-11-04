@@ -368,10 +368,29 @@
             padding: 0;
         }
         
-        #simple-list { z-index: 9998; }   /* slightly below popups */
-        .popup-overlay { z-index: 10001; }
-        .popup { z-index: 10002; }        /* one more than overlay to ensure top */
+        #simple-list {
+            z-index: 9998; /* slightly below popups */
+            text-align: center;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 18px;       /* larger text */
+            line-height: 2.0em;    /* consistent spacing */
+        }
         
+        #simple-list a {
+            color: yellow;         /* links are yellow */
+            text-decoration: none; /* no underlines */
+            display: block;
+            margin: 10px 0;        /* consistent vertical spacing */
+        }
+        
+        #simple-list div.folder {
+            color: orange;         /* folders are orange */
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 0;        /* match link spacing */
+            display: block;
+        }
+
         #simple-list li {
         margin-bottom: 20px; /* increase or decrease as needed */
         list-style: none; /* optional: removes bullets */
@@ -837,11 +856,7 @@ function renderDefaultLinks() {
         if (link.folder) {
             const folderBtn = document.createElement('div');
             folderBtn.textContent = link.text;
-            folderBtn.style.color = "orange";
-            folderBtn.style.cursor = "pointer";
-            folderBtn.style.margin = "10px";
-            folderBtn.style.display = "inline-block";
-            folderBtn.style.fontWeight = "bold";
+            folderBtn.classList.add('folder'); // use the CSS class for styling
             folderBtn.addEventListener('click', () => openFolder(link.folder));
             simpleList.appendChild(folderBtn);
         } else if (link.url) {
@@ -849,15 +864,11 @@ function renderDefaultLinks() {
             a.href = link.url;
             a.textContent = link.text;
             a.target = "_blank";
-            a.style.display = "block";
-            a.style.margin = "5px 0";
             simpleList.appendChild(a);
         } else if (link.popup) {
             const a = document.createElement('a');
             a.href = "#";
             a.textContent = link.text;
-            a.style.display = "block";
-            a.style.margin = "5px 0";
             a.addEventListener('click', () => openPopup(link.popup));
             simpleList.appendChild(a);
         }
@@ -903,15 +914,15 @@ function openFolder(folderName) {
 
     // Add Back button
     const backBtn = document.createElement('div');
-    backBtn.textContent = "Back";
-    backBtn.style.color = "yellow";
-    backBtn.style.cursor = "pointer";
-    backBtn.style.margin = "10px";
-    backBtn.addEventListener('click', () => {
-        if (svmTitle) svmTitle.textContent = "Kai Mitchell"; // reset title
-        renderDefaultLinks(); // restore main SVM links
-    });
-    simpleList.appendChild(backBtn);
+        backBtn.textContent = "Back";
+        backBtn.style.color = "yellow"; // same as links
+        backBtn.style.cursor = "pointer";
+        backBtn.style.margin = "10px 0";
+        backBtn.addEventListener('click', () => {
+            if (svmTitle) svmTitle.textContent = "Kai Mitchell"; // reset title
+            renderDefaultLinks(); // restore main SVM links
+        });
+        simpleList.appendChild(backBtn);
 }
     
 const simpleList = document.createElement('div');
