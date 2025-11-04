@@ -937,11 +937,21 @@ function openFolder(folderName) {
 
 
     // Add Back button
-    const backBtn = document.createElement('div');
+    const backBtn = document.createElement('button'); // use a button for accessibility
         backBtn.textContent = "Back";
-        backBtn.style.color = "yellow"; // same as links
-        backBtn.style.cursor = "pointer";
-        backBtn.style.margin = "10px 0";
+        backBtn.id = "back-button"; // optional, if you want to style it separately
+        backBtn.classList.add('simple'); // same class as SVM simple mode button
+        backBtn.style.backgroundColor = '#02066f';
+        backBtn.style.color = 'yellow';
+        backBtn.style.fontFamily = "'Press Start 2P', monospace";
+        backBtn.style.border = '3px solid yellow';
+        backBtn.style.padding = '12px 24px';
+        backBtn.style.fontSize = '12px';
+        backBtn.style.cursor = 'pointer';
+        backBtn.style.boxShadow = '4px 4px 0 rgba(0,0,0,0.5)';
+        backBtn.style.display = 'block';
+        backBtn.style.margin = '10px auto';
+        backBtn.style.zIndex = '9999';
         backBtn.addEventListener('click', () => {
             if (svmTitle) svmTitle.textContent = "Kai Mitchell"; // reset title
             renderDefaultLinks(); // restore main SVM links
