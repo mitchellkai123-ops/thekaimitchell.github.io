@@ -916,14 +916,25 @@ function openFolder(folderName) {
     // Add folder links
     folderLinks.forEach(link => {
         const a = document.createElement('a');
-        a.href = link.url;
         a.textContent = link.text;
-        a.target = "_blank";
         a.style.display = "block";
         a.style.margin = "5px 0";
-        simpleList.appendChild(a);
         a.style.color = "cyan";
+    
+        if (link.url) {
+            a.href = link.url;
+            a.target = "_blank";
+        } else if (link.popup) {
+            a.href = "#"; // optional, just to make it clickable
+            a.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                openPopup(link.popup);
+            });
+        }
+    
+        simpleList.appendChild(a);
     });
+
 
     // Add Back button
     const backBtn = document.createElement('div');
