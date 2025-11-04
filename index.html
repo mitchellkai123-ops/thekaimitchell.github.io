@@ -940,6 +940,8 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
         button.innerText = "Visual Mode";
         body.classList.add('simple-mode');
 
+        simpleList.style.display = 'block';
+        
         document.querySelectorAll('.text-container, .left-gif, .right-gif, .section2 div, .section3 div, #cd-text').forEach(el => {
             if (el) el.style.display = 'none';
         });
