@@ -945,13 +945,13 @@ const backBtn = document.createElement('div');
 backBtn.textContent = "Back";
 
 // Retro-style SVM/Visual Mode styles
-backBtn.style.color = "#02066f";             // text color: dark
-backBtn.style.backgroundColor = "yellow";    // background: yellow
+backBtn.style.color = "yellow";             // text color: dark
+backBtn.style.backgroundColor = "#02066f";    // background: yellow
 backBtn.style.fontFamily = "'Press Start 2P', monospace";
 backBtn.style.fontWeight = "bold";
 backBtn.style.fontSize = "14px";
-backBtn.style.padding = "12px 24px";
-backBtn.style.border = "3px solid #02066f";
+backBtn.style.padding = "6px 24px";
+backBtn.style.border = "6px solid yellow;
 backBtn.style.cursor = "pointer";
 backBtn.style.display = "inline-block";
 backBtn.style.margin = "10px 0";
@@ -960,12 +960,12 @@ backBtn.style.textAlign = "center";
 
 // Hover effect to match SVM button
 backBtn.addEventListener('mouseenter', () => {
-    backBtn.style.backgroundColor = "#02066f";
-    backBtn.style.color = "yellow";
-});
-backBtn.addEventListener('mouseleave', () => {
     backBtn.style.backgroundColor = "yellow";
     backBtn.style.color = "#02066f";
+});
+backBtn.addEventListener('mouseleave', () => {
+    backBtn.style.backgroundColor = "#02066f";
+    backBtn.style.color = "yellow";
 });
 
 // Click to go back to main SVM links
