@@ -384,7 +384,7 @@
         }
         
         #simple-list div.folder {
-            color: orange;         /* folders are orange */
+            color: yellow;         /* folders are yellow */
             cursor: pointer;
             font-weight: bold;
             margin: 10px 0;        /* match link spacing */
@@ -836,12 +836,7 @@ let simpleMode = false;
 
 const links = [
     { text: "Resume", url: "https://docs.google.com/document/d/1Cz3ejhUNQtdBSGaBaF9coz_Gjt_xv3XMFN_uzu7-iYE/edit?usp=sharing" },
-    { text: "Apple Music", url: "https://music.apple.com/profile/kai_michell" },
-    { text: "LinkedIn", url: "https://www.linkedin.com/in/kai-m-mitchell/" },
-    { text: "Instagram", url: "https://www.instagram.com/kai._.mitchell/" },
     { text: "Flynns Website", url: "flynnconnolly.com" },
-    { text: "Greece (photos)", popup: "popup-greece" },
-    { text: "Japan (photos)", popup: "popup-japan" },
 
     // Folders
     { text: "Travel", folder: "travel" },
@@ -856,7 +851,7 @@ function renderDefaultLinks() {
         if (link.folder) {
             const folderBtn = document.createElement('div');
             folderBtn.textContent = link.text;
-            folderBtn.style.color = "orange";
+            folderBtn.style.color = "yellow";
             folderBtn.style.cursor = "pointer";
             folderBtn.style.margin = "10px 0";
             folderBtn.style.display = "block";
@@ -889,23 +884,25 @@ function renderDefaultLinks() {
     });
 }
 
-
 function openFolder(folderName) {
     let folderLinks = [];
     let folderTitle = "";
 
     if (folderName === "travel") {
         folderLinks = [
-            { text: "TripAdvisor", url: "https://www.tripadvisor.com" },
-            { text: "Airbnb", url: "https://www.airbnb.com" },
-            { text: "Lonely Planet", url: "https://www.lonelyplanet.com" }
-        ];
+            { text: "Japan", popup: "popup-japan" },
+            { text: "Greece", popup: "popup-greece" },
+            { text: "New York", popup: "popup-nyc" },
+            { text: "Yellowstone", popup: "popup-ys" },
+            { text: "Vancouver", popup: "popup-couve" },
+            { text: "New Port", popup: "popup-np" }
+         ];
         folderTitle = "Travel";
     } else if (folderName === "socials") {
         folderLinks = [
-            { text: "Twitter", url: "https://twitter.com" },
-            { text: "Instagram", url: "https://www.instagram.com" },
-            { text: "Facebook", url: "https://www.facebook.com" }
+            { text: "LinkedIn", url: "https://www.linkedin.com/in/kai-m-mitchell/" },
+            { text: "Apple Music", url: "https://music.apple.com/profile/kai_michell" },
+            { text: "Instagram", url: "https://www.instagram.com/kai._.mitchell/" }
         ];
         folderTitle = "Socials";
     }
