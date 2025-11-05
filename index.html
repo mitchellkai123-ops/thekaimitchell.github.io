@@ -781,7 +781,7 @@
 </div>
 
 <!-- Divider before new section -->
-<img src="images/blue-glow.webp" alt="Divider" class="divider" style="top:500vh;">
+<img src="images/cloud.webp" alt="Divider" class="divider" style="top:500vh;">
 
 <!-- Section 6 -->
 <div class="seattle-container">
@@ -1152,36 +1152,37 @@ window.addEventListener('resize', positionPins2);
     overflow: hidden;
 }
 
-/* Background image centered, 100vh */
+/* Background image */
 .seattle-container .background-img {
-    height: 100vh;
-    width: auto;
-    display: block;
-    margin: 0 auto;
-    position: relative; /* keeps overlay images absolutely positioned relative to container */
-}
-
-/* Overlay images */
-.overlay-img {
     position: absolute;
-    width: 80px; /* adjust as needed */
-    height: auto;
-    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    height: 100vh;  /* fills viewport height */
+    width: auto;     /* preserves aspect ratio */
+    transform: translate(-50%, -50%); /* center the image */
 }
 
-/* Example positions based on center of viewport using vh offsets */
-.uw-logo {
-    left: calc(50vw + -10vh);
-    top: calc(50vh + -5vh);
+// Overlay images relative to the center of seattle-sky
+const seattleOverlays = {
+    "uw-logo": { offset_vh_x: -10, offset_vh_y: -5 },      // adjust these
+    "lincoln-logo": { offset_vh_x: 12, offset_vh_y: -3 },
+    "soccer-ball": { offset_vh_x: 5, offset_vh_y: 8 }
+};
+
+function positionSeattleOverlays() {
+    for (const [cls, coords] of Object.entries(seattleOverlays)) {
+        const el = document.querySelector(`.${cls}`);
+        if (!el) continue;
+
+        el.style.left = `calc(50vw + ${coords.offset_vh_x}vh)`;
+        el.style.top = `calc(50vh + ${coords.offset_vh_y}vh)`;
+        el.style.display = 'block';
+    }
 }
-.lincoln-logo {
-    left: calc(50vw + 12vh);
-    top: calc(50vh + -3vh);
-}
-.soccer-ball {
-    left: calc(50vw + 5vh);
-    top: calc(50vh + 8vh);
-}
+
+window.addEventListener('load', positionSeattleOverlays);
+window.addEventListener('resize', positionSeattleOverlays);
+
     
 </script>
 
