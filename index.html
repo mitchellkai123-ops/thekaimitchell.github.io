@@ -780,6 +780,19 @@
     <div class="pin ys" id="pin-ys" data-target="popup-ys"></div>
 </div>
 
+    <!-- Divider before new section -->
+<img src="images/blue-glow.webp" alt="Divider" class="divider" style="top:500vh;">
+
+<!-- Section 6 -->
+<div class="seattle-container">
+    <img src="images/seattle-sky.webp" alt="Seattle Sky" class="earth-img">
+    
+    <!-- smaller images -->
+    <img src="images/uw-logo.webp" alt="UW Logo" class="pin seattle uw-logo">
+    <img src="images/lincoln-logo.webp" alt="Lincoln Logo" class="pin seattle lincoln-logo">
+    <img src="images/soccer-ball.webp" alt="Soccer Ball" class="pin seattle soccer-ball">
+</div>
+
 <script>
 
 
@@ -1131,8 +1144,27 @@ window.addEventListener('resize', positionPins2);
 
 // --- END OF PIN POSITIONING LOGIC ---
 
+const pins3 = {
+    'uw-logo': { offset_vh_x: -10, offset_vh_y: -5, rotate: 0 },
+    'lincoln-logo': { offset_vh_x: 12, offset_vh_y: -3, rotate: -10 },
+    'soccer-ball': { offset_vh_x: 5, offset_vh_y: 8, rotate: 5 }
+};
 
+function positionPins3() {
+    for (const [id, coords] of Object.entries(pins3)) {
+        const pin = document.querySelector(`.pin.${id}`);
+        if (!pin) continue;
 
+        pin.style.position = 'absolute';
+        pin.style.left = `calc(50vw + ${coords.offset_vh_x}vh)`;
+        pin.style.top = `calc(50vh + ${coords.offset_vh_y}vh)`;
+        pin.style.transform = `translate(-50%, -50%) rotate(${coords.rotate}deg)`;
+        pin.style.display = 'block';
+    }
+}
+
+window.addEventListener('load', positionPins3);
+window.addEventListener('resize', positionPins3);
     
 </script>
 
