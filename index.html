@@ -803,6 +803,8 @@
     <img src="images/americas-space.webp" alt="Americas" class="earth-img">
 
     <img src="images/sun.gif" style="position:absolute; top: 20%; left: 24%; width: calc(2.394vw + 120px);">
+  
+    <img src="images/alien.gif" class="pin alien" alt="Alien">
     
     <div class="pin np" id="pin-np" data-target="popup-np"></div>
     <div class="pin couve" id="pin-couve" data-target="popup-couve"></div>
@@ -1152,12 +1154,13 @@ const pins2 = {
     couve: { offset_vh_x: -20.2, offset_vh_y: 12.2, rotate: -5 },
     np: { offset_vh_x: -19.0, offset_vh_y: 25.4, rotate: -15 },
     nyc: { offset_vh_x: 19.3, offset_vh_y: 13.3, rotate: 10 },
-    ys: { offset_vh_x: -11.7, offset_vh_y: 14.2, rotate: 0 }
+    ys: { offset_vh_x: -11.7, offset_vh_y: 14.2, rotate: 0 },
+    alien: { offset_vh_x: 40.7, offset_vh_y: -20.2, rotate: 0 },
 };
 
 function positionPins2() {
     for (const [country, coords] of Object.entries(pins2)) {
-        const pin = document.querySelector(`#pin-${country}`);
+        const pin = document.querySelector(`#pin-${country}`) || document.querySelector(`.pin.${country}`);
         if (!pin) continue;
 
         const finalLeft = `calc(50vw + ${coords.offset_vh_x}vh)`;
@@ -1170,6 +1173,7 @@ function positionPins2() {
         pin.style.display = 'block';
     }
 }
+
 
 window.addEventListener('load', positionPins2);
 window.addEventListener('resize', positionPins2);
