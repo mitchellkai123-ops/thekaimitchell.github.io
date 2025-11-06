@@ -1179,9 +1179,9 @@ const seattleOverlays = {
     "uw-logo": { offset_vh_x: 6, offset_vh_y: 7.7 },      // adjust these
     "lincoln-logo": { offset_vh_x: -10, offset_vh_y: 4 },
     "soccer-ball": { offset_vh_x: -11.5, offset_vh_y: -1 },
-    "plane-1": { offset_vh_x: -51.5, offset_vh_y: 20 },
-    "plane-2": { offset_vh_x: 31.5, offset_vh_y: 40 },
-    "plane-3": { offset_vh_x: 41.5, offset_vh_y: -30 }
+    "plane-1": { offset_vh_x: -51.5, offset_vh_y: 20, rotate: 55 },
+    "plane-2": { offset_vh_x: -31.5, offset_vh_y: -30, rotate: -35 },
+    "plane-3": { offset_vh_x: 41.5, offset_vh_y: -30, rotate: 65 }
 };
 
 function positionSeattleOverlays() {
@@ -1192,6 +1192,10 @@ function positionSeattleOverlays() {
         el.style.left = `calc(50vw + ${coords.offset_vh_x}vh)`;
         el.style.top = `calc(50vh + ${coords.offset_vh_y}vh)`;
         el.style.display = 'block';
+
+        if (coords.rotate !== undefined) {
+            el.style.transform = `rotate(${coords.rotate}deg)`;
+        }
     }
 }
 
