@@ -450,7 +450,30 @@
           position: absolute;
           z-index: 200; /* above background */
         }
-                
+
+          .clickable-img:hover {
+            opacity: 0.95;
+            transform: none;
+          }
+        
+          /* === NEW CODE: folder label styling === */
+          .folder-label {
+            color: #ffffff;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 12px;
+            margin-top: 6px;
+            text-align: center;
+            -webkit-text-stroke: 0.8px black;
+            text-shadow:
+               1px  0px 0 #000,
+              -1px  0px 0 #000,
+               0px  1px 0 #000,
+               0px -1px 0 #000;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+          }
+        
     </style>
 </head>
 <body>
@@ -581,7 +604,7 @@
             </div>
 
             <div class="popup-body">
-    <div class="gallery-grid">
+                <div class="gallery-grid">
                     <div class="gallery-item"><img src="images/japan1.webp" alt="Japan 1"></div>
                     <div class="gallery-item"><img src="images/japan2.webp" alt="Japan 2"></div>
                     <div class="gallery-item"><img src="images/japan3.webp" alt="Japan 3"></div>
@@ -637,7 +660,7 @@
                     <div class="gallery-item"><img src="images/japan53.webp" alt="Japan 3"></div>
                     <div class="gallery-item"><img src="images/japan54.webp" alt="Japan 4"></div>
                     <div class="gallery-item"><img src="images/japan55.webp" alt="Japan 5"></div>
-                </div>
+               </div>
             </div>
         </div>
 
@@ -806,14 +829,25 @@
               <img src="images/pop-up-x.webp" alt="Close">
             </button>
           </div>
-          <div class="popup-body" style="text-align:center;">
-            <img src="images/folder.webp" alt="UW Folder 1" class="clickable-img"
-                 data-popup="popup-uw-folder1"
-                 style="width:calc(6vw + 80px); margin:20px; cursor:pointer;">
-            <img src="images/folder.webp" alt="UW Folder 2" class="clickable-img"
-                 data-popup="popup-uw-folder2"
-                 style="width:calc(6vw + 80px); margin:20px; cursor:pointer;">
+  <div class="popup-body" style="text-align:center;">
+
+            <!-- === NEW CODE: folder with label === -->
+            <figure class="folder-figure" style="display:inline-block; margin:20px; text-align:center;">
+              <img src="images/folder.webp" alt="UW Folder 1" class="clickable-img folder-img"
+                   data-popup="popup-uw-folder1"
+                   style="width:calc(6vw + 80px);">
+              <figcaption class="folder-label">Folder One</figcaption>
+            </figure>
+        
+            <figure class="folder-figure" style="display:inline-block; margin:20px; text-align:center;">
+              <img src="images/folder.webp" alt="UW Folder 2" class="clickable-img folder-img"
+                   data-popup="popup-uw-folder2"
+                   style="width:calc(6vw + 80px);">
+              <figcaption class="folder-label">Folder Two</figcaption>
+            </figure>
+        
           </div>
+
         </div>
         
         <!-- UW Folder PDF Popups -->
@@ -839,13 +873,29 @@
             </button>
           </div>
           <div class="popup-body" style="height:80vh; overflow:auto;">
+
+            <!-- === NEW CODE: Back button === -->
+            <button class="folder-back-btn" data-back="popup-uw"
+                    aria-label="Back to UW folders"
+                    style="position:absolute; top:12px; left:12px;
+                           background:transparent; border:none;
+                           cursor:pointer; z-index:10001;">
+              <img src="images/back-button.webp" alt="Back" style="height:36px; width:auto;">
+            </button>
+              
             <iframe src="pdfs/uw-folder-two.pdf"
                     style="width:100%; height:100%; border:none;"
                     title="UW PDF 2"></iframe>
           </div>
         </div>
+
+
+
+
+
         
-        <!-- Lincoln Popup (folder selection) -->
+        
+            <!-- Lincoln Popup (folder selection) -->
         <div class="popup" id="popup-lincoln" role="dialog" aria-modal="true">
           <div class="popup-header">
             <div class="popup-title">Lincoln High School</div>
@@ -853,61 +903,72 @@
               <img src="images/pop-up-x.webp" alt="Close">
             </button>
           </div>
-          <div class="popup-body" style="text-align:center;">
-            <img src="images/folder.webp" alt="Lincoln Folder 1" class="clickable-img"
-                 data-popup="popup-lincoln-folder1"
-                 style="width:calc(6vw + 80px); margin:20px; cursor:pointer;">
+  <div class="popup-body" style="text-align:center;">
+
+            <!-- === NEW CODE: folder with label === -->
+            <figure class="folder-figure" style="display:inline-block; margin:20px; text-align:center;">
+              <img src="images/folder.webp" alt="UW Folder 1" class="clickable-img folder-img"
+                   data-popup="popup-lincoln-folder1"
+                   style="width:calc(6vw + 80px);">
+              <figcaption class="folder-label">Folder One</figcaption>
+            </figure>
+        
+            <figure class="folder-figure" style="display:inline-block; margin:20px; text-align:center;">
+              <img src="images/folder.webp" alt="Lincoln Folder 2" class="clickable-img folder-img"
+                   data-popup="popup-lincoln-folder2"
+                   style="width:calc(6vw + 80px);">
+              <figcaption class="folder-label">Folder Two</figcaption>
+            </figure>
+        
           </div>
 
-            <!-- Lincoln Folder PDF Popup -->
-            <div class="popup" id="popup-lincoln-folder1" role="dialog" aria-modal="true">
-              <div class="popup-header">
-                <div class="popup-title">Lincoln Folder One</div>
-                <button class="popup-close" data-close>
-                  <img src="images/pop-up-x.webp" alt="Close">
-                </button>
-              </div>
-              <div class="popup-body" style="height:80vh; overflow:auto;">
-                <iframe src="pdfs/lincoln-folder-one.pdf"
-                        style="width:100%; height:100%; border:none;"
-                        title="Lincoln PDF 1"></iframe>
-              </div>
-            </div>
+        </div>
+        
+        <!-- Lincoln Folder PDF Popups -->
+        <div class="popup" id="popup-lincoln-folder1" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">Lincoln Folder One</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+          <div class="popup-body" style="height:80vh; overflow:auto;">
+            <iframe src="pdfs/lincoln.pdf"
+                    style="width:100%; height:100%; border:none;"
+                    title="Lincoln PDF 1"></iframe>
+          </div>
+        </div>
+        
+        <div class="popup" id="popup-lincoln-folder2" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">Lincoln Folder Two</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+          <div class="popup-body" style="height:80vh; overflow:auto;">
 
-            <!-- PDF Popup 1 -->
-            <div class="popup" id="popup-pdf1" role="dialog" aria-modal="true">
-              <div class="popup-header">
-                <div class="popup-title">Project Document</div>
-                <button class="popup-close" data-close>
-                  <img src="images/pop-up-x.webp" alt="Close">
-                </button>
-              </div>
-              <div class="popup-body" style="height:80vh; overflow:auto;">
-                <iframe src="pdfs/project-one.pdf"
-                        style="width:100%; height:100%; border:none;"
-                        title="Project PDF 1"></iframe>
-              </div>
-            </div>
-            
-            <!-- PDF Popup 2 -->
-            <div class="popup" id="popup-pdf2" role="dialog" aria-modal="true">
-              <div class="popup-header">
-                <div class="popup-title">Second Project</div>
-                <button class="popup-close" data-close>
-                  <img src="images/pop-up-x.webp" alt="Close">
-                </button>
-              </div>
-              <div class="popup-body" style="height:80vh; overflow:auto;">
-                <iframe src="pdfs/project-two.pdf"
-                        style="width:100%; height:100%; border:none;"
-                        title="Project PDF 2"></iframe>
-              </div>
-            </div>
-            
-                        
+            <!-- === NEW CODE: Back button === -->
+            <button class="folder-back-btn" data-back="popup-lincoln"
+                    aria-label="Back to Lincoln folders"
+                    style="position:absolute; top:12px; left:12px;
+                           background:transparent; border:none;
+                           cursor:pointer; z-index:10001;">
+              <img src="images/back-button.webp" alt="Back" style="height:36px; width:auto;">
+            </button>
+              
+              <iframe src="pdfs/lincoln-folder-two.pdf"
+                    style="width:100%; height:100%; border:none;"
+                    title="Lincoln PDF 2"></iframe>
+          </div>
         </div>
 
 
+
+
+
+
+        
         
     </div>
 
@@ -1240,6 +1301,24 @@ document.addEventListener('click', function(e) {
     }
 });
 
+ // === NEW CODE: Back button handler ===
+  document.addEventListener('click', function(e) {
+    const backBtn = e.target.closest('[data-back]');
+    if (!backBtn) return;
+    const parentPopupId = backBtn.dataset.back;
+    const currentPopup = backBtn.closest('.popup');
+
+    // hide the current popup
+    if (currentPopup) currentPopup.style.display = 'none';
+
+    // open the parent popup again
+    if (parentPopupId) {
+      openPopup(parentPopupId);
+    } else {
+      // if no parent ID given, close overlay entirely
+      closePopup();
+    }
+  });
 
 // --- PIN POSITIONING LOGIC (UPDATED) ---
 
