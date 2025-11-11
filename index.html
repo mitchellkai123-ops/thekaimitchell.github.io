@@ -524,7 +524,7 @@
 
     <img src="images/blue-glow.webp" alt="Divider" class="divider" style="top:400vh;">
 
-    <! -- Section 4 --!>
+    <!-- Section 4 -->
     <div class="earth-container">
         <img src="images/earthbackground.webp" alt="Earth" class="earth-img">
 
@@ -797,6 +797,83 @@
                 </div>
             </div>
         </div>
+
+            <!-- UW Popup (folder selection) -->
+        <div class="popup" id="popup-uw" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">University of Washington</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+          <div class="popup-body" style="text-align:center;">
+            <img src="images/folder.webp" alt="UW Folder 1" class="clickable-img"
+                 data-popup="popup-uw-folder1"
+                 style="width:calc(6vw + 80px); margin:20px; cursor:pointer;">
+            <img src="images/folder.webp" alt="UW Folder 2" class="clickable-img"
+                 data-popup="popup-uw-folder2"
+                 style="width:calc(6vw + 80px); margin:20px; cursor:pointer;">
+          </div>
+        </div>
+        
+        <!-- UW Folder PDF Popups -->
+        <div class="popup" id="popup-uw-folder1" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">UW Folder One</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+          <div class="popup-body" style="height:80vh; overflow:auto;">
+            <iframe src="pdfs/uw-folder-one.pdf"
+                    style="width:100%; height:100%; border:none;"
+                    title="UW PDF 1"></iframe>
+          </div>
+        </div>
+        
+        <div class="popup" id="popup-uw-folder2" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">UW Folder Two</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+          <div class="popup-body" style="height:80vh; overflow:auto;">
+            <iframe src="pdfs/uw-folder-two.pdf"
+                    style="width:100%; height:100%; border:none;"
+                    title="UW PDF 2"></iframe>
+          </div>
+        </div>
+        
+        <!-- Lincoln Popup (folder selection) -->
+        <div class="popup" id="popup-lincoln" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">Lincoln High School</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+          <div class="popup-body" style="text-align:center;">
+            <img src="images/folder.webp" alt="Lincoln Folder 1" class="clickable-img"
+                 data-popup="popup-lincoln-folder1"
+                 style="width:calc(6vw + 80px); margin:20px; cursor:pointer;">
+          </div>
+</div>
+
+<!-- Lincoln Folder PDF Popup -->
+<div class="popup" id="popup-lincoln-folder1" role="dialog" aria-modal="true">
+  <div class="popup-header">
+    <div class="popup-title">Lincoln Folder One</div>
+    <button class="popup-close" data-close>
+      <img src="images/pop-up-x.webp" alt="Close">
+    </button>
+  </div>
+  <div class="popup-body" style="height:80vh; overflow:auto;">
+    <iframe src="pdfs/lincoln-folder-one.pdf"
+            style="width:100%; height:100%; border:none;"
+            title="Lincoln PDF 1"></iframe>
+  </div>
+</div>
         
     </div>
 
@@ -822,8 +899,8 @@
     <img src="images/seattle-sky.webp" alt="Seattle Sky" class="background-img">
 
     <!-- Overlay images -->
-    <img src="images/uw-logo.webp" alt="UW Logo" class="overlay-img uw-logo" width="71px">
-    <img src="images/lincoln-logo.webp" alt="Lincoln Logo" class="overlay-img lincoln-logo" width="45px">
+    <img src="images/uw-logo.webp" alt="UW Logo" class="overlay-img uw-logo clickable-img" data-popup="popup-uw" width="71px">
+    <img src="images/lincoln-logo.webp" alt="Lincoln Logo" class="overlay-img lincoln-logo clickable-img" data-popup="popup-lincoln" width="45px">
     <img src="images/soccer-ball.webp" alt="Soccer Ball" class="overlay-img soccer-ball" width="40px">
     <img src="images/plane-1.gif" alt="Plane 1" class="overlay-img plane-1" width="740px">
     <img src="images/plane-2.gif" alt="Plane 2" class="overlay-img plane-2" width="740px">
@@ -844,19 +921,6 @@
     <img src="images/jumping-cloud.gif" alt="Jumping Cloud" style="position:absolute; top:10%; left:35%; width: calc(5vw + 50px); z-index:200;">
     <img src="images/review.gif" alt="Review" style="position:absolute; top:45%; left:50%; width: calc(9vw + 50px); z-index:200; transform: translateX(-50%); ">
     <img src="images/yummy.gif" alt="Yummy" style="position:absolute; top:50%; left:50%; width: calc(8vw + 50px); z-index:200; transform: translateX(-50%);">
-
-    <!-- Clickable folders to open popups -->
-    <img src="images/folder.webp"
-         alt="Folder One"
-         class="clickable-img"
-         data-popup="popup-pdf1"
-         style="position:absolute; top:65%; left:35%; width:calc(5vw + 80px); cursor:pointer; z-index:210;">
-    
-    <img src="images/folder.webp"
-         alt="Folder Two"
-         class="clickable-img"
-         data-popup="popup-pdf2"
-         style="position:absolute; top:65%; left:55%; width:calc(5vw + 80px); cursor:pointer; z-index:210;">
 
 </div>
 
