@@ -496,18 +496,21 @@
     display: none; /* hide header to maximize space */
   }
 
-  .popup.pdf-popup .popup-body {
-    padding: 0;
-    margin: 0;
-    height: 100vh;
-    overflow: hidden;
-  }
+    .popup.pdf-popup .popup-body,
+    .popup-body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+    }
 
   .pdf-embed {
-    width: 100vw !important;
-    height: 100vh !important;
+    width: 100% !important;
+    height: 100% !important;
     border: none !important;
     display: block;
+    overflow: hidden;
   }
         
     </style>
@@ -886,7 +889,6 @@
 
         </div>
         
-        <!-- UW Folder PDF Popups -->
         <div class="popup" id="popup-uw-folder1" role="dialog" aria-modal="true">
           <div class="popup-header">
             <div class="popup-title">UW Folder One</div>
@@ -894,14 +896,24 @@
               <img src="images/pop-up-x.webp" alt="Close">
             </button>
           </div>
-          <div class="popup-body" style="height:80vh; overflow:auto;">
-                <!-- === NEW CODE: replace iframe with embed === -->
+          <div class="popup-body" style="height:80vh; overflow:auto; position:relative;">
+        
+            <!-- ✅ NEW CODE: Back button -->
+            <button class="folder-back-btn" data-back="popup-uw"
+                    aria-label="Back to UW folders"
+                    style="position:absolute; top:6px; left:7px;
+                           background:transparent; border:none;
+                           cursor:pointer; z-index:10001;">
+              <img src="images/back.webp" alt="Back" style="height:33px; width:auto;">
+            </button>
+        
             <embed class="pdf-embed"
                    src="pdfs/Beaded-Watch.pdf#toolbar=0"
                    type="application/pdf"
-                   style="width:100vw; height:100vh; border:none;">
+                   style="width:100%; height:100%; border:none;">
           </div>
         </div>
+
         
         <div class="popup" id="popup-uw-folder2" role="dialog" aria-modal="true">
           <div class="popup-header">
@@ -973,6 +985,16 @@
             </button>
           </div>
           <div class="popup-body" style="height:80vh; overflow:auto;">
+
+            <!-- === NEW CODE: Back button === -->
+            <button class="folder-back-btn" data-back="popup-uw"
+                    aria-label="Back to UW folders"
+                    style="position:absolute; top:6px; left:7px;
+                           background:transparent; border:none;
+                           cursor:pointer; z-index:10001;">
+              <img src="images/back.webp" alt="Back" style="height:33px; width:auto;">
+            </button>
+              
                 <!-- === NEW CODE: replace iframe with embed === -->
             <embed class="pdf-embed"
                    src="pdfs/Beaded-Watch.pdf#toolbar=0"
@@ -1462,7 +1484,18 @@ function positionSeattleOverlays() {
 window.addEventListener('load', positionSeattleOverlays);
 window.addEventListener('resize', positionSeattleOverlays);
 
+  // ✅ NEW CODE: lock scrolling when popup is open
+  const overlay = document.getElementById("overlay");
 
+  const observer = new MutationObserver(() => {
+    if (overlay.classList.contains("show")) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  });
+
+  observer.observe(overlay, { attributes: true, attributeFilter: ['class'] });
     
 </script>
 
