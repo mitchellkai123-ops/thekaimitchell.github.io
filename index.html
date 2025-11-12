@@ -244,19 +244,20 @@
 
         /* title bar */
         .popup-header {
-        height: 56px;
-        background: #02066f;
-        color: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 8px 12px;
-        box-sizing: border-box;
-        border-bottom: 4px solid #000; /* extra retro separation */
-        font-family: 'Press Start 2P', monospace;
-        font-size: 14px;
-        letter-spacing: 1px;
+            height: 60px; /* slightly taller for consistent alignment */
+            background: #02066f;
+            color: #ffffff;
+            display: flex;
+            align-items: center; /* vertically center text */
+            justify-content: space-between;
+            padding: 0 16px; /* more even horizontal padding */
+            box-sizing: border-box;
+            border-bottom: 4px solid #000;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 14px;
+            letter-spacing: 1px;
         }
+
 
         /* flag (left) */
         .popup-flag {
@@ -516,6 +517,41 @@
     .clickable-img {
       cursor: pointer;
     }
+
+/* === NEW CODE: Folder grid layout === */
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 per row on desktop */
+  gap: 30px; /* spacing between folders */
+  justify-items: center;
+  align-items: start;
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .folder-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on mobile/tablet */
+  }
+}
+
+.folder-figure {
+  text-align: center;
+  margin: 0;
+}
+
+.folder-img {
+  width: 100%;
+  max-width: 160px; /* keeps them proportionate */
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.folder-img:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
         
     </style>
 </head>
@@ -872,31 +908,31 @@
               <img src="images/pop-up-x.webp" alt="Close">
             </button>
           </div>
-  <div class="popup-body" style="text-align:center;">
-
-            <!-- === NEW CODE: folder with label === -->
-            <figure class="folder-figure" style="display:inline-block; margin:20px; text-align:center;">
-              <img src="images/folder.webp" alt="UW Folder 1" class="clickable-img folder-img"
-                   data-popup="popup-uw-folder1"
-                   style="width:calc(6vw + 80px);">
+            
+        <div class="popup-body">
+          <div class="folder-grid">
+            <figure class="folder-figure">
+              <img src="images/folder.webp" alt="Folder 1" class="folder-img clickable-img" data-popup="popup-uw-folder1">
               <figcaption class="folder-label">Folder One</figcaption>
             </figure>
         
-            <figure class="folder-figure" style="display:inline-block; margin:20px; text-align:center;">
-              <img src="images/folder.webp" alt="UW Folder 2" class="clickable-img folder-img"
-                   data-popup="popup-uw-folder2"
-                   style="width:calc(6vw + 80px);">
+            <figure class="folder-figure">
+              <img src="images/folder.webp" alt="Folder 2" class="folder-img clickable-img" data-popup="popup-uw-folder2">
               <figcaption class="folder-label">Folder Two</figcaption>
             </figure>
-
-            <figure class="folder-figure" style="display:inline-block; margin:20px; text-align:center;">
-              <img src="images/folder.webp" alt="UW Folder 3" class="clickable-img folder-img"
-                   data-popup="popup-uw-folder3"
-                   style="width:calc(6vw + 80px);">
+        
+            <figure class="folder-figure">
+              <img src="images/folder.webp" alt="Folder 3" class="folder-img clickable-img" data-popup="popup-uw-folder3">
               <figcaption class="folder-label">Folder Three</figcaption>
             </figure>
         
+            <figure class="folder-figure">
+              <img src="images/folder.webp" alt="Folder 4" class="folder-img clickable-img" data-popup="popup-uw-folder4">
+              <figcaption class="folder-label">Folder Four</figcaption>
+            </figure>
           </div>
+        </div>
+
 
         </div>
         
@@ -989,31 +1025,30 @@
               <img src="images/pop-up-x.webp" alt="Close">
             </button>
           </div>
-          <div class="popup-body" style="text-align:center;">
-
-            <!-- === NEW CODE: folder with label === -->
-            <figure class="folder-figure" style="display:inline-block; margin:20px; text-align:center;">
-              <img src="images/folder.webp" alt="UW Folder 1" class="clickable-img folder-img"
-                   data-popup="popup-lincoln-folder1"
-                   style="width:calc(6vw + 80px);">
+        <div class="popup-body">
+          <div class="folder-grid">
+            <figure class="folder-figure">
+              <img src="images/folder.webp" alt="Folder 1" class="folder-img clickable-img" data-popup="popup-lincoln-folder1">
               <figcaption class="folder-label">Folder One</figcaption>
             </figure>
         
-            <figure class="folder-figure" style="display:inline-block; margin:20px; text-align:center;">
-              <img src="images/folder.webp" alt="Lincoln Folder 2" class="clickable-img folder-img"
-                   data-popup="popup-lincoln-folder2"
-                   style="width:calc(6vw + 80px);">
+            <figure class="folder-figure">
+              <img src="images/folder.webp" alt="Folder 2" class="folder-img clickable-img" data-popup="popup-lincoln-folder2">
               <figcaption class="folder-label">Folder Two</figcaption>
             </figure>
-
-            <figure class="folder-figure" style="display:inline-block; margin:20px; text-align:center;">
-              <img src="images/folder.webp" alt="Lincoln Folder 3" class="clickable-img folder-img"
-                   data-popup="popup-lincoln-folder3"
-                   style="width:calc(6vw + 80px);">
+        
+            <figure class="folder-figure">
+              <img src="images/folder.webp" alt="Folder 3" class="folder-img clickable-img" data-popup="popup-lincoln-folder3">
               <figcaption class="folder-label">Folder Three</figcaption>
             </figure>
-              
+        
+            <figure class="folder-figure">
+              <img src="images/folder.webp" alt="Folder 4" class="folder-img clickable-img" data-popup="popup-lincoln-folder4">
+              <figcaption class="folder-label">Folder Four</figcaption>
+            </figure>
           </div>
+        </div>
+
 
         </div>
         
