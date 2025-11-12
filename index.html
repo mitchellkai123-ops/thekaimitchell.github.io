@@ -483,7 +483,7 @@
     opacity: 0.9;
   }
 
-  /* === NEW CODE: PDF full-screen view === */
+  /* === NEW CODE: PDF full-screen view === 
   .popup.pdf-popup {
     align-items: stretch;
     justify-content: flex-start;
@@ -497,8 +497,21 @@
   }
 
   .popup.pdf-popup .popup-header {
-    display: none; /* hide header to maximize space */
-  }
+    display: none; 
+  } */
+
+.popup.pdf-popup .pdf-embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  box-sizing: border-box;
+  background: transparent;
+}
+
 
  .popup.pdf-popup .popup-body,
 .popup-body {
