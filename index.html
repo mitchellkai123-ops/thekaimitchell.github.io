@@ -303,6 +303,8 @@
   box-sizing: border-box;
   position: relative;
   overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #e5e5e5;
 }
 
         /* gallery grid: responsive (2 columns desktop, 1 column on small screens) */
@@ -505,7 +507,7 @@
   border: none;
   overflow: hidden;         /* remove internal scrollbars unless desired */
   box-sizing: border-box;   /* prevents padding/border causing gaps */
-  background: #000;         /* optional: prevents white border effect */
+  background: #e5e5e5;         /* optional: prevents white border effect */
 }
 
 .popup.pdf-popup,
@@ -520,16 +522,30 @@
 }
         
 .pdf-embed {
-  display: block;
   position: absolute;
-  inset: 0; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
   border: none;
   margin: 0;
   padding: 0;
   object-fit: cover;
-  background: #000;
+  background-color: #e5e5e5;
+}
+
+.popup.pdf-popup {
+  position: fixed;
+  inset: 0;  /* shorthand for top/left/right/bottom:0 */
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: #e5e5e5;
+  overflow: hidden;
 }
 
     .clickable-img {
