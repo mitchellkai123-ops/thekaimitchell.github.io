@@ -496,14 +496,14 @@
     display: none; /* hide header to maximize space */
   }
 
-    .popup.pdf-popup .popup-body,
-    .popup-body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      padding: 0;
-      margin: 0;
-    }
+ .popup.pdf-popup .popup-body,
+.popup-body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 0;
+  margin: 0;
+}
 
   .pdf-embed {
     width: 100% !important;
@@ -900,8 +900,7 @@
               <img src="images/pop-up-x.webp" alt="Close">
             </button>
           </div>
-          <div class="popup-body" style="height:80vh; overflow:auto; position:relative;">
-        
+
             <!-- ✅ NEW CODE: Back button -->
             <button class="folder-back-btn" data-back="popup-uw"
                     aria-label="Back to UW folders"
@@ -910,8 +909,9 @@
                            cursor:pointer; z-index:10001;">
               <img src="images/back.webp" alt="Back" style="height:33px; width:auto;">
             </button>
-        
-            <embed class="pdf-embed"
+            
+          <div class="popup-body" style="height:80vh; overflow:auto; position:relative;">
+             <embed class="pdf-embed"
                    src="pdfs/Beaded-Watch.pdf#toolbar=0"
                    type="application/pdf"
                    style="width:100%; height:100%; border:none;">
@@ -926,7 +926,6 @@
               <img src="images/pop-up-x.webp" alt="Close">
             </button>
           </div>
-          <div class="popup-body" style="height:80vh; overflow:auto;">
 
             <!-- === NEW CODE: Back button === -->
             <button class="folder-back-btn" data-back="popup-uw"
@@ -936,8 +935,9 @@
                            cursor:pointer; z-index:10001;">
               <img src="images/back.webp" alt="Back" style="height:33px; width:auto;">
             </button>
-              
-            <!-- === NEW CODE: replace iframe with embed === -->
+            
+          <div class="popup-body" style="height:80vh; overflow:auto;">
+             <!-- === NEW CODE: replace iframe with embed === -->
             <embed class="pdf-embed"
                    src="pdfs/Beaded-Watch.pdf#toolbar=0"
                    type="application/pdf"
@@ -988,7 +988,6 @@
               <img src="images/pop-up-x.webp" alt="Close">
             </button>
           </div>
-          <div class="popup-body" style="height:80vh; overflow:auto;">
 
             <!-- === NEW CODE: Back button === -->
             <button class="folder-back-btn" data-back="popup-uw"
@@ -998,7 +997,8 @@
                            cursor:pointer; z-index:10001;">
               <img src="images/back.webp" alt="Back" style="height:33px; width:auto;">
             </button>
-              
+            
+          <div class="popup-body" style="height:80vh; overflow:auto;">
                 <!-- === NEW CODE: replace iframe with embed === -->
             <embed class="pdf-embed"
                    src="pdfs/Beaded-Watch.pdf#toolbar=0"
@@ -1014,7 +1014,6 @@
               <img src="images/pop-up-x.webp" alt="Close">
             </button>
           </div>
-          <div class="popup-body" style="height:80vh; overflow:auto;">
 
             <!-- === NEW CODE: Back button === -->
             <button class="folder-back-btn" data-back="popup-lincoln"
@@ -1024,8 +1023,9 @@
                            cursor:pointer; z-index:10001;">
               <img src="images/back.webp" alt="Back" style="height:33px; width:auto;">
             </button>
-                  
-                <!-- === NEW CODE: replace iframe with embed === -->
+            
+          <div class="popup-body" style="height:80vh; overflow:auto;">
+              <!-- === NEW CODE: replace iframe with embed === -->
                 <embed class="pdf-embed"
                        src="pdfs/Beaded-Watch.pdf#toolbar=0"
                        type="application/pdf"
