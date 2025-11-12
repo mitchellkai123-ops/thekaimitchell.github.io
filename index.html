@@ -1041,10 +1041,34 @@
           </div>
         </div>
 
+        <div class="popup" id="popup-uw-folder4" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">UW Folder Four</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+
+            <!-- ✅ NEW CODE: Back button -->
+            <button class="folder-back-btn" data-back="popup-uw"
+                    aria-label="Back to UW folders"
+                    style="position:absolute; top:6px; left:7px;
+                           background:transparent; border:none;
+                           cursor:pointer; z-index:10001;">
+              <img src="images/back.webp" alt="Back" style="height:40px; width:auto;">
+            </button>
+            
+          <div class="popup-body" style="height:80vh; overflow:auto; position:relative;">
+             <embed class="pdf-embed"
+                   src="pdfs/Beaded-Watch.pdf#toolbar=0"
+                   type="application/pdf">
+          </div>
+        </div>
+
         
         
             <!-- Lincoln Popup (folder selection) -->
-        <div class="popup" id="popup-lincoln" role="dialog" aria-modal="true">
+     <div class="popup" id="popup-lincoln" role="dialog" aria-modal="true">
           <div class="popup-header">
             <div class="popup-title">Lincoln High School</div>
             <button class="popup-close" data-close>
@@ -1074,9 +1098,7 @@
             </figure>
           </div>
         </div>
-
-
-        </div>
+     </div>
         
         <!-- Lincoln Folder PDF Popups -->
         <div class="popup" id="popup-lincoln-folder1" role="dialog" aria-modal="true">
@@ -1089,7 +1111,7 @@
 
             <!-- === NEW CODE: Back button === -->
             <button class="folder-back-btn" data-back="popup-lincoln"
-                    aria-label="Back to Licoln folders"
+                    aria-label="Back to Lincoln folders"
                     style="position:absolute; top:6px; left:7px;
                            background:transparent; border:none;
                            cursor:pointer; z-index:10001;">
@@ -1129,9 +1151,6 @@
           </div>
         </div>
 
-
-
-        <!-- Lincoln Folder PDF Popups -->
         <div class="popup" id="popup-lincoln-folder3" role="dialog" aria-modal="true">
           <div class="popup-header">
             <div class="popup-title">Lincoln Folder Three</div>
@@ -1157,8 +1176,164 @@
           </div>
         </div>
 
+        <div class="popup" id="popup-lincoln-folder4" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">Lincoln Folder Four</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
 
+            <!-- === NEW CODE: Back button === -->
+            <button class="folder-back-btn" data-back="popup-lincoln"
+                    aria-label="Back to Lincoln folders"
+                    style="position:absolute; top:6px; left:7px;
+                           background:transparent; border:none;
+                           cursor:pointer; z-index:10001;">
+              <img src="images/back.webp" alt="Back" style="height:40px; width:auto;">
+            </button>
+            
+          <div class="popup-body" style="height:80vh; overflow:auto;">
+                <!-- === NEW CODE: replace iframe with embed === -->
+            <embed class="pdf-embed"
+                   src="pdfs/Beaded-Watch.pdf#toolbar=0"
+                   type="application/pdf">
+          </div>
+        </div>
         
+            <!-- Personal Popup (folder selection) -->
+     <div class="popup" id="popup-lincoln" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">Personal Projects</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+        <div class="popup-body">
+          <div class="folder-grid">
+            <figure class="folder-figure">
+              <img src="images/folders.webp" alt="Folder 1" class="folder-img clickable-img" data-popup="popup-personal-folder1">
+              <figcaption class="folder-label">Folder One</figcaption>
+            </figure>
+        
+            <figure class="folder-figure">
+              <img src="images/folders.webp" alt="Folder 2" class="folder-img clickable-img" data-popup="popup-personal-folder2">
+              <figcaption class="folder-label">Folder Two</figcaption>
+            </figure>
+        
+            <figure class="folder-figure">
+              <img src="images/folders.webp" alt="Folder 3" class="folder-img clickable-img" data-popup="popup-personal-folder3">
+              <figcaption class="folder-label">Folder Three</figcaption>
+            </figure>
+        
+            <figure class="folder-figure">
+              <img src="images/folders.webp" alt="Folder 4" class="folder-img clickable-img" data-popup="popup-personal-folder4">
+              <figcaption class="folder-label">Folder Four</figcaption>
+            </figure>
+          </div>
+        </div>
+     </div>
+        
+        <!-- Personal Folder PDF Popups -->
+        <div class="popup" id="popup-personal-folder1" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">Personal Folder One</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+
+            <!-- === NEW CODE: Back button === -->
+            <button class="folder-back-btn" data-back="popup-personal"
+                    aria-label="Back to Personal folders"
+                    style="position:absolute; top:6px; left:7px;
+                           background:transparent; border:none;
+                           cursor:pointer; z-index:10001;">
+              <img src="images/back.webp" alt="Back" style="height:40px; width:auto;">
+            </button>
+            
+          <div class="popup-body" style="height:80vh; overflow:auto;">
+                <!-- === NEW CODE: replace iframe with embed === -->
+            <embed class="pdf-embed"
+                   src="pdfs/Beaded-Watch.pdf#toolbar=0"
+                   type="application/pdf">
+          </div>
+        </div>
+        
+        <div class="popup" id="popup-personal-folder2" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">Personal Folder Two</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+
+            <!-- === NEW CODE: Back button === -->
+            <button class="folder-back-btn" data-back="popup-personal"
+                    aria-label="Back to Personal folders"
+                    style="position:absolute; top:6px; left:7px;
+                           background:transparent; border:none;
+                           cursor:pointer; z-index:10001;">
+              <img src="images/back.webp" alt="Back" style="height:40px; width:auto;">
+            </button>
+            
+          <div class="popup-body" style="height:80vh; overflow:auto;">
+              <!-- === NEW CODE: replace iframe with embed === -->
+                <embed class="pdf-embed"
+                       src="pdfs/Beaded-Watch.pdf#toolbar=0"
+                       type="application/pdf">
+          </div>
+        </div>
+
+        <div class="popup" id="popup-personal-folder3" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">Personal Folder Three</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+
+            <!-- === NEW CODE: Back button === -->
+            <button class="folder-back-btn" data-back="popup-personal"
+                    aria-label="Back to Personal folders"
+                    style="position:absolute; top:6px; left:7px;
+                           background:transparent; border:none;
+                           cursor:pointer; z-index:10001;">
+              <img src="images/back.webp" alt="Back" style="height:40px; width:auto;">
+            </button>
+            
+          <div class="popup-body" style="height:80vh; overflow:auto;">
+                <!-- === NEW CODE: replace iframe with embed === -->
+            <embed class="pdf-embed"
+                   src="pdfs/Beaded-Watch.pdf#toolbar=0"
+                   type="application/pdf">
+          </div>
+        </div>
+
+        <div class="popup" id="popup-personal-folder4" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">Personal Folder Four</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+
+            <!-- === NEW CODE: Back button === -->
+            <button class="folder-back-btn" data-back="popup-personal"
+                    aria-label="Back to Personal folders"
+                    style="position:absolute; top:6px; left:7px;
+                           background:transparent; border:none;
+                           cursor:pointer; z-index:10001;">
+              <img src="images/back.webp" alt="Back" style="height:40px; width:auto;">
+            </button>
+            
+          <div class="popup-body" style="height:80vh; overflow:auto;">
+                <!-- === NEW CODE: replace iframe with embed === -->
+            <embed class="pdf-embed"
+                   src="pdfs/Beaded-Watch.pdf#toolbar=0"
+                   type="application/pdf">
+          </div>
+        </div>
         
     </div>
 
@@ -1186,7 +1361,7 @@
     <!-- Overlay images -->
     <img src="images/uw-logo.webp" alt="UW Logo" class="overlay-img uw-logo clickable-img" data-popup="popup-uw" width="71px">
     <img src="images/lincoln-logo.webp" alt="Lincoln Logo" class="overlay-img lincoln-logo clickable-img" data-popup="popup-lincoln" width="45px">
-    <img src="images/personal-word.gif" alt="Personal" class="overlay-img personal-word" width="250px">
+    <img src="images/personal-word.gif" alt="Personal" class="overlay-img personal-word clickable-img" data-popup="popup-personal" width="250px">
     <img src="images/plane-1.gif" alt="Plane 1" class="overlay-img plane-1" width="740px">
     <img src="images/plane-2.gif" alt="Plane 2" class="overlay-img plane-2" width="740px">
     <img src="images/plane-3.gif" alt="Plane 3" class="overlay-img plane-3" width="740px">
