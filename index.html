@@ -294,12 +294,14 @@
         display: block;
         }
 
-        /* body with internal scrolling */
         .popup-body {
-        padding: 12px;
-        box-sizing: border-box;
-        overflow: auto;    /* internal scroll */
-        flex: 1 1 auto;
+          position: relative;          /* NEW CODE */
+          padding: 0;                  /* NEW CODE */
+          box-sizing: border-box;
+          overflow: hidden;            /* NEW CODE */
+          flex: 1 1 auto;
+          width: 100%;
+          height: 100%;
         }
 
         /* gallery grid: responsive (2 columns desktop, 1 column on small screens) */
@@ -506,13 +508,15 @@
   margin: 0;
 }
 
-  .pdf-embed {
-    width: 100% !important;
-    height: 100% !important;
-    border: none !important;
-    display: block;
-    overflow: hidden;
-  }
+    .pdf-embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      border: none !important;
+      display: block;
+    }
 
     .clickable-img {
       cursor: pointer;
@@ -521,12 +525,12 @@
 /* === NEW CODE: Folder grid layout === */
 .folder-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 per row on desktop */
-  gap: 30px; /* spacing between folders */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
   justify-items: center;
   align-items: start;
   width: 90%;
-  margin: 0 auto;
+  margin: 40px auto 0 auto; /* tweak this to edit spacing */
 }
 
 @media (max-width: 900px) {
