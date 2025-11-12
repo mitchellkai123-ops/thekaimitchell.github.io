@@ -473,6 +473,42 @@
             width: 100%;
             box-sizing: border-box;
           }
+
+  .folder-back-btn:hover img {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
+  /* === NEW CODE: PDF full-screen view === */
+  .popup.pdf-popup {
+    align-items: stretch;
+    justify-content: flex-start;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  .popup.pdf-popup .popup-header {
+    display: none; /* hide header to maximize space */
+  }
+
+  .popup.pdf-popup .popup-body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .pdf-embed {
+    width: 100vw !important;
+    height: 100vh !important;
+    border: none !important;
+    display: block;
+  }
         
     </style>
 </head>
