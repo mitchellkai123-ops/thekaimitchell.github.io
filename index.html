@@ -1181,48 +1181,39 @@
           </div>
         </div>
 
-<div class="popup" id="popup-lincoln-folder4" role="dialog" aria-modal="true">
-  <div class="popup-header">
-    <div class="popup-title">Physics Final Project</div>
-    <button class="popup-close" data-close>
-      <img src="images/pop-up-x.webp" alt="Close">
-    </button>
-  </div>
-
-  <!-- Back button -->
-  <button class="folder-back-btn" data-back="popup-lincoln"
-          aria-label="Back to Lincoln folders"
-          style="position:absolute; top:6px; left:7px;
-                 background:transparent; border:none;
-                 cursor:pointer; z-index:10001;">
-    <img src="images/back.webp" alt="Back" style="height:40px; width:auto;">
-  </button>
-
-  <!-- POPUP BODY -->
-  <div class="popup-body" style="height:80vh; overflow:auto; position:relative;">
-    
-    <!-- VIDEO placed above the PDF -->
-    <video controls
-      style="
-        display:block;
-        position: relative;
-        z-index: 10010;
-        width:100%;
-        max-width:800px;   /* match your PDF width visually */
-        margin: 0 auto 20px;
-        border-radius:8px;
-        box-shadow:0 0 10px rgba(0,0,0,0.3);
-      "
-      poster="images/physics-demo.webp"
-      src="images/physics-demo.mp4">
-      Sorry, your browser doesn’t support embedded videos.
-    </video>
-
-    <!-- PDF below -->
-    <embed class="pdf-embed"
-           src="pdfs/physics.pdf#toolbar=0"
-           type="application/pdf"
-           style="width:100%; height:80vh; border:none;">
+        <div class="popup" id="popup-lincoln-folder4" role="dialog" aria-modal="true">
+          <div class="popup-header">
+            <div class="popup-title">Physics Final Project</div>
+            <button class="popup-close" data-close>
+              <img src="images/pop-up-x.webp" alt="Close">
+            </button>
+          </div>
+        
+          <!-- Back button -->
+          <button class="folder-back-btn" data-back="popup-lincoln"
+                  aria-label="Back to Lincoln folders"
+                  style="position:absolute; top:6px; left:7px;
+                         background:transparent; border:none;
+                         cursor:pointer; z-index:10001;">
+            <img src="images/back.webp" alt="Back" style="height:40px; width:auto;">
+          </button>
+        
+        <div class="popup-body" style="height:80vh; overflow-y:auto; overflow-x:hidden;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:20px;">
+            <video
+              controls
+              style="width:100%; max-width:800px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.3);"
+              poster="images/physics-demo.webp"
+              src="images/physics-demo.mp4">
+              Sorry, your browser doesn’t support embedded videos.
+            </video>
+        
+            <embed class="pdf-embed"
+                   src="pdfs/physics.pdf#toolbar=0"
+                   type="application/pdf"
+                   style="width:100%; height:100vh; border:none; display:block;">
+          </div>
+        </div>
   </div>
 </div>
 
