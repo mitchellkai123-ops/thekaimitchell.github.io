@@ -1862,6 +1862,31 @@ window.addEventListener('resize', positionSeattleOverlays);
   });
 
   observer.observe(overlay, { attributes: true, attributeFilter: ['class'] });
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Load video only when popup opens
+  document.querySelectorAll('[data-popup]').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const popup = document.getElementById(trigger.dataset.popup);
+      if (!popup) return;
+      popup.querySelectorAll('video[data-video]').forEach(v => {
+        if (!v.src) v.src = v.dataset.video;
+      });
+    });
+  });
+
+  // Pause video when popup closes
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const popup = btn.closest('.popup');
+      if (!popup) return;
+      popup.querySelectorAll('video').forEach(v => {
+        v.pause();
+        v.currentTime = 0;
+      });
+    });
+  });
+});
     
 </script>
 
