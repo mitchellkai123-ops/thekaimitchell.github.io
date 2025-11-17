@@ -1789,17 +1789,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Video loading logic
       popup.querySelectorAll('video[data-video]').forEach(v => {
-        if (!v.src) v.src = v.dataset.video;
+        // Checks if 'src' attribute is missing or empty
+        if (!v.hasAttribute('src') || v.getAttribute('src') === '') {
+          v.setAttribute('src', v.dataset.video);
+        }
       });
 
       // PDF loading logic
       popup.querySelectorAll('embed[data-src]').forEach(pdf => {
-        if (!pdf.src) pdf.src = pdf.dataset.src;
+        // Checks if 'src' attribute is missing or empty
+        if (!pdf.hasAttribute('src') || pdf.getAttribute('src') === '') {
+          pdf.setAttribute('src', pdf.dataset.src);
+        }
       });
 
-      // Image loading logic
+      // Image loading logic (This is the necessary fix)
       popup.querySelectorAll('img[data-src]').forEach(img => {
-        if (!img.src) img.src = img.dataset.src;
+        // Checks if 'src' attribute is missing or empty
+        if (!img.hasAttribute('src') || img.getAttribute('src') === '') {
+          img.setAttribute('src', img.dataset.src);
+        }
       });
     });
   });
