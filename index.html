@@ -1803,7 +1803,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Image loading logic (This is the necessary fix)
+      // Image loading logic (The key fix for photos)
       popup.querySelectorAll('img[data-src]').forEach(img => {
         // Checks if 'src' attribute is missing or empty
         if (!img.hasAttribute('src') || img.getAttribute('src') === '') {
