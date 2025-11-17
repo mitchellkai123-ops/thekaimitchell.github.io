@@ -943,7 +943,7 @@
             
         <div class="popup-body" style="overflow-y:auto; overflow-x:hidden; position:relative;">
              <embed class="pdf-embed"
-                   src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>
         </div>
@@ -968,7 +968,7 @@
             
         <div class="popup-body" style="overflow-y:auto; overflow-x:hidden; position:relative;">
              <embed class="pdf-embed"
-                   src="pdfs/Beaded-Watch.pdf#toolbar=0"
+                   data-src="pdfs/Beaded-Watch.pdf#toolbar=0"
                    type="application/pdf">
           </div>
         </div>
@@ -994,7 +994,7 @@
             
             <div class="popup-body" style="overflow-y:auto; overflow-x:hidden; position:relative;">
              <embed class="pdf-embed"
-                   src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>
         </div>
@@ -1018,7 +1018,7 @@
             
             <div class="popup-body" style="overflow-y:auto; overflow-x:hidden; position:relative;">
              <embed class="pdf-embed"
-                   src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>
         </div>
@@ -1083,7 +1083,7 @@
 
             <div class="popup-body" style="overflow-y:auto; overflow-x:hidden; position:relative;">
              <embed class="pdf-embed"
-                   src="pdfs/lottery-talk.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/lottery-talk.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>
         </div>
@@ -1107,7 +1107,7 @@
 
             <div class="popup-body" style="overflow-y:auto; overflow-x:hidden; position:relative;">
              <embed class="pdf-embed"
-                   src="pdfs/shakira-essay.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/shakira-essay.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>
         </div>
@@ -1131,7 +1131,7 @@
 
             <div class="popup-body" style="overflow-y:auto; overflow-x:hidden; position:relative;">
              <embed class="pdf-embed"
-                   src="pdfs/japanese-essay.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/japanese-essay.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>
         </div>
@@ -1164,7 +1164,7 @@
             </video>
 
            <embed class="pdf-embed"
-                   src="pdfs/physics.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/physics.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>  
         </div>
@@ -1200,7 +1200,7 @@
             </video>
         
            <embed class="pdf-embed"
-                   src="pdfs/draw-my-life.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/draw-my-life.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>  
         </div>
@@ -1259,7 +1259,7 @@
             
             <div class="popup-body" style="overflow-y:auto; overflow-x:hidden; position:relative;">
              <embed class="pdf-embed"
-                   src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>
         </div>
@@ -1283,7 +1283,7 @@
             
             <div class="popup-body" style="overflow-y:auto; overflow-x:hidden; position:relative;">
              <embed class="pdf-embed"
-                   src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>
         </div>
@@ -1307,7 +1307,7 @@
             
             <div class="popup-body" style="overflow-y:auto; overflow-x:hidden; position:relative;">
              <embed class="pdf-embed"
-                   src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>
         </div>
@@ -1331,7 +1331,7 @@
             
             <div class="popup-body" style="overflow-y:auto; overflow-x:hidden; position:relative;">
              <embed class="pdf-embed"
-                   src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                   data-src="pdfs/Beaded-Watch.pdf#toolbar=0&navpanes=0&scrollbar=0"
                    type="application/pdf">
           </div>
         </div>
@@ -1781,13 +1781,20 @@ window.addEventListener('resize', positionSeattleOverlays);
   observer.observe(overlay, { attributes: true, attributeFilter: ['class'] });
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Load video only when popup opens
+  // Load video/PDF content only when popup opens
   document.querySelectorAll('[data-popup]').forEach(trigger => {
     trigger.addEventListener('click', () => {
       const popup = document.getElementById(trigger.dataset.popup);
       if (!popup) return;
+
+      // Video loading logic
       popup.querySelectorAll('video[data-video]').forEach(v => {
         if (!v.src) v.src = v.dataset.video;
+      });
+
+      // PDF loading logic (This is the NEW section that loads the PDF)
+      popup.querySelectorAll('embed[data-src]').forEach(pdf => {
+        if (!pdf.src) pdf.src = pdf.dataset.src;
       });
     });
   });
