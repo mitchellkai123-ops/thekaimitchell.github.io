@@ -1781,7 +1781,7 @@ window.addEventListener('resize', positionSeattleOverlays);
   observer.observe(overlay, { attributes: true, attributeFilter: ['class'] });
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Load video/PDF content only when popup opens
+  // Load video/PDF/Image content only when popup opens
   document.querySelectorAll('[data-popup]').forEach(trigger => {
     trigger.addEventListener('click', () => {
       const popup = document.getElementById(trigger.dataset.popup);
@@ -1792,12 +1792,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!v.src) v.src = v.dataset.video;
       });
 
-      // PDF loading logic (This is the NEW section that loads the PDF)
+      // PDF loading logic
       popup.querySelectorAll('embed[data-src]').forEach(pdf => {
         if (!pdf.src) pdf.src = pdf.dataset.src;
       });
 
-      // Image loading logic (NEW CODE FOR PHOTOS)
+      // Image loading logic
       popup.querySelectorAll('img[data-src]').forEach(img => {
         if (!img.src) img.src = img.dataset.src;
       });
