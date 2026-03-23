@@ -1438,7 +1438,7 @@ function closePopup() {
     Array.from(overlay.querySelectorAll('.popup')).forEach(p => p.style.display = 'none');
 }
 
-let simpleMode = false;
+let simpleMode = true;
 
 const links = [
     { text: "Resume", url: "https://docs.google.com/document/d/1Cz3ejhUNQtdBSGaBaF9coz_Gjt_xv3XMFN_uzu7-iYE/edit?usp=sharing" },
@@ -1580,8 +1580,7 @@ renderDefaultLinks();
     
 document.body.insertBefore(simpleList, document.getElementById('overlay'));
     
-document.getElementById('mode-toggle').addEventListener('click', () => {
-    simpleMode = !simpleMode;
+function applyModeState() {
     const body = document.body;
     const button = document.getElementById('mode-toggle');
 
@@ -1614,8 +1613,15 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
         button.classList.remove('simple');
         button.classList.add('visual');
     }
+}
+
+document.getElementById('mode-toggle').addEventListener('click', () => {
+    simpleMode = !simpleMode;
+    applyModeState();
 });
 
+applyModeState();
+    
     // Toggle SVM text display when simpleMode changes
     function updateSVMText() {
         const svmText = document.getElementById('svm-text');
@@ -1633,7 +1639,7 @@ document.getElementById('mode-toggle').addEventListener('click', () => {
         // just update the text display
         setTimeout(updateSVMText, 50); // wait for simpleMode to toggle
     });
-    
+    updateSVMText();
 // single listener for SVM popup links and pins
 document.addEventListener('click', function(e) {
     const pin = e.target.closest('.pin');
